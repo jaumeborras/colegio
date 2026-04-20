@@ -45,9 +45,9 @@ export default function HomePage() {
           <Image
             src={LOGO_URL}
             alt="Escudo Colegio San Cayetano"
-            width={340}
-            height={340}
-            className="object-contain brightness-0 invert drop-shadow-xl w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] mb-8 md:mb-10"
+            width={520}
+            height={520}
+            className="object-contain brightness-0 invert drop-shadow-xl w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[520px] md:h-[520px] mb-8 md:mb-10"
             unoptimized
             priority
           />
