@@ -39,18 +39,26 @@ export default function HomePage() {
         {/* Overlay oscuro uniforme */}
         <div className="absolute inset-0 bg-black/45" />
 
-        {/* Contenido centrado: solo logo grande + CTAs */}
+        {/* Contenido centrado: logo + nombre + ubicación */}
         <div className="relative z-10 flex flex-col items-center text-center px-6">
-          {/* Logo blanco MUY grande */}
+          {/* Escudo grande */}
           <Image
             src={LOGO_URL}
             alt="Escudo Colegio San Cayetano"
-            width={520}
-            height={520}
-            className="object-contain brightness-0 invert drop-shadow-xl w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] md:w-[520px] md:h-[520px] mb-8 md:mb-10"
+            width={420}
+            height={420}
+            className="object-contain brightness-0 invert drop-shadow-xl w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] mb-6 md:mb-8"
             unoptimized
             priority
           />
+
+          {/* Nombre y ubicación */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-widest uppercase drop-shadow-md mb-2">
+            Colegio San Cayetano
+          </h1>
+          <p className="text-base sm:text-xl md:text-2xl text-white/80 tracking-[0.3em] uppercase font-light mb-10 md:mb-12">
+            Palma de Mallorca
+          </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3">
