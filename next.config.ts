@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "www.colegiosancayetano.com",
-        pathname: "/wp-content/uploads/**",
       },
       {
         protocol: "https",

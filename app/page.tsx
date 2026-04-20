@@ -1,8 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-
-const LOGO_URL = "https://www.colegiosancayetano.com/wp-content/uploads/2021/12/Colegio-San-Cayetano-sombreado.png"
-const HERO_BG = "https://www.colegiosancayetano.com/wp-content/uploads/2021/11/Foto-Claustro-1920x1080-1.jpg"
+import HeroCarousel from "@/components/HeroCarousel"
 
 const stages = [
   { name: "Escoleta", ages: "1–2 años", href: "/etapas/escoleta", icon: "🌱" },
@@ -25,56 +23,8 @@ const quickLinks = [
 export default function HomePage() {
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative w-full h-[100svh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Imagen de fondo */}
-        <Image
-          src={HERO_BG}
-          alt="Colegio San Cayetano"
-          fill
-          className="object-cover object-center"
-          unoptimized
-          priority
-        />
-        {/* Overlay oscuro uniforme */}
-        <div className="absolute inset-0 bg-black/45" />
-
-        {/* Solo el sombreado.png — ya contiene escudo + nombre + ubicación */}
-        <div className="relative z-10 flex flex-col items-center text-center px-6">
-          <Image
-            src={LOGO_URL}
-            alt="Colegio San Cayetano — Palma de Mallorca"
-            width={700}
-            height={700}
-            className="object-contain brightness-0 invert drop-shadow-2xl w-[340px] sm:w-[500px] md:w-[620px] lg:w-[700px] mb-10 md:mb-14"
-            unoptimized
-            priority
-          />
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Link
-              href="/admisiones"
-              className="inline-flex items-center justify-center px-7 py-3.5 bg-white text-[var(--accent)] text-sm font-semibold rounded-xl hover:bg-white/90 transition-colors shadow-lg"
-            >
-              Proceso de admisión
-            </Link>
-            <Link
-              href="/quienes-somos"
-              className="inline-flex items-center justify-center px-7 py-3.5 bg-white/15 backdrop-blur-sm border border-white/40 text-white text-sm font-medium rounded-xl hover:bg-white/25 transition-colors"
-            >
-              Quiénes somos
-            </Link>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/50">
-          <svg className="w-5 h-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-          </svg>
-        </div>
-      </section>
+      {/* ── HERO CARRUSEL ── */}
+      <HeroCarousel />
 
       {/* ── INTRO con logo y texto ── */}
       <section className="bg-white py-16 md:py-20">
@@ -82,7 +32,7 @@ export default function HomePage() {
           {/* Logo color grande */}
           <div className="shrink-0 flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-3xl bg-[var(--accent-light)] border border-[var(--border)]">
             <Image
-              src={LOGO_URL}
+              src="https://www.colegiosancayetano.com/wp-content/uploads/2021/12/Colegio-San-Cayetano-sombreado.png"
               alt="Escudo Colegio San Cayetano"
               width={160}
               height={160}
