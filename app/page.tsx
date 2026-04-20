@@ -39,28 +39,18 @@ export default function HomePage() {
         {/* Overlay oscuro uniforme */}
         <div className="absolute inset-0 bg-black/45" />
 
-        {/* Contenido centrado: logo grande + nombre */}
+        {/* Contenido centrado: solo logo grande + CTAs */}
         <div className="relative z-10 flex flex-col items-center text-center px-6">
-          {/* Logo blanco grande */}
-          <div className="mb-6 md:mb-8">
-            <Image
-              src={LOGO_URL}
-              alt="Escudo Colegio San Cayetano"
-              width={180}
-              height={180}
-              className="object-contain brightness-0 invert drop-shadow-lg w-[130px] h-[130px] sm:w-[160px] sm:h-[160px] md:w-[200px] md:h-[200px]"
-              unoptimized
-              priority
-            />
-          </div>
-
-          {/* Nombre del colegio */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-widest uppercase drop-shadow-md mb-2 md:mb-3">
-            Colegio San Cayetano
-          </h1>
-          <p className="text-base sm:text-lg text-white/80 tracking-[0.25em] uppercase font-light mb-8 md:mb-10">
-            Palma de Mallorca
-          </p>
+          {/* Logo blanco MUY grande */}
+          <Image
+            src={LOGO_URL}
+            alt="Escudo Colegio San Cayetano"
+            width={340}
+            height={340}
+            className="object-contain brightness-0 invert drop-shadow-xl w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] md:w-[340px] md:h-[340px] mb-8 md:mb-10"
+            unoptimized
+            priority
+          />
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3">
