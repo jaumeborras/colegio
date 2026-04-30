@@ -377,8 +377,11 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     if (open) {
       setMounted(true)
       document.body.style.overflow = "hidden"
-      const raf = requestAnimationFrame(() => setShow(true))
-      return () => cancelAnimationFrame(raf)
+      let raf2: number
+      const raf1 = requestAnimationFrame(() => {
+        raf2 = requestAnimationFrame(() => setShow(true))
+      })
+      return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2) }
     } else {
       setShow(false)
       document.body.style.overflow = ""
