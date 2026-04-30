@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { getMainNav, getSecondaryNav, NavItem } from "./nav-data"
-import { useLanguage } from "@/lib/i18n-context"
+import { useLanguage, setLanguage } from "@/lib/i18n-context"
 import { t } from "@/lib/i18n"
 import type { Lang } from "@/lib/i18n"
 
@@ -241,17 +241,23 @@ function LangDropdown() {
 }
 
 function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const { lang, setLang } = useLanguage()
+  const { lang } = useLanguage()
   const [expanded, setExpanded] = useState<string | null>(null)
   const [subExpanded, setSubExpanded] = useState<string | null>(null)
 
-  const allItems = [...getMainNav(lang), ...getSecondaryNav(lang)]
+  // Quiénes somos primero, luego etapas, luego resto del secundario
+  const allItems = [
+    getSecondaryNav(lang)[0],
+    ...getMainNav(lang),
+    ...getSecondaryNav(lang).slice(1),
+  ]
 
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-white overflow-y-auto">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
+    <div className="fixed inset-0 z-50 bg-white flex flex-col">
+      {/* Cabecera */}
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)] shrink-0 bg-[#003087]">
         <Link href="/" onClick={onClose} className="flex items-center gap-3">
           <div className="w-9 h-9 shrink-0">
             <Image
@@ -263,15 +269,17 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
               unoptimized
             />
           </div>
-          <span className="font-semibold text-[var(--text)]">San Cayetano</span>
+          <span className="font-semibold text-white">Colegio San Cayetano</span>
         </Link>
-        <button onClick={onClose} className="p-2 rounded-full hover:bg-[var(--bg-secondary)]">
+        <button onClick={onClose} className="p-2 rounded-full text-white hover:bg-white/15 transition-colors">
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <nav className="px-4 py-3">
+
+      {/* Navegación */}
+      <nav className="flex-1 overflow-y-auto px-4 py-2">
         {allItems.map((item) => {
           const isOpen = expanded === item.label
           const linkProps = item.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
@@ -279,11 +287,19 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           return (
             <div key={item.label} className="border-b border-[var(--border)] last:border-0">
               <div className="flex items-center justify-between">
-                <Link href={href} {...linkProps} onClick={() => { if (!item.children) onClose() }} className="flex-1 py-3.5 text-sm font-medium text-[var(--text)]">
+                <Link
+                  href={href}
+                  {...linkProps}
+                  onClick={() => { if (!item.children) onClose() }}
+                  className="flex-1 py-4 text-sm font-medium text-[var(--text)]"
+                >
                   {item.label}
                 </Link>
                 {item.children && (
-                  <button onClick={() => { setExpanded(isOpen ? null : item.label); setSubExpanded(null) }} className="p-2">
+                  <button
+                    onClick={() => { setExpanded(isOpen ? null : item.label); setSubExpanded(null) }}
+                    className="p-3"
+                  >
                     <svg className={`w-4 h-4 text-[var(--text-secondary)] transition-transform ${isOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
@@ -291,16 +307,21 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                 )}
               </div>
               {isOpen && item.children && (
-                <div className="pb-2 pl-4">
+                <div className="pb-2 pl-4 border-l-2 border-[var(--accent-light)] ml-2">
                   {item.children.map((child) => {
                     const childIsOpen = subExpanded === child.label
                     const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
-                    const childHref = child.href || "#"
                     return (
                       <div key={child.label}>
                         <div className="flex items-center justify-between">
-                          <Link href={childHref} {...childLinkProps} onClick={() => { if (!child.children) onClose() }} className="flex-1 py-2.5 text-sm text-[var(--text-secondary)]">
+                          <Link
+                            href={child.href || "#"}
+                            {...childLinkProps}
+                            onClick={() => { if (!child.children) onClose() }}
+                            className="flex-1 py-3 text-sm text-[var(--text-secondary)]"
+                          >
                             {child.label}
+                            {child.external && <span className="text-xs opacity-40 ml-1">↗</span>}
                           </Link>
                           {child.children && (
                             <button onClick={() => setSubExpanded(childIsOpen ? null : child.label)} className="p-2">
@@ -315,8 +336,9 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
                             {child.children.map((sub) => {
                               const subLinkProps = sub.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
                               return (
-                                <Link key={sub.label} href={sub.href || "#"} {...subLinkProps} onClick={onClose} className="block py-2 text-xs text-[var(--text-secondary)]">
+                                <Link key={sub.label} href={sub.href || "#"} {...subLinkProps} onClick={onClose} className="flex items-center gap-1 py-2.5 text-xs text-[var(--text-secondary)]">
                                   {sub.label}
+                                  {sub.external && <span className="opacity-40">↗</span>}
                                 </Link>
                               )
                             })}
@@ -331,26 +353,6 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           )
         })}
       </nav>
-
-      {/* Selector de idioma en móvil */}
-      <div className="px-4 py-4 border-t border-[var(--border)]">
-        <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">Idioma / Language</p>
-        <div className="flex gap-2 flex-wrap">
-          {(["es", "ca", "en", "de"] as Lang[]).map((code) => (
-            <button
-              key={code}
-              onClick={() => { setLang(code); onClose() }}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                lang === code
-                  ? "bg-[var(--accent)] text-white"
-                  : "bg-[var(--bg-secondary)] text-[var(--text)] hover:bg-[var(--accent-light)]"
-              }`}
-            >
-              {code === "es" ? "Español" : code === "ca" ? "Català" : code === "en" ? "English" : "Deutsch"}
-            </button>
-          ))}
-        </div>
-      </div>
     </div>
   )
 }
@@ -360,6 +362,7 @@ export default function Header() {
   const pathname = usePathname()
   const isHome = pathname === "/"
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileLangOpen, setMobileLangOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -390,7 +393,7 @@ export default function Header() {
                 priority
               />
             </div>
-            <div className="hidden sm:block">
+            <div className="hidden lg:block">
               <p className="text-sm font-semibold leading-tight text-white">
                 Colegio San Cayetano
               </p>
@@ -419,18 +422,52 @@ export default function Header() {
             <LangDropdown />
           </nav>
 
-          <button
-            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/15 transition-colors"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Abrir menú"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          <div className="flex items-center gap-1 lg:hidden">
+            <button
+              className="p-2 rounded-lg text-white hover:bg-white/15 transition-colors"
+              onClick={() => setMobileLangOpen(v => !v)}
+              aria-label="Seleccionar idioma"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+              </svg>
+            </button>
+            <button
+              className="p-2 rounded-lg text-white hover:bg-white/15 transition-colors"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Abrir menú"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
 
       </header>
+
+      {/* Picker de idioma en móvil */}
+      {mobileLangOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden" onClick={() => setMobileLangOpen(false)}>
+          <div className="absolute top-[72px] left-0 right-0 bg-white border-b border-[var(--border)] shadow-xl px-5 py-5" onClick={e => e.stopPropagation()}>
+            <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">Idioma / Language</p>
+            <div className="grid grid-cols-2 gap-2">
+              {([["es","Español"],["ca","Català"],["en","English"],["de","Deutsch"]] as [Lang,string][]).map(([code, label]) => (
+                <button
+                  key={code}
+                  onClick={() => { setLanguage(code); setMobileLangOpen(false) }}
+                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors text-left ${
+                    lang === code ? "bg-[var(--accent)] text-white" : "bg-[var(--bg-secondary)] text-[var(--text)] hover:bg-[var(--accent-light)]"
+                  }`}
+                >
+                  {label}
+                  {lang === code && <span className="float-right">✓</span>}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
