@@ -10,40 +10,51 @@ export default function PageHero({
   title,
   subtitle,
   breadcrumbs,
+  bgImage,
 }: {
   tag?: string
   title: string
   subtitle?: string
   breadcrumbs?: Crumb[]
+  bgImage?: string
 }) {
   const { lang } = useLanguage()
 
+  const hasBg = !!bgImage
+  const sectionStyle = hasBg
+    ? { backgroundImage: `url(${bgImage})`, backgroundSize: "cover", backgroundPosition: "center" }
+    : undefined
+
   return (
-    <section className="bg-[var(--bg-secondary)] border-b border-[var(--border)] py-12 md:py-16">
-      <div className="max-w-screen-xl mx-auto px-6">
+    <section
+      className={hasBg ? "relative border-b border-[var(--border)] py-12 md:py-16" : "bg-[var(--bg-secondary)] border-b border-[var(--border)] py-12 md:py-16"}
+      style={sectionStyle}
+    >
+      {hasBg && <div className="absolute inset-0 bg-black/45" />}
+      <div className="relative max-w-screen-xl mx-auto px-6">
         {breadcrumbs && (
-          <nav className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)] mb-5">
-            <Link href="/" className="hover:text-[var(--accent)] transition-colors">{t("ui.home", lang)}</Link>
+          <nav className={`flex items-center gap-1.5 text-xs mb-5 ${hasBg ? "text-white/70" : "text-[var(--text-secondary)]"}`}>
+            <Link href="/" className={`transition-colors ${hasBg ? "hover:text-white" : "hover:text-[var(--accent)]"}`}>{t("ui.home", lang)}</Link>
             {breadcrumbs.map((b, i) => (
               <span key={i} className="flex items-center gap-1.5">
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
                 {b.href ? (
-                  <Link href={b.href} className="hover:text-[var(--accent)] transition-colors">{b.label}</Link>
+                  <Link href={b.href} className={`transition-colors ${hasBg ? "hover:text-white" : "hover:text-[var(--accent)]"}`}>{b.label}</Link>
                 ) : (
-                  <span className="text-[var(--text)]">{b.label}</span>
+                  <span className={hasBg ? "text-white" : "text-[var(--text)]"}>{b.label}</span>
                 )}
               </span>
             ))}
           </nav>
         )}
         {tag && (
-          <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{tag}</p>
+          <p className={`text-xs font-semibold uppercase tracking-widest mb-3 ${hasBg ? "text-white/80" : "text-[var(--accent)]"}`}>{tag}</p>
         )}
-        <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">{title}</h1>
+        <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${hasBg ? "text-white" : "text-[var(--text)]"}`}>{title}</h1>
         {subtitle && (
-          <p className="text-[var(--text-secondary)] mt-3 max-w-2xl leading-relaxed">{subtitle}</p>
+          <p className={`mt-3 max-w-2xl leading-relaxed ${hasBg ? "text-white/80" : "text-[var(--text-secondary)]"}`}>{subtitle}</p>
         )}
       </div>
     </section>
