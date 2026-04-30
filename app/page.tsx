@@ -76,7 +76,7 @@ export default function HomePage() {
 
   const [heroIndex, setHeroIndex] = useState(0)
   useEffect(() => {
-    const id = setInterval(() => setHeroIndex(i => (i + 1) % HERO_IMAGES.length), 3000)
+    const id = setInterval(() => setHeroIndex(i => (i + 1) % HERO_IMAGES.length), 5000)
     return () => clearInterval(id)
   }, [])
 
