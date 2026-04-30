@@ -240,6 +240,62 @@ function LangDropdown() {
   )
 }
 
+function MobileLangPicker({ onClose }: { onClose: () => void }) {
+  const { lang } = useLanguage()
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setVisible(true))
+    return () => cancelAnimationFrame(id)
+  }, [])
+
+  const langs: { code: Lang; label: string; native: string; flag: string }[] = [
+    { code: "es", label: "Español",  native: "ES", flag: "🇪🇸" },
+    { code: "ca", label: "Català",   native: "CA", flag: "🇪🇸" },
+    { code: "en", label: "English",  native: "EN", flag: "🇬🇧" },
+    { code: "de", label: "Deutsch",  native: "DE", flag: "🇩🇪" },
+  ]
+
+  return (
+    <div className="fixed inset-0 z-50 lg:hidden" onClick={onClose}>
+      <div
+        className="absolute right-3 bg-white rounded-2xl shadow-2xl border border-[var(--border)] overflow-hidden"
+        style={{
+          top: 76,
+          minWidth: 210,
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0) scale(1)" : "translateY(-8px) scale(0.97)",
+          transition: "opacity 0.18s ease, transform 0.18s ease",
+        }}
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="px-4 py-2.5 border-b border-[var(--border)] bg-[var(--bg-secondary)]">
+          <p className="text-[10px] font-semibold text-[var(--text-secondary)] uppercase tracking-widest">Idioma / Language</p>
+        </div>
+        {langs.map(({ code, label, flag }) => (
+          <button
+            key={code}
+            onClick={() => { setLanguage(code); onClose() }}
+            className={`w-full flex items-center gap-3 px-4 py-3.5 text-sm border-b border-[var(--border)] last:border-0 transition-colors ${
+              lang === code
+                ? "bg-[var(--accent-light)] text-[var(--accent)] font-semibold"
+                : "text-[var(--text)] hover:bg-[var(--bg-secondary)]"
+            }`}
+          >
+            <span className="text-xl leading-none">{flag}</span>
+            <span className="flex-1 text-left">{label}</span>
+            {lang === code && (
+              <svg className="w-4 h-4 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { lang } = useLanguage()
   const [expanded, setExpanded] = useState<string | null>(null)
@@ -446,28 +502,7 @@ export default function Header() {
 
       </header>
 
-      {/* Picker de idioma en móvil */}
-      {mobileLangOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden" onClick={() => setMobileLangOpen(false)}>
-          <div className="absolute top-[72px] left-0 right-0 bg-white border-b border-[var(--border)] shadow-xl px-5 py-5" onClick={e => e.stopPropagation()}>
-            <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">Idioma / Language</p>
-            <div className="grid grid-cols-2 gap-2">
-              {([["es","Español"],["ca","Català"],["en","English"],["de","Deutsch"]] as [Lang,string][]).map(([code, label]) => (
-                <button
-                  key={code}
-                  onClick={() => { setLanguage(code); setMobileLangOpen(false) }}
-                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors text-left ${
-                    lang === code ? "bg-[var(--accent)] text-white" : "bg-[var(--bg-secondary)] text-[var(--text)] hover:bg-[var(--accent-light)]"
-                  }`}
-                >
-                  {label}
-                  {lang === code && <span className="float-right">✓</span>}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      {mobileLangOpen && <MobileLangPicker onClose={() => setMobileLangOpen(false)} />}
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>

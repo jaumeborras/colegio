@@ -1,13 +1,95 @@
 "use client"
+import { useRef, useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { t } from "@/lib/i18n"
 import { useLanguage } from "@/lib/i18n-context"
 
+// ── Animaciones de scroll ────────────────────────────────
+function useInView() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [inView, setInView] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect() } },
+      { threshold: 0.1 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
+  return { ref, inView }
+}
+
+function useCounter(end: number, duration: number, enabled: boolean) {
+  const [val, setVal] = useState(0)
+  useEffect(() => {
+    if (!enabled || end === 0) return
+    const t0 = performance.now()
+    let raf: number
+    const tick = (now: number) => {
+      const p = Math.min((now - t0) / duration, 1)
+      setVal(Math.round((1 - Math.pow(1 - p, 3)) * end))
+      if (p < 1) raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [end, duration, enabled])
+  return val
+}
+
+function FadeIn({ children, delay = 0, className = "" }: {
+  children: React.ReactNode; delay?: number; className?: string
+}) {
+  const { ref, inView } = useInView()
+  return (
+    <div ref={ref} className={className} style={{
+      opacity: inView ? 1 : 0,
+      transform: inView ? "none" : "translateY(22px)",
+      transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+    }}>
+      {children}
+    </div>
+  )
+}
+
+function StatCounter({ value, label, enabled }: { value: string; label: string; enabled: boolean }) {
+  const isPlus = value.startsWith("+")
+  const cleaned = value.replace(/[^0-9]/g, "")
+  const num = parseInt(cleaned, 10)
+  const isNum = !isNaN(num) && cleaned.length > 0
+  const count = useCounter(isNum ? num : 0, 2200, enabled && isNum)
+  const display = !isNum ? value
+    : num >= 1000 ? count.toLocaleString("es-ES")
+    : isPlus ? `+${count}`
+    : String(count)
+  return (
+    <div>
+      <p className="text-3xl sm:text-4xl font-bold">{display}</p>
+      <p className="text-sm text-blue-200 mt-1">{label}</p>
+    </div>
+  )
+}
+// ────────────────────────────────────────────────────────
+
 const LOGO_URL = "https://www.colegiosancayetano.com/wp-content/uploads/2021/12/Colegio-San-Cayetano-sombreado.png"
 
 export default function HomePage() {
   const { lang } = useLanguage()
+
+  const statsRef = useRef<HTMLElement>(null)
+  const [statsInView, setStatsInView] = useState(false)
+  useEffect(() => {
+    const el = statsRef.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setStatsInView(true); obs.disconnect() } },
+      { threshold: 0.1 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [])
 
   const stages = [
     { key: "stage.escoleta", ages: lang === "ca" ? "1–2 anys" : lang === "en" ? "1–2 years" : lang === "de" ? "1–2 Jahre" : "1–2 años", href: "/etapas/escoleta", icon: "🌱" },
@@ -109,7 +191,7 @@ export default function HomePage() {
 
       {/* ── INTRO ── */}
       <section className="bg-white py-16 md:py-20">
-        <div className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <FadeIn className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
           <div className="shrink-0 flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-3xl bg-[var(--accent-light)] border border-[var(--border)]">
             <Image
               src={LOGO_URL}
@@ -138,17 +220,14 @@ export default function HomePage() {
               </svg>
             </Link>
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* ── STATS ── */}
-      <section className="bg-[var(--accent)] text-white">
+      <section ref={statsRef} className="bg-[var(--accent)] text-white">
         <div className="max-w-screen-xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map((s) => (
-            <div key={s.label}>
-              <p className="text-3xl sm:text-4xl font-bold">{s.value}</p>
-              <p className="text-sm text-blue-200 mt-1">{s.label}</p>
-            </div>
+            <StatCounter key={s.label} value={s.value} label={s.label} enabled={statsInView} />
           ))}
         </div>
       </section>
@@ -156,21 +235,22 @@ export default function HomePage() {
       {/* ── ETAPAS ── */}
       <section className="bg-white py-16 md:py-20">
         <div className="max-w-screen-xl mx-auto px-6">
-          <div className="text-center mb-10">
+          <FadeIn className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] tracking-tight">{t("home.stages.title", lang)}</h2>
             <p className="text-[var(--text-secondary)] mt-2 text-sm sm:text-base">{t("home.stages.subtitle", lang)}</p>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {stages.map((s) => (
-              <Link
-                key={s.key}
-                href={s.href}
-                className="group flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] hover:bg-[var(--accent-light)] transition-all"
-              >
-                <span className="text-2xl sm:text-3xl mb-2 sm:mb-3">{s.icon}</span>
-                <p className="text-sm font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">{t(s.key, lang)}</p>
-                <p className="text-xs text-[var(--text-secondary)] mt-1 hidden sm:block">{s.ages}</p>
-              </Link>
+            {stages.map((s, i) => (
+              <FadeIn key={s.key} delay={i * 70}>
+                <Link
+                  href={s.href}
+                  className="group flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] hover:bg-[var(--accent-light)] transition-all h-full"
+                >
+                  <span className="text-2xl sm:text-3xl mb-2 sm:mb-3">{s.icon}</span>
+                  <p className="text-sm font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">{t(s.key, lang)}</p>
+                  <p className="text-xs text-[var(--text-secondary)] mt-1 hidden sm:block">{s.ages}</p>
+                </Link>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -179,38 +259,40 @@ export default function HomePage() {
       {/* ── ACCESOS RÁPIDOS ── */}
       <section className="bg-[var(--bg-secondary)] py-12 md:py-16">
         <div className="max-w-screen-xl mx-auto px-6">
-          <h2 className="text-lg sm:text-xl font-semibold text-[var(--text)] mb-5">{t("home.quickLinks.title", lang)}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
-            {quickLinks.map((l) => (
-              <a
-                key={l.label}
-                href={l.href}
-                target={l.external ? "_blank" : undefined}
-                rel={l.external ? "noopener noreferrer" : undefined}
-                className="flex items-center justify-between gap-2 bg-white border border-[var(--border)] rounded-xl px-4 py-3 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all group"
-              >
-                {l.label}
-                <svg className="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 shrink-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={l.external ? "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" : "M9 5l7 7-7 7"} />
-                </svg>
-              </a>
-            ))}
-          </div>
+          <FadeIn>
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text)] mb-5">{t("home.quickLinks.title", lang)}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
+              {quickLinks.map((l) => (
+                <a
+                  key={l.label}
+                  href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
+                  className="flex items-center justify-between gap-2 bg-white border border-[var(--border)] rounded-xl px-4 py-3 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all group"
+                >
+                  {l.label}
+                  <svg className="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 shrink-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={l.external ? "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" : "M9 5l7 7-7 7"} />
+                  </svg>
+                </a>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* ── VALORES ── */}
       <section className="bg-white py-16 md:py-20">
         <div className="max-w-screen-xl mx-auto px-6">
-          <div className="text-center mb-10">
+          <FadeIn className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] tracking-tight">{t("home.values.title", lang)}</h2>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {values.map((v) => (
-              <div key={v.title} className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)]">
+            {values.map((v, i) => (
+              <FadeIn key={v.title} delay={i * 80} className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)]">
                 <p className="text-sm font-semibold text-[var(--text)] mb-1.5">{v.title}</p>
                 <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{v.desc}</p>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -218,7 +300,7 @@ export default function HomePage() {
 
       {/* ── CTA ADMISIONES ── */}
       <section className="bg-[var(--accent-light)] py-14 md:py-16">
-        <div className="max-w-screen-xl mx-auto px-6 text-center">
+        <FadeIn className="max-w-screen-xl mx-auto px-6 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] mb-3">{t("home.cta.title", lang)}</h2>
           <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-sm sm:text-base">
             {t("home.cta.desc", lang)}
@@ -229,12 +311,12 @@ export default function HomePage() {
           >
             {t("ui.admissions", lang)}
           </Link>
-        </div>
+        </FadeIn>
       </section>
 
       {/* ── CONTACTO RÁPIDO ── */}
       <section className="bg-white py-12 md:py-16">
-        <div className="max-w-screen-xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <FadeIn className="max-w-screen-xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-center sm:text-left">
             <p className="text-sm font-semibold text-[var(--text)] mb-1">{t("home.contact.name", lang)}</p>
             <p className="text-sm text-[var(--text-secondary)]">{t("home.contact.address", lang)}</p>
@@ -250,7 +332,7 @@ export default function HomePage() {
               {t("ui.contact", lang)}
             </Link>
           </div>
-        </div>
+        </FadeIn>
       </section>
     </>
   )
