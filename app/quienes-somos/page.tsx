@@ -107,25 +107,6 @@ export default function QuienesSomosPage() {
           </div>
         </div>
 
-        {/* Redes */}
-        <div className="border border-[var(--border)] rounded-2xl p-6 mb-10">
-          <h2 className="text-sm font-semibold text-[var(--text)] mb-4">{t("who.follow", lang)}</h2>
-          <div className="flex flex-wrap gap-3">
-            <a href="http://www.sanca.tv" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-              Sanca TV ↗
-            </a>
-            <a href="https://www.instagram.com/sancayetanopalma/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-              Instagram ↗
-            </a>
-            <a href="https://www.facebook.com/Colegio-San-Cayetano-Palma-de-Mallorca-100322058504103" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-              Facebook ↗
-            </a>
-          </div>
-        </div>
-
-        <Link href="/contacto" className="inline-flex items-center gap-2 bg-[var(--accent)] text-white rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors">
-          {t("who.contactUs", lang)}
-        </Link>
       </div>
     </>
   )
