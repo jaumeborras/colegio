@@ -249,42 +249,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── ACCESOS RÁPIDOS ── */}
-      <section className="bg-[var(--bg-secondary)] py-12 md:py-16">
-        <div className="max-w-screen-xl mx-auto px-6">
-          <FadeIn>
-            <h2 className="text-lg sm:text-xl font-semibold text-[var(--text)] mb-5">{t("home.quickLinks.title", lang)}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3">
-              {quickLinks.map((l) => (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  target={l.external ? "_blank" : undefined}
-                  rel={l.external ? "noopener noreferrer" : undefined}
-                  className="flex items-center justify-between gap-2 bg-white border border-[var(--border)] rounded-xl px-4 py-3 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all group"
-                >
-                  {l.label}
-                  <svg className="w-3.5 h-3.5 opacity-30 group-hover:opacity-100 shrink-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={l.external ? "M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" : "M9 5l7 7-7 7"} />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* ── VALORES ── */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white py-16 md:py-24">
         <div className="max-w-screen-xl mx-auto px-6">
-          <FadeIn className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] tracking-tight">{t("home.values.title", lang)}</h2>
+          <FadeIn className="mb-12 md:mb-16">
+            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("who.tag", lang)}</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">{t("home.values.title", lang)}</h2>
           </FadeIn>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="divide-y divide-[var(--border)]">
             {values.map((v, i) => (
-              <FadeIn key={v.title} delay={i * 80} className="p-5 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)]">
-                <p className="text-sm font-semibold text-[var(--text)] mb-1.5">{v.title}</p>
-                <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{v.desc}</p>
+              <FadeIn
+                key={v.title}
+                delay={i * 90}
+                className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-10 md:gap-16 py-8 md:py-10 group cursor-default"
+              >
+                <span className="text-xs font-bold text-[var(--accent)] tracking-widest tabular-nums shrink-0 pt-1">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="text-lg md:text-xl font-semibold text-[var(--text)] shrink-0 sm:w-56 group-hover:text-[var(--accent)] transition-colors duration-200">
+                  {v.title}
+                </h3>
+                <p className="text-[var(--text-secondary)] leading-relaxed text-sm md:text-base flex-1">
+                  {v.desc}
+                </p>
               </FadeIn>
             ))}
           </div>
