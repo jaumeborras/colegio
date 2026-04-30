@@ -93,6 +93,30 @@ export default function HomePage() {
     return () => obs.disconnect()
   }, [])
 
+  const news = [
+    {
+      title: "El Colegio San Cayetano celebra sus más de 50 años de historia educativa en Palma",
+      img: "/fotos/actos.jpg",
+      href: "https://www.colegiosancayetano.com",
+      source: "colegiosancayetano.com",
+      date: "Abril 2026",
+    },
+    {
+      title: "Alumnos del programa IB representan al colegio en el Model United Nations internacional",
+      img: "/fotos/IB.jpg",
+      href: "https://www.colegiosancayetano.com",
+      source: "colegiosancayetano.com",
+      date: "Marzo 2026",
+    },
+    {
+      title: "Nueva escoleta: espacios renovados para los más pequeños del colegio",
+      img: "/fotos/escoleta.jpg",
+      href: "https://www.colegiosancayetano.com",
+      source: "colegiosancayetano.com",
+      date: "Febrero 2026",
+    },
+  ]
+
   const quickLinks = [
     { label: "Alexia (familias)", href: "https://web2.alexiaedu.com/ACWeb/LogOn.aspx?key=bhaA17N5NZc%3d", external: true },
     { label: "ManageBac (IB)", href: "https://colegiosancayetano.managebac.com/", external: true },
@@ -329,6 +353,48 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
               </div>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ÚLTIMAS NOTICIAS ── */}
+      <section className="bg-[var(--bg-secondary)] py-16 md:py-24">
+        <div className="max-w-screen-xl mx-auto px-6">
+          <FadeIn className="mb-10 md:mb-14">
+            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">Actualidad</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">Últimas noticias</h2>
+          </FadeIn>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {news.map((item, i) => (
+              <FadeIn key={item.title} delay={i * 80}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 p-5">
+                    <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
+                    <h3 className="text-sm sm:text-base font-semibold text-[var(--text)] leading-snug flex-1 group-hover:text-[var(--accent)] transition-colors duration-200">
+                      {item.title}
+                    </h3>
+                    <div className="mt-4 pt-4 border-t border-[var(--border)] flex items-center gap-2">
+                      <svg className="w-3.5 h-3.5 text-[var(--text-secondary)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                      </svg>
+                      <span className="text-xs text-[var(--text-secondary)] truncate">{item.source}</span>
+                    </div>
+                  </div>
+                </a>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
