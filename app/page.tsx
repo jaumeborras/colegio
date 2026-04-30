@@ -160,13 +160,13 @@ export default function HomePage() {
       </section>
 
       {/* ── LEMA ── */}
-      <div className="bg-[#003087] py-5 px-6 text-center">
+      <div className="bg-white py-6 px-6 text-center">
         <p style={{ fontFamily: "var(--font-serif)", lineHeight: 1.2 }}>
-          <span className="font-bold text-white text-lg sm:text-xl md:text-2xl">
+          <span className="font-bold text-xl sm:text-2xl md:text-3xl" style={{ color: "var(--accent)" }}>
             {t("home.hero.line1", lang)}
           </span>
-          <span className="mx-2 text-white/30 font-light hidden sm:inline">·</span>
-          <span className="block sm:inline font-bold italic text-lg sm:text-xl md:text-2xl" style={{ color: "var(--gold, #c9a84c)" }}>
+          <span className="mx-3 hidden sm:inline font-light" style={{ color: "var(--accent)", opacity: 0.3 }}>·</span>
+          <span className="block sm:inline font-bold italic text-xl sm:text-2xl md:text-3xl" style={{ color: "var(--accent)" }}>
             {t("home.hero.line2", lang)}
           </span>
         </p>
