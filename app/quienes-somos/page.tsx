@@ -20,11 +20,10 @@ export default function QuienesSomosPage() {
   return (
     <>
       <PageHero
-        tag={t("who.tag", lang)}
         title={t("who.title", lang)}
         subtitle={t("who.subtitle", lang)}
-        breadcrumbs={[{ label: t("who.title", lang) }]}
         bgImage="/fondo.png"
+        centered
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         {/* Director */}
