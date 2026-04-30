@@ -27,20 +27,20 @@ export default function QuienesSomosPage() {
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         {/* Director */}
-        <div className="flex items-start gap-6 p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)] mb-12">
-          <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[var(--border)]">
+        <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 mb-12">
+          <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shrink-0">
             <Image
               src="/pablo.png"
               alt="Pablo Guerrero Pacheco"
-              width={64}
-              height={64}
+              width={224}
+              height={224}
               className="object-cover w-full h-full"
             />
           </div>
           <div>
-            <p className="text-xs text-[var(--text-secondary)] uppercase tracking-wider mb-1">{t("who.director.label", lang)}</p>
-            <p className="font-semibold text-[var(--text)]">Pablo Guerrero Pacheco, C.R.</p>
-            <p className="text-sm text-[var(--text-secondary)] mt-1">Orden Teatina (Clérigos Regulares)</p>
+            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider mb-2">{t("who.director.label", lang)}</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text)] leading-tight mb-2">Pablo Guerrero<br/>Pacheco, C.R.</h2>
+            <p className="text-[var(--text-secondary)]">Orden Teatina (Clérigos Regulares)</p>
           </div>
         </div>
 
