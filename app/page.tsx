@@ -95,8 +95,8 @@ export default function HomePage() {
 
   const news = [
     {
-      title: "Los colegios privados de Mallorca apuestan por el Bachillerato Internacional",
-      img: "/fotos/IB.jpg",
+      title: "Colegio San Cayetano: la educación integral que empieza en la Escoleta y culmina en el Bachillerato Internacional",
+      img: "/fotos/noticias1.png",
       href: "https://www.diariodemallorca.es/mallorca/2026/04/28/colegios-privados-mallorca-bachillerato-internacional-bc-129564438.html",
       source: "Diario de Mallorca",
       date: "28 abril 2026",
