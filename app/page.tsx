@@ -129,11 +129,6 @@ export default function HomePage() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.18)" }} />
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.42) 65%, rgba(0,0,0,0.56) 100%)" }}
-        />
 
         {/* Pills admisiones / información */}
         <div className="absolute top-[80px] right-6 lg:right-10 z-10 hidden lg:flex gap-2">
@@ -160,20 +155,20 @@ export default function HomePage() {
       </section>
 
       {/* ── LEMA ── */}
-      <div className="bg-white py-6 px-6 text-center">
+      <div className="bg-white py-10 md:py-12 px-6 text-center">
         <p style={{ fontFamily: "var(--font-serif)", lineHeight: 1.2 }}>
-          <span className="font-bold text-xl sm:text-2xl md:text-3xl" style={{ color: "var(--accent)" }}>
+          <span className="font-bold text-2xl sm:text-3xl md:text-4xl" style={{ color: "var(--accent)" }}>
             {t("home.hero.line1", lang)}
           </span>
           <span className="mx-3 hidden sm:inline font-light" style={{ color: "var(--accent)", opacity: 0.3 }}>·</span>
-          <span className="block sm:inline font-bold italic text-xl sm:text-2xl md:text-3xl" style={{ color: "var(--accent)" }}>
+          <span className="block sm:inline font-bold italic text-2xl sm:text-3xl md:text-4xl" style={{ color: "var(--accent)" }}>
             {t("home.hero.line2", lang)}
           </span>
         </p>
       </div>
 
       {/* ── INTRO ── */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white pb-16 md:pb-20">
         <FadeIn className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
           <div className="shrink-0 flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-3xl bg-[var(--accent-light)] border border-[var(--border)]">
             <Image
