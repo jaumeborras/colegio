@@ -69,9 +69,16 @@ function StatCounter({ value, enabled }: { value: string; enabled: boolean }) {
 // ────────────────────────────────────────────────────────
 
 const LOGO_URL = "https://www.colegiosancayetano.com/wp-content/uploads/2021/12/Colegio-San-Cayetano-sombreado.png"
+const HERO_IMAGES = ["/header.jpg", "/dron.jpg", "/futbol.jpg", "/estatua.jpg"]
 
 export default function HomePage() {
   const { lang } = useLanguage()
+
+  const [heroIndex, setHeroIndex] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setHeroIndex(i => (i + 1) % HERO_IMAGES.length), 3000)
+    return () => clearInterval(id)
+  }, [])
 
   const statsRef = useRef<HTMLElement>(null)
   const [statsInView, setStatsInView] = useState(false)
@@ -122,13 +129,21 @@ export default function HomePage() {
     <>
       {/* ── HERO ── */}
       <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden -mt-[72px]">
-        <Image
-          src="/header.jpg"
-          alt="Colegio San Cayetano"
-          fill
-          className="object-cover object-center"
-          priority
-        />
+        {HERO_IMAGES.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt="Colegio San Cayetano"
+            fill
+            className="object-cover object-center"
+            priority={i === 0}
+            style={{
+              opacity: heroIndex === i ? 1 : 0,
+              transition: "opacity 1.2s ease-in-out",
+              zIndex: heroIndex === i ? 1 : 0,
+            }}
+          />
+        ))}
 
         {/* Pills admisiones / información */}
         <div className="absolute top-[80px] right-6 lg:right-10 z-10 hidden lg:flex gap-2">
