@@ -54,7 +54,7 @@ function FadeIn({ children, delay = 0, className = "" }: {
   )
 }
 
-function StatCounter({ value, label, enabled }: { value: string; label: string; enabled: boolean }) {
+function StatCounter({ value, enabled }: { value: string; enabled: boolean }) {
   const isPlus = value.startsWith("+")
   const cleaned = value.replace(/[^0-9]/g, "")
   const num = parseInt(cleaned, 10)
@@ -64,12 +64,7 @@ function StatCounter({ value, label, enabled }: { value: string; label: string; 
     : num >= 1000 ? count.toLocaleString("es-ES")
     : isPlus ? `+${count}`
     : String(count)
-  return (
-    <div>
-      <p className="text-3xl sm:text-4xl font-bold">{display}</p>
-      <p className="text-sm text-blue-200 mt-1">{label}</p>
-    </div>
-  )
+  return <>{display}</>
 }
 // ────────────────────────────────────────────────────────
 
@@ -139,10 +134,10 @@ export default function HomePage() {
           className="absolute inset-0 hidden sm:block"
           style={{ background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.48) 65%, rgba(0,0,0,0.62) 100%)" }}
         />
-        {/* Difuminado inferior solo en móvil */}
+        {/* Difuminado inferior azulado solo en móvil */}
         <div
           className="absolute inset-0 sm:hidden"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.08) 30%, transparent 55%)" }}
+          style={{ background: "linear-gradient(to top, rgba(0,20,80,0.42) 0%, rgba(0,15,60,0.12) 38%, transparent 62%)" }}
         />
 
         {/* Lema */}
@@ -155,10 +150,10 @@ export default function HomePage() {
                 textShadow: "0 2px 12px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.45)",
               }}
             >
-              <span className="block font-bold text-white" style={{ fontSize: "clamp(32px, 4vw, 62px)" }}>
+              <span className="block font-bold text-white" style={{ fontSize: "clamp(18px, 4vw, 62px)" }}>
                 {t("home.hero.line1", lang)}
               </span>
-              <span className="block font-bold italic" style={{ fontSize: "clamp(32px, 4vw, 62px)", color: "var(--gold)" }}>
+              <span className="block font-bold italic" style={{ fontSize: "clamp(18px, 4vw, 62px)", color: "var(--gold)" }}>
                 {t("home.hero.line2", lang)}
               </span>
             </h1>
@@ -224,11 +219,26 @@ export default function HomePage() {
       </section>
 
       {/* ── STATS ── */}
-      <section ref={statsRef} className="bg-[var(--accent)] text-white">
-        <div className="max-w-screen-xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          {stats.map((s) => (
-            <StatCounter key={s.label} value={s.value} label={s.label} enabled={statsInView} />
-          ))}
+      <section ref={statsRef} className="bg-[var(--accent)] text-white overflow-hidden">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`flex flex-col items-center justify-center text-center px-6 py-12 md:py-16 relative
+                  ${i % 2 === 0 && i < 3 ? "after:absolute after:right-0 after:top-1/4 after:h-1/2 after:w-px after:bg-white/15" : ""}
+                  ${i < 2 ? "border-b border-white/10 md:border-b-0" : ""}
+                  ${i === 1 ? "md:after:absolute md:after:right-0 md:after:top-1/4 md:after:h-1/2 md:after:w-px md:after:bg-white/15" : ""}
+                `}
+              >
+                <div className="w-8 h-[2px] rounded-full mb-5" style={{ background: "var(--gold, #c9a84c)" }} />
+                <p className="text-[2.6rem] sm:text-5xl md:text-6xl font-black tracking-tight leading-none tabular-nums">
+                  <StatCounter value={s.value} enabled={statsInView} />
+                </p>
+                <p className="text-[10px] sm:text-xs text-white/50 mt-4 uppercase tracking-[0.18em] font-medium">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

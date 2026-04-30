@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useCallback, useEffect } from "react"
+import React, { useState, useRef, useCallback, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
@@ -249,11 +249,22 @@ function MobileLangPicker({ onClose }: { onClose: () => void }) {
     return () => cancelAnimationFrame(id)
   }, [])
 
-  const langs: { code: Lang; label: string; native: string; flag: string }[] = [
-    { code: "es", label: "Español",  native: "ES", flag: "🇪🇸" },
-    { code: "ca", label: "Català",   native: "CA", flag: "🇪🇸" },
-    { code: "en", label: "English",  native: "EN", flag: "🇬🇧" },
-    { code: "de", label: "Deutsch",  native: "DE", flag: "🇩🇪" },
+  const senyera = (
+    <svg viewBox="0 0 30 20" width="28" height="19" style={{ borderRadius: 2, display: "block", flexShrink: 0 }}>
+      <rect width="30" height="20" fill="#FCDD09"/>
+      <rect y="0"    width="30" height="2.22" fill="#DA121A"/>
+      <rect y="4.44" width="30" height="2.22" fill="#DA121A"/>
+      <rect y="8.89" width="30" height="2.22" fill="#DA121A"/>
+      <rect y="13.33" width="30" height="2.22" fill="#DA121A"/>
+      <rect y="17.78" width="30" height="2.22" fill="#DA121A"/>
+    </svg>
+  )
+
+  const langs: { code: Lang; label: string; flag: React.ReactNode }[] = [
+    { code: "es", label: "Español", flag: <span className="text-xl leading-none">🇪🇸</span> },
+    { code: "ca", label: "Català",  flag: senyera },
+    { code: "en", label: "English", flag: <span className="text-xl leading-none">🇬🇧</span> },
+    { code: "de", label: "Deutsch", flag: <span className="text-xl leading-none">🇩🇪</span> },
   ]
 
   return (
@@ -282,7 +293,7 @@ function MobileLangPicker({ onClose }: { onClose: () => void }) {
                 : "text-[var(--text)] hover:bg-[var(--bg-secondary)]"
             }`}
           >
-            <span className="text-xl leading-none">{flag}</span>
+            <span className="w-7 h-5 flex items-center shrink-0">{flag}</span>
             <span className="flex-1 text-left">{label}</span>
             {lang === code && (
               <svg className="w-4 h-4 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
