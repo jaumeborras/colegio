@@ -121,7 +121,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden flex items-end sm:items-center pb-14 sm:pb-0 -mt-[72px]">
+      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden -mt-[72px]">
         <Image
           src="/header.jpg"
           alt="Colegio San Cayetano"
@@ -129,36 +129,11 @@ export default function HomePage() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 hidden sm:block" style={{ background: "rgba(0,0,0,0.22)" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.18)" }} />
         <div
-          className="absolute inset-0 hidden sm:block"
-          style={{ background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.48) 65%, rgba(0,0,0,0.62) 100%)" }}
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.42) 65%, rgba(0,0,0,0.56) 100%)" }}
         />
-        {/* Difuminado inferior azulado solo en móvil */}
-        <div
-          className="absolute inset-0 sm:hidden"
-          style={{ background: "linear-gradient(to top, rgba(0,20,80,0.42) 0%, rgba(0,15,60,0.12) 38%, transparent 62%)" }}
-        />
-
-        {/* Lema */}
-        <div className="relative z-10 w-full flex justify-center sm:justify-end px-6 sm:pr-14 lg:pr-20 sm:px-0">
-          <div className="max-w-[460px] text-center sm:text-right">
-            <h1
-              style={{
-                fontFamily: "var(--font-serif)",
-                lineHeight: 1.08,
-                textShadow: "0 2px 12px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.45)",
-              }}
-            >
-              <span className="block font-bold text-white" style={{ fontSize: "clamp(18px, 4vw, 62px)" }}>
-                {t("home.hero.line1", lang)}
-              </span>
-              <span className="block font-bold italic" style={{ fontSize: "clamp(18px, 4vw, 62px)", color: "var(--gold)" }}>
-                {t("home.hero.line2", lang)}
-              </span>
-            </h1>
-          </div>
-        </div>
 
         {/* Pills admisiones / información */}
         <div className="absolute top-[80px] right-6 lg:right-10 z-10 hidden lg:flex gap-2">
@@ -183,6 +158,19 @@ export default function HomePage() {
           </svg>
         </div>
       </section>
+
+      {/* ── LEMA ── */}
+      <div className="bg-[#003087] py-5 px-6 text-center">
+        <p style={{ fontFamily: "var(--font-serif)", lineHeight: 1.2 }}>
+          <span className="font-bold text-white text-lg sm:text-xl md:text-2xl">
+            {t("home.hero.line1", lang)}
+          </span>
+          <span className="mx-2 text-white/30 font-light hidden sm:inline">·</span>
+          <span className="block sm:inline font-bold italic text-lg sm:text-xl md:text-2xl" style={{ color: "var(--gold, #c9a84c)" }}>
+            {t("home.hero.line2", lang)}
+          </span>
+        </p>
+      </div>
 
       {/* ── INTRO ── */}
       <section className="bg-white py-16 md:py-20">
