@@ -1,13 +1,20 @@
+"use client"
 import PageHero from "@/components/PageHero"
+import { t } from "@/lib/i18n"
+import { useLanguage } from "@/lib/i18n-context"
 
 export default function ContactoPage() {
+  const { lang } = useLanguage()
+
+  const msgPlaceholder = lang === "ca" ? "Escriu el teu missatge aquí..." : lang === "en" ? "Write your message here..." : lang === "de" ? "Schreiben Sie Ihre Nachricht hier..." : "Escribe tu mensaje aquí..."
+
   return (
     <>
       <PageHero
-        tag="Contacto"
-        title="Contacta con nosotros"
-        subtitle="Estamos en Palma de Mallorca. Escríbenos, llámanos o pásate por secretaría."
-        breadcrumbs={[{ label: "Contacto" }]}
+        tag={t("contact.tag", lang)}
+        title={t("contact.title", lang)}
+        subtitle={t("contact.subtitle", lang)}
+        breadcrumbs={[{ label: t("contact.title", lang) }]}
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         <div className="grid md:grid-cols-2 gap-12">
@@ -22,7 +29,7 @@ export default function ContactoPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1">Dirección</p>
+                  <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1">{t("contact.address.label", lang)}</p>
                   <p className="text-sm text-[var(--text)]">Av. Picasso, 21</p>
                   <p className="text-sm text-[var(--text)]">07014 Palma de Mallorca, Islas Baleares</p>
                   <a
@@ -31,7 +38,7 @@ export default function ContactoPage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs text-[var(--accent)] hover:underline mt-2"
                   >
-                    Ver en Google Maps ↗
+                    {t("contact.map.label", lang)} ↗
                   </a>
                 </div>
               </div>
@@ -43,8 +50,9 @@ export default function ContactoPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1">Teléfono</p>
+                  <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1">{t("contact.phone.label", lang)}</p>
                   <a href="tel:971220575" className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-colors">971 22 05 75</a>
+                  <p className="text-xs text-[var(--text-secondary)] mt-0.5">{t("contact.hours", lang)}</p>
                 </div>
               </div>
 
@@ -55,7 +63,7 @@ export default function ContactoPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1">Email</p>
+                  <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-1">{t("contact.email.label", lang)}</p>
                   <a href="mailto:csc@colegiosancayetano.com" className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-colors break-all">csc@colegiosancayetano.com</a>
                 </div>
               </div>
@@ -63,10 +71,10 @@ export default function ContactoPage() {
 
             {/* Redes sociales */}
             <div className="border-t border-[var(--border)] pt-6">
-              <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-4">Redes sociales</p>
+              <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-4">{t("contact.social.title", lang)}</p>
               <div className="flex flex-wrap gap-3">
                 <a href="https://www.instagram.com/sancayetanopalma/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-3 py-2 text-sm text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
-                  Instagram colegio ↗
+                  Instagram ↗
                 </a>
                 <a href="https://www.instagram.com/escoletasancayetano/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-3 py-2 text-sm text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all">
                   Instagram Escoleta ↗
@@ -83,39 +91,39 @@ export default function ContactoPage() {
 
           {/* Formulario */}
           <div>
+            <h2 className="text-lg font-semibold text-[var(--text)] mb-6">{t("contact.form.title", lang)}</h2>
             <form className="space-y-5">
               <div>
-                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">Nombre</label>
+                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">{t("contact.form.name", lang)}</label>
                 <input
                   type="text"
-                  placeholder="Tu nombre completo"
                   className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">Email</label>
+                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">{t("contact.form.email", lang)}</label>
                 <input
                   type="email"
-                  placeholder="tu@email.com"
+                  placeholder="email@ejemplo.com"
                   className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent)] transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">Asunto</label>
+                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">{t("contact.form.subject", lang)}</label>
                 <select className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] focus:outline-none focus:border-[var(--accent)] transition-colors bg-white">
-                  <option value="">Selecciona un asunto</option>
-                  <option>Admisiones</option>
-                  <option>Información general</option>
-                  <option>Comedor</option>
-                  <option>Extraescolares</option>
-                  <option>Otro</option>
+                  <option value="">{t("contact.form.select", lang)}</option>
+                  <option>{t("contact.form.adm", lang)}</option>
+                  <option>{t("contact.form.general", lang)}</option>
+                  <option>{t("contact.form.cafeteria", lang)}</option>
+                  <option>{t("contact.form.extra", lang)}</option>
+                  <option>{t("contact.form.other", lang)}</option>
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">Mensaje</label>
+                <label className="block text-xs font-semibold text-[var(--text)] uppercase tracking-wider mb-2">{t("contact.form.message", lang)}</label>
                 <textarea
                   rows={5}
-                  placeholder="Escribe tu mensaje aquí..."
+                  placeholder={msgPlaceholder}
                   className="w-full border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
                 />
               </div>
@@ -123,8 +131,9 @@ export default function ContactoPage() {
                 type="submit"
                 className="w-full bg-[var(--accent)] text-white rounded-xl py-3 text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors"
               >
-                Enviar mensaje
+                {t("contact.form.send", lang)}
               </button>
+              <p className="text-xs text-[var(--text-secondary)] text-center">{t("contact.form.note", lang)}</p>
             </form>
           </div>
         </div>

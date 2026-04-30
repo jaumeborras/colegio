@@ -1,5 +1,8 @@
+"use client"
 import PageHero from "@/components/PageHero"
 import Link from "next/link"
+import { t } from "@/lib/i18n"
+import { useLanguage } from "@/lib/i18n-context"
 
 const years = [
   {
@@ -26,21 +29,25 @@ const years = [
 ]
 
 export default function InfantilPage() {
+  const { lang } = useLanguage()
+
+  const features = [
+    { title: t("infantil.play.title", lang), desc: t("infantil.play.desc", lang) },
+    { title: t("infantil.trilingual.title", lang), desc: t("infantil.trilingual.desc", lang) },
+    { title: t("infantil.values.title", lang), desc: t("infantil.values.desc", lang) },
+  ]
+
   return (
     <>
       <PageHero
-        tag="Etapa"
-        title="Educación Infantil"
-        subtitle="De 3 a 5 años. Una etapa fundamental donde los niños desarrollan su autonomía, creatividad y bases del aprendizaje en un ambiente lúdico y estimulante."
-        breadcrumbs={[{ label: "Infantil" }]}
+        tag={t("stage.tag", lang)}
+        title={t("infantil.title", lang)}
+        subtitle={t("infantil.subtitle", lang)}
+        breadcrumbs={[{ label: t("infantil.title", lang) }]}
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         <div className="grid md:grid-cols-3 gap-8 mb-14">
-          {[
-            { title: "Aprendizaje lúdico", desc: "El juego como motor del aprendizaje en todas sus dimensiones." },
-            { title: "Trilingüismo", desc: "Iniciación al castellano, catalán e inglés desde los 3 años." },
-            { title: "Valores", desc: "Educación emocional y convivencia como pilares del día a día." },
-          ].map((c) => (
+          {features.map((c) => (
             <div key={c.title} className="p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)]">
               <h3 className="font-semibold text-[var(--text)] mb-2">{c.title}</h3>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{c.desc}</p>
@@ -55,11 +62,11 @@ export default function InfantilPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
           >
-            Portal Ed. Infantil ↗
+            {t("stage.portal", lang)} ↗
           </a>
         </div>
 
-        <h2 className="text-xl font-semibold text-[var(--text)] mb-6">Clases y aulas virtuales</h2>
+        <h2 className="text-xl font-semibold text-[var(--text)] mb-6">{t("stage.classes", lang)}</h2>
         <div className="grid sm:grid-cols-3 gap-6 mb-10">
           {years.map((y) => (
             <div key={y.group} className="border border-[var(--border)] rounded-2xl overflow-hidden">
@@ -88,7 +95,7 @@ export default function InfantilPage() {
         </div>
 
         <Link href="/admisiones" className="inline-flex items-center gap-2 bg-[var(--accent)] text-white rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors">
-          Solicitar admisión
+          {t("stage.admissions", lang)}
         </Link>
       </div>
     </>

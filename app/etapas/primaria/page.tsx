@@ -1,5 +1,8 @@
+"use client"
 import PageHero from "@/components/PageHero"
 import Link from "next/link"
+import { t } from "@/lib/i18n"
+import { useLanguage } from "@/lib/i18n-context"
 
 const courses = [
   {
@@ -19,22 +22,26 @@ const courses = [
 ]
 
 export default function PrimariaPage() {
+  const { lang } = useLanguage()
+
+  const features = [
+    { title: t("primaria.onetoone.title", lang), desc: t("primaria.onetoone.desc", lang) },
+    { title: t("primaria.language.title", lang), desc: t("primaria.language.desc", lang) },
+    { title: t("primaria.excellence.title", lang), desc: t("primaria.excellence.desc", lang) },
+    { title: t("primaria.coexistence.title", lang), desc: t("primaria.coexistence.desc", lang) },
+  ]
+
   return (
     <>
       <PageHero
-        tag="Etapa"
-        title="Educación Primaria"
-        subtitle="De 6 a 11 años. Una etapa clave para construir los fundamentos académicos, sociales y personales con rigor, creatividad y valores."
-        breadcrumbs={[{ label: "Primaria" }]}
+        tag={t("stage.tag", lang)}
+        title={t("primaria.title", lang)}
+        subtitle={t("primaria.subtitle", lang)}
+        breadcrumbs={[{ label: t("primaria.title", lang) }]}
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         <div className="grid md:grid-cols-4 gap-6 mb-14">
-          {[
-            { title: "Modelo 1 a 1", desc: "Cada alumno con su dispositivo para un aprendizaje digital integrado." },
-            { title: "Segunda lengua", desc: "Inglés intensivo y catalán/castellano como lenguas vehiculares." },
-            { title: "Excelencia", desc: "Proyecto educativo riguroso con atención a la diversidad." },
-            { title: "Convivencia", desc: "Programa de valores, mediación y cultura del respeto." },
-          ].map((c) => (
+          {features.map((c) => (
             <div key={c.title} className="p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)]">
               <h3 className="font-semibold text-[var(--text)] mb-2">{c.title}</h3>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{c.desc}</p>
@@ -49,11 +56,11 @@ export default function PrimariaPage() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 border border-[var(--border)] rounded-xl px-4 py-2.5 text-sm font-medium text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
           >
-            Portal Ed. Primaria ↗
+            {t("stage.portal", lang)} ↗
           </a>
         </div>
 
-        <h2 className="text-xl font-semibold text-[var(--text)] mb-6">Clases y aulas virtuales</h2>
+        <h2 className="text-xl font-semibold text-[var(--text)] mb-6">{t("stage.classes", lang)}</h2>
         <div className="grid sm:grid-cols-2 gap-6 mb-10">
           {courses.map((y) => (
             <div key={y.group} className="border border-[var(--border)] rounded-2xl overflow-hidden">
@@ -82,7 +89,7 @@ export default function PrimariaPage() {
         </div>
 
         <Link href="/admisiones" className="inline-flex items-center gap-2 bg-[var(--accent)] text-white rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors">
-          Solicitar admisión
+          {t("stage.admissions", lang)}
         </Link>
       </div>
     </>

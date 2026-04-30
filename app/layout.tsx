@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import { getLang, htmlLang } from "@/lib/lang"
+import { LanguageProvider } from "@/lib/i18n-context"
 
 export const metadata: Metadata = {
   title: {
@@ -18,13 +20,16 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const lang = await getLang()
   return (
-    <html lang="es" className="h-full">
+    <html lang={htmlLang(lang)} className="h-full">
       <body className="min-h-full flex flex-col antialiased">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LanguageProvider initialLang={lang}>
+          <Header />
+          <main className="flex-1 pt-[72px]">{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )

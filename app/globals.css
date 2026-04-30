@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -9,6 +10,8 @@
   --border: #d2d2d7;
   --bg: #ffffff;
   --bg-secondary: #f5f5f7;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --gold: #C9962A;
 }
 
 * {

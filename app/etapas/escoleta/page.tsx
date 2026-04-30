@@ -1,5 +1,8 @@
+"use client"
 import PageHero from "@/components/PageHero"
 import Link from "next/link"
+import { t } from "@/lib/i18n"
+import { useLanguage } from "@/lib/i18n-context"
 
 const classes = [
   {
@@ -20,21 +23,25 @@ const classes = [
 ]
 
 export default function EscoletaPage() {
+  const { lang } = useLanguage()
+
+  const features = [
+    { title: t("escoleta.safe.title", lang), desc: t("escoleta.safe.desc", lang) },
+    { title: t("escoleta.personal.title", lang), desc: t("escoleta.personal.desc", lang) },
+    { title: t("escoleta.integral.title", lang), desc: t("escoleta.integral.desc", lang) },
+  ]
+
   return (
     <>
       <PageHero
-        tag="Etapa"
-        title="Escoleta"
-        subtitle="La primera etapa educativa para los más pequeños, de 1 a 2 años. Un espacio de descubrimiento, afecto y desarrollo en un entorno seguro y estimulante."
-        breadcrumbs={[{ label: "Escoleta" }]}
+        tag={t("stage.tag", lang)}
+        title={t("escoleta.title", lang)}
+        subtitle={t("escoleta.subtitle", lang)}
+        breadcrumbs={[{ label: t("escoleta.title", lang) }]}
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         <div className="grid md:grid-cols-3 gap-8 mb-14">
-          {[
-            { title: "Ambiente seguro", desc: "Espacios diseñados para el bienestar y la exploración libre de los bebés." },
-            { title: "Atención personalizada", desc: "Ratios reducidas para garantizar la atención individual de cada niño." },
-            { title: "Desarrollo integral", desc: "Estimulamos el desarrollo motor, cognitivo, emocional y social desde el principio." },
-          ].map((c) => (
+          {features.map((c) => (
             <div key={c.title} className="p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)]">
               <h3 className="font-semibold text-[var(--text)] mb-2">{c.title}</h3>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{c.desc}</p>
@@ -43,7 +50,7 @@ export default function EscoletaPage() {
         </div>
 
         <div className="mb-10">
-          <h2 className="text-xl font-semibold text-[var(--text)] mb-6">Clases y aulas virtuales</h2>
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-6">{t("stage.classes", lang)}</h2>
           <div className="grid sm:grid-cols-2 gap-6">
             {classes.map((g) => (
               <div key={g.group} className="border border-[var(--border)] rounded-2xl overflow-hidden">
@@ -82,7 +89,7 @@ export default function EscoletaPage() {
             Instagram Escoleta ↗
           </a>
           <Link href="/admisiones" className="inline-flex items-center gap-2 bg-[var(--accent)] text-white rounded-xl px-4 py-2.5 text-sm font-medium hover:bg-[var(--accent-hover)] transition-colors">
-            Solicitar admisión
+            {t("stage.admissions", lang)}
           </Link>
         </div>
       </div>

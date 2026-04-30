@@ -1,9 +1,11 @@
 "use client"
 
-import { useState, useRef, useCallback } from "react"
+import { useState, useRef, useCallback, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { mainNav, secondaryNav, NavItem } from "./nav-data"
+import { getMainNav, getSecondaryNav, NavItem } from "./nav-data"
+import { useLanguage } from "@/lib/i18n-context"
+import type { Lang } from "@/lib/i18n"
 
 function useHoverDelay(delay = 120) {
   const [open, setOpen] = useState(false)
@@ -18,7 +20,12 @@ function useHoverDelay(delay = 120) {
     timer.current = setTimeout(() => setOpen(false), delay)
   }, [delay])
 
-  return { open, enter, leave }
+  const close = useCallback(() => {
+    if (timer.current) clearTimeout(timer.current)
+    setOpen(false)
+  }, [])
+
+  return { open, enter, leave, close }
 }
 
 function DropdownItem({ item, depth = 0 }: { item: NavItem; depth?: number }) {
@@ -82,7 +89,7 @@ function NavDropdown({ item }: { item: NavItem }) {
       <Link
         href={href}
         {...linkProps}
-        className="px-3 py-1.5 text-sm font-medium text-[var(--text)] hover:text-[var(--accent)] transition-colors rounded-md hover:bg-[var(--accent-light)]"
+        className="px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
       >
         {item.label}
       </Link>
@@ -90,17 +97,15 @@ function NavDropdown({ item }: { item: NavItem }) {
   }
 
   return (
-    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
-      <button className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-[var(--text)] hover:text-[var(--accent)] transition-colors rounded-md hover:bg-[var(--accent-light)]">
+    <div className="relative pb-1.5" onMouseEnter={enter} onMouseLeave={leave}>
+      <button className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
         {item.label}
         <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      {/* Bridge invisible para no perder el hover al bajar el mouse */}
-      {open && <div className="absolute top-full left-0 w-full h-2" />}
       {open && (
-        <ul className="absolute top-[calc(100%+4px)] left-0 bg-white border border-[var(--border)] rounded-xl shadow-xl py-1 min-w-[200px] z-50">
+        <ul className="absolute top-full left-0 bg-white border border-[var(--border)] rounded-xl shadow-xl py-1 min-w-[200px] z-50">
           {item.children!.map((child) => (
             <DropdownItem key={child.label} item={child} depth={0} />
           ))}
@@ -110,11 +115,80 @@ function NavDropdown({ item }: { item: NavItem }) {
   )
 }
 
+const langLabels: Record<Lang, string> = {
+  es: "Español",
+  ca: "Català",
+  en: "English",
+  de: "Deutsch",
+}
+
+const langUILabel: Record<Lang, string> = {
+  es: "Idioma",
+  ca: "Idioma",
+  en: "Language",
+  de: "Sprache",
+}
+
+function LangDropdown() {
+  const { lang: currentLang, setLang } = useLanguage()
+  const { open, enter, leave, close } = useHoverDelay()
+
+  const langs: { label: string; code: Lang }[] = [
+    { label: "Español", code: "es" },
+    { label: "Català", code: "ca" },
+    { label: "English", code: "en" },
+    { label: "Deutsch", code: "de" },
+  ]
+
+  function switchLang(code: Lang) {
+    close()
+    setLang(code)
+  }
+
+  return (
+    <div className="relative ml-1 pb-1.5" onMouseEnter={enter} onMouseLeave={leave}>
+      <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
+        <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+        {langUILabel[currentLang]}
+        <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <ul className="absolute top-full right-0 bg-white border border-[var(--border)] rounded-xl shadow-xl py-1 min-w-[140px] z-50">
+          {langs.map((lang) => (
+            <li key={lang.code}>
+              <button
+                onClick={() => switchLang(lang.code)}
+                className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors whitespace-nowrap ${
+                  currentLang === lang.code
+                    ? "text-[var(--accent)] bg-[var(--accent-light)] font-medium"
+                    : "text-[var(--text)] hover:text-[var(--accent)] hover:bg-[var(--accent-light)]"
+                }`}
+              >
+                {lang.label}
+                {currentLang === lang.code && (
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { lang, setLang } = useLanguage()
   const [expanded, setExpanded] = useState<string | null>(null)
   const [subExpanded, setSubExpanded] = useState<string | null>(null)
 
-  const allItems = [...mainNav, ...secondaryNav]
+  const allItems = [...getMainNav(lang), ...getSecondaryNav(lang)]
 
   if (!open) return null
 
@@ -200,31 +274,52 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
           )
         })}
       </nav>
+
+      {/* Selector de idioma en móvil */}
+      <div className="px-4 py-4 border-t border-[var(--border)]">
+        <p className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3">Idioma / Language</p>
+        <div className="flex gap-2 flex-wrap">
+          {(["es", "ca", "en", "de"] as Lang[]).map((code) => (
+            <button
+              key={code}
+              onClick={() => { setLang(code); onClose() }}
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                lang === code
+                  ? "bg-[var(--accent)] text-white"
+                  : "bg-[var(--bg-secondary)] text-[var(--text)] hover:bg-[var(--accent-light)]"
+              }`}
+            >
+              {code === "es" ? "Español" : code === "ca" ? "Català" : code === "en" ? "English" : "Deutsch"}
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
 export default function Header() {
+  const { lang } = useLanguage()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[var(--border)]">
-        {/* Secondary nav */}
-        <div className="hidden lg:flex items-center justify-end px-6 py-1.5 bg-[var(--bg-secondary)] border-b border-[var(--border)] gap-1">
-          {secondaryNav.map((item) => (
-            <NavDropdown key={item.label} item={item} />
-          ))}
-          <div className="w-px h-4 bg-[var(--border)] mx-2" />
-          <Link href="?lang=es" className="px-2 py-1 text-xs text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">ES</Link>
-          <Link href="?lang=ca" className="px-2 py-1 text-xs text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">CA</Link>
-          <Link href="?lang=en" className="px-2 py-1 text-xs text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors">EN</Link>
-        </div>
-
-        {/* Main nav */}
-        <div className="flex items-center justify-between px-5 lg:px-8 py-3 max-w-screen-xl mx-auto">
+      <header
+        className={`fixed top-0 w-full z-40 transition-all duration-300 ${
+          scrolled ? "bg-[#003087] shadow-md" : "bg-transparent"
+        }`}
+      >
+        {/* Fila principal: logo + nav */}
+        <div className="flex items-center justify-between pl-4 pr-5 lg:pl-6 lg:pr-8 py-3">
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            {/* Logo — versión color sobre fondo blanco */}
             <div className="w-12 h-12 shrink-0">
               <Image
                 src="https://www.colegiosancayetano.com/wp-content/uploads/2021/11/cropped-logo2-300x300.jpg"
@@ -237,19 +332,26 @@ export default function Header() {
               />
             </div>
             <div className="hidden sm:block">
-              <p className="text-sm font-semibold text-[var(--text)] leading-tight">Colegio San Cayetano</p>
-              <p className="text-xs text-[var(--text-secondary)] leading-tight">Palma de Mallorca</p>
+              <p className="text-sm font-semibold leading-tight text-white">
+                Colegio San Cayetano
+              </p>
+              <p className="text-xs leading-tight text-white/70">
+                Palma de Mallorca
+              </p>
             </div>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
-            {mainNav.map((item) => (
+            <NavDropdown item={getSecondaryNav(lang)[0]} />
+            {getMainNav(lang).map((item) => (
               <NavDropdown key={item.label} item={item} />
             ))}
+            <div className="w-px h-4 bg-white/20 mx-1" />
+            <LangDropdown />
           </nav>
 
           <button
-            className="lg:hidden p-2 rounded-lg hover:bg-[var(--bg-secondary)] transition-colors"
+            className="lg:hidden p-2 rounded-lg text-white hover:bg-white/15 transition-colors"
             onClick={() => setMobileOpen(true)}
             aria-label="Abrir menú"
           >
@@ -258,6 +360,7 @@ export default function Header() {
             </svg>
           </button>
         </div>
+
       </header>
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
