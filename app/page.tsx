@@ -57,10 +57,15 @@ export default function HomePage() {
           className="absolute inset-0 hidden sm:block"
           style={{ background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.48) 65%, rgba(0,0,0,0.62) 100%)" }}
         />
+        {/* Difuminado inferior solo en móvil */}
+        <div
+          className="absolute inset-0 sm:hidden"
+          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.08) 30%, transparent 55%)" }}
+        />
 
         {/* Lema */}
-        <div className="relative z-10 w-full flex justify-end pr-6 sm:pr-14 lg:pr-20">
-          <div className="max-w-[460px] text-right">
+        <div className="relative z-10 w-full flex justify-center sm:justify-end px-6 sm:pr-14 lg:pr-20 sm:px-0">
+          <div className="max-w-[460px] text-center sm:text-right">
             <h1
               style={{
                 fontFamily: "var(--font-serif)",
