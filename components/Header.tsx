@@ -370,115 +370,145 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const { lang } = useLanguage()
   const [expanded, setExpanded] = useState<string | null>(null)
   const [subExpanded, setSubExpanded] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const [show, setShow] = useState(false)
 
-  // Quiénes somos primero, luego etapas, luego resto del secundario
+  useEffect(() => {
+    if (open) {
+      setMounted(true)
+      const raf = requestAnimationFrame(() => setShow(true))
+      return () => cancelAnimationFrame(raf)
+    } else {
+      setShow(false)
+      const timer = setTimeout(() => setMounted(false), 320)
+      return () => clearTimeout(timer)
+    }
+  }, [open])
+
   const allItems = [
     getSecondaryNav(lang)[0],
     ...getMainNav(lang),
     ...getSecondaryNav(lang).slice(1),
   ]
 
-  if (!open) return null
+  if (!mounted) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-white flex flex-col">
-      {/* Cabecera */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)] shrink-0 bg-[#003087]">
-        <Link href="/" onClick={onClose} className="flex items-center gap-3">
-          <div className="w-9 h-9 shrink-0">
-            <Image
-              src="https://www.colegiosancayetano.com/wp-content/uploads/2021/11/cropped-logo2-300x300.jpg"
-              alt="Colegio San Cayetano"
-              width={36}
-              height={36}
-              className="object-contain rounded-full"
-              unoptimized
-            />
-          </div>
-          <span className="font-semibold text-white">Colegio San Cayetano</span>
-        </Link>
-        <button onClick={onClose} className="p-2 rounded-full text-white hover:bg-white/15 transition-colors">
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+    <div className="fixed inset-0 z-50 lg:hidden">
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black"
+        style={{ opacity: show ? 0.45 : 0, transition: "opacity 0.3s ease" }}
+        onClick={onClose}
+      />
 
-      {/* Navegación */}
-      <nav className="flex-1 overflow-y-auto px-4 py-2">
-        {allItems.map((item) => {
-          const isOpen = expanded === item.label
-          const linkProps = item.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
-          const href = item.href || "#"
-          return (
-            <div key={item.label} className="border-b border-[var(--border)] last:border-0">
-              <div className="flex items-center justify-between">
-                <Link
-                  href={href}
-                  {...linkProps}
-                  onClick={() => { if (!item.children) onClose() }}
-                  className="flex-1 py-4 text-sm font-medium text-[var(--text)]"
-                >
-                  {item.label}
-                </Link>
-                {item.children && (
-                  <button
-                    onClick={() => { setExpanded(isOpen ? null : item.label); setSubExpanded(null) }}
-                    className="p-3"
+      {/* Panel lateral */}
+      <div
+        className="absolute top-0 right-0 bottom-0 bg-white flex flex-col shadow-2xl"
+        style={{
+          width: "min(85vw, 360px)",
+          transform: show ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.32s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+      >
+        {/* Cabecera */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)] shrink-0 bg-[#003087]">
+          <Link href="/" onClick={onClose} className="flex items-center gap-3">
+            <div className="w-9 h-9 shrink-0">
+              <Image
+                src="https://www.colegiosancayetano.com/wp-content/uploads/2021/11/cropped-logo2-300x300.jpg"
+                alt="Colegio San Cayetano"
+                width={36}
+                height={36}
+                className="object-contain rounded-full"
+                unoptimized
+              />
+            </div>
+            <span className="font-semibold text-white text-sm">Colegio San Cayetano</span>
+          </Link>
+          <button onClick={onClose} className="p-2 rounded-full text-white hover:bg-white/15 transition-colors">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Navegación */}
+        <nav className="flex-1 overflow-y-auto px-4 py-2">
+          {allItems.map((item) => {
+            const isOpen = expanded === item.label
+            const linkProps = item.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
+            const href = item.href || "#"
+            return (
+              <div key={item.label} className="border-b border-[var(--border)] last:border-0">
+                <div className="flex items-center justify-between">
+                  <Link
+                    href={href}
+                    {...linkProps}
+                    onClick={() => { if (!item.children) onClose() }}
+                    className="flex-1 py-4 text-sm font-medium text-[var(--text)]"
                   >
-                    <svg className={`w-4 h-4 text-[var(--text-secondary)] transition-transform ${isOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-              {isOpen && item.children && (
-                <div className="pb-2 pl-4 border-l-2 border-[var(--accent-light)] ml-2">
-                  {item.children.map((child) => {
-                    const childIsOpen = subExpanded === child.label
-                    const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
-                    return (
-                      <div key={child.label}>
-                        <div className="flex items-center justify-between">
-                          <Link
-                            href={child.href || "#"}
-                            {...childLinkProps}
-                            onClick={() => { if (!child.children) onClose() }}
-                            className="flex-1 py-3 text-sm text-[var(--text-secondary)]"
-                          >
-                            {child.label}
-                            {child.external && <span className="text-xs opacity-40 ml-1">↗</span>}
-                          </Link>
-                          {child.children && (
-                            <button onClick={() => setSubExpanded(childIsOpen ? null : child.label)} className="p-2">
-                              <svg className={`w-3.5 h-3.5 text-[var(--text-secondary)] transition-transform ${childIsOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                              </svg>
-                            </button>
+                    {item.label}
+                  </Link>
+                  {item.children && (
+                    <button
+                      onClick={() => { setExpanded(isOpen ? null : item.label); setSubExpanded(null) }}
+                      className="p-3"
+                    >
+                      <svg className={`w-4 h-4 text-[var(--text-secondary)] transition-transform ${isOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                {isOpen && item.children && (
+                  <div className="pb-2 pl-4 border-l-2 border-[var(--accent-light)] ml-2">
+                    {item.children.map((child) => {
+                      const childIsOpen = subExpanded === child.label
+                      const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
+                      return (
+                        <div key={child.label}>
+                          <div className="flex items-center justify-between">
+                            <Link
+                              href={child.href || "#"}
+                              {...childLinkProps}
+                              onClick={() => { if (!child.children) onClose() }}
+                              className="flex-1 py-3 text-sm text-[var(--text-secondary)]"
+                            >
+                              {child.label}
+                              {child.external && <span className="text-xs opacity-40 ml-1">↗</span>}
+                            </Link>
+                            {child.children && (
+                              <button onClick={() => setSubExpanded(childIsOpen ? null : child.label)} className="p-2">
+                                <svg className={`w-3.5 h-3.5 text-[var(--text-secondary)] transition-transform ${childIsOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                              </button>
+                            )}
+                          </div>
+                          {childIsOpen && child.children && (
+                            <div className="pl-4 pb-1">
+                              {child.children.map((sub) => {
+                                const subLinkProps = sub.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
+                                return (
+                                  <Link key={sub.label} href={sub.href || "#"} {...subLinkProps} onClick={onClose} className="flex items-center gap-1 py-2.5 text-xs text-[var(--text-secondary)]">
+                                    {sub.label}
+                                    {sub.external && <span className="opacity-40">↗</span>}
+                                  </Link>
+                                )
+                              })}
+                            </div>
                           )}
                         </div>
-                        {childIsOpen && child.children && (
-                          <div className="pl-4 pb-1">
-                            {child.children.map((sub) => {
-                              const subLinkProps = sub.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
-                              return (
-                                <Link key={sub.label} href={sub.href || "#"} {...subLinkProps} onClick={onClose} className="flex items-center gap-1 py-2.5 text-xs text-[var(--text-secondary)]">
-                                  {sub.label}
-                                  {sub.external && <span className="opacity-40">↗</span>}
-                                </Link>
-                              )
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </nav>
+                      )
+                    })}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+        </nav>
+      </div>
     </div>
   )
 }
