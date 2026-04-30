@@ -102,11 +102,11 @@ export default function HomePage() {
       date: "28 abril 2026",
     },
     {
-      title: "Alumnos del programa IB representan al colegio en el Model United Nations internacional",
-      img: "/fotos/IB.jpg",
-      href: "https://www.colegiosancayetano.com",
-      source: "colegiosancayetano.com",
-      date: "Marzo 2026",
+      title: "San Cayetano: una ventana al mundo a través del Bachillerato Internacional",
+      img: "/fotos/noticias2.jpg",
+      href: "https://www.ultimahora.es/monograficos/centros-privados-concertados/2026/04/22/14773/san-cayetano-ventana-mundo-traves-del-bachillerato-internacional.html",
+      source: "Ultima Hora",
+      date: "22 abril 2026",
     },
     {
       title: "Nueva escoleta: espacios renovados para los más pequeños del colegio",
