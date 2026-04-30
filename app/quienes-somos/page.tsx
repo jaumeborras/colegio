@@ -93,6 +93,20 @@ export default function QuienesSomosPage() {
           </div>
         </div>
 
+        {/* Conócenos */}
+        <div className="mb-14">
+          <h2 className="text-xl font-semibold text-[var(--text)] mb-6">Conócenos</h2>
+          <div className="aspect-video w-full rounded-2xl overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/B7tV4O1MLXw"
+              title="Conócenos — Colegio San Cayetano"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+
         {/* Redes */}
         <div className="border border-[var(--border)] rounded-2xl p-6 mb-10">
           <h2 className="text-sm font-semibold text-[var(--text)] mb-4">{t("who.follow", lang)}</h2>
