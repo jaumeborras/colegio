@@ -102,13 +102,6 @@ export default function HomePage() {
     { label: t("extra.title", lang), href: "/extraescolares", external: false },
   ]
 
-  const values = [
-    { title: t("home.values.commitment.title", lang), desc: t("home.values.commitment.desc", lang) },
-    { title: t("home.values.quality.title", lang), desc: t("home.values.quality.desc", lang) },
-    { title: t("home.values.languages.title", lang), desc: t("home.values.languages.desc", lang) },
-    { title: t("home.values.community.title", lang), desc: t("home.values.community.desc", lang) },
-  ]
-
   const stats = [
     { value: "1.740", label: t("stats.students", lang) },
     { value: "+50", label: t("stats.years", lang) },
@@ -277,31 +270,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── VALORES ── */}
+      {/* ── BACHILLERATO INTERNACIONAL ── */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-screen-xl mx-auto px-6">
-          <FadeIn className="mb-12 md:mb-16">
-            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("who.tag", lang)}</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">{t("home.values.title", lang)}</h2>
-          </FadeIn>
-          <div className="divide-y divide-[var(--border)]">
-            {values.map((v, i) => (
-              <FadeIn
-                key={v.title}
-                delay={i * 90}
-                className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-10 md:gap-16 py-8 md:py-10 group cursor-default"
-              >
-                <span className="text-xs font-bold text-[var(--accent)] tracking-widest tabular-nums shrink-0 pt-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-lg md:text-xl font-semibold text-[var(--text)] shrink-0 sm:w-56 group-hover:text-[var(--accent)] transition-colors duration-200">
-                  {v.title}
-                </h3>
-                <p className="text-[var(--text-secondary)] leading-relaxed text-sm md:text-base flex-1">
-                  {v.desc}
-                </p>
-              </FadeIn>
-            ))}
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+            <FadeIn>
+              <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-4">Bachillerato Internacional</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight mb-6">
+                Programa Diploma IB
+              </h2>
+              <p className="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base mb-10">
+                El Programa Diploma del IB es un currículo internacional de dos años reconocido por las mejores universidades del mundo. Rigor académico, pensamiento crítico y perspectiva global.
+              </p>
+              <div className="space-y-3">
+                <Link
+                  href="/etapas/ib"
+                  className="flex items-center gap-3 group"
+                >
+                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
+                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">Ver programa IB</span>
+                </Link>
+                <a
+                  href="https://sites.google.com/csc.edu.es/csc22esp-ibprograma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 group"
+                >
+                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
+                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">{t("nav.ib.diploma", lang)} ↗</span>
+                </a>
+                <a
+                  href="https://colegiosancayetano.managebac.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 group"
+                >
+                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
+                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">IB-ManageBac ↗</span>
+                </a>
+                <a
+                  href="https://biblioteca.colegiosancayetano.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 group"
+                >
+                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
+                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">{t("stage.library", lang)} ↗</span>
+                </a>
+              </div>
+            </FadeIn>
+            <FadeIn delay={120} className="relative">
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+                <img
+                  src="/fotos/IB.jpg"
+                  alt="Bachillerato Internacional IB"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
