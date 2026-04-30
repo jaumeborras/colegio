@@ -109,11 +109,11 @@ export default function HomePage() {
       date: "22 abril 2026",
     },
     {
-      title: "Nueva escoleta: espacios renovados para los más pequeños del colegio",
-      img: "/fotos/escoleta.jpg",
-      href: "https://www.colegiosancayetano.com",
-      source: "colegiosancayetano.com",
-      date: "Febrero 2026",
+      title: "Un colegio de Palma, líder mundial en lectura en inglés entre más de 9.000 escuelas",
+      img: "/fotos/noticias3.png",
+      href: "https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html",
+      source: "Diario de Mallorca",
+      date: "25 febrero 2026",
     },
   ]
 
