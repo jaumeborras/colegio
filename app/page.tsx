@@ -129,6 +129,9 @@ export default function HomePage() {
     <>
       {/* ── HERO ── */}
       <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden -mt-[72px]">
+        {/* Overlay discreto para legibilidad del header */}
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.22)" }} />
+
         {HERO_IMAGES.map((src, i) => (
           <Image
             key={src}
