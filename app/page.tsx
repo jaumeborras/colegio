@@ -69,7 +69,7 @@ function StatCounter({ value, enabled }: { value: string; enabled: boolean }) {
 // ────────────────────────────────────────────────────────
 
 const LOGO_URL = "https://www.colegiosancayetano.com/wp-content/uploads/2021/12/Colegio-San-Cayetano-sombreado.png"
-const HERO_IMAGES = ["/header.jpg", "/dron.jpg", "/futbol.jpg", "/estatua.jpg", "/actos.jpg", "/campo.jpg", "/piscina.jpg"]
+const HERO_IMAGES = ["/fotos/header.jpg", "/fotos/dron.jpg", "/fotos/futbol.jpg", "/fotos/estatua.jpg", "/fotos/actos.jpg", "/fotos/campo.jpg", "/fotos/piscina.jpg"]
 
 export default function HomePage() {
   const { lang } = useLanguage()

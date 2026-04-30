@@ -22,7 +22,7 @@ export default function QuienesSomosPage() {
       <PageHero
         title={t("who.title", lang)}
         subtitle={t("who.subtitle", lang)}
-        bgImage="/fondo.png"
+        bgImage="/fotos/fondo.png"
         centered
       />
       <div className="max-w-screen-xl mx-auto px-6 py-14">
@@ -30,7 +30,7 @@ export default function QuienesSomosPage() {
         <div className="flex flex-col sm:flex-row items-center sm:items-end gap-6 mb-10">
           <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden shrink-0">
             <Image
-              src="/pablo.png"
+              src="/fotos/pablo.png"
               alt="Pablo Guerrero Pacheco"
               width={224}
               height={224}

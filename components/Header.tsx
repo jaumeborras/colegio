@@ -9,6 +9,24 @@ import { useLanguage, setLanguage } from "@/lib/i18n-context"
 import { t } from "@/lib/i18n"
 import type { Lang } from "@/lib/i18n"
 
+const SenyeraSVG = ({ width = 20, height = 14 }: { width?: number; height?: number }) => (
+  <svg viewBox="0 0 30 20" width={width} height={height} style={{ borderRadius: 2, display: "block", flexShrink: 0 }}>
+    <rect width="30" height="20" fill="#FCDD09"/>
+    <rect y="0"     width="30" height="2.22" fill="#DA121A"/>
+    <rect y="4.44"  width="30" height="2.22" fill="#DA121A"/>
+    <rect y="8.89"  width="30" height="2.22" fill="#DA121A"/>
+    <rect y="13.33" width="30" height="2.22" fill="#DA121A"/>
+    <rect y="17.78" width="30" height="2.22" fill="#DA121A"/>
+  </svg>
+)
+
+const langFlags: Record<Lang, React.ReactNode> = {
+  es: <span className="text-base leading-none">🇪🇸</span>,
+  ca: <SenyeraSVG />,
+  en: <span className="text-base leading-none">🇬🇧</span>,
+  de: <span className="text-base leading-none">🇩🇪</span>,
+}
+
 function useHoverDelay(delay = 120) {
   const [open, setOpen] = useState(false)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -79,57 +97,122 @@ function DropdownItem({ item, depth = 0 }: { item: NavItem; depth?: number }) {
   )
 }
 
-function MegaDropdown({ item, description }: { item: NavItem; description: string }) {
-  const { open, enter, leave } = useHoverDelay(200)
-  const href = item.href || "#"
-
+// Solo el botón trigger — el panel lo gestiona Header
+function MegaDropdown({ item, description, image, onEnter, onLeave, isActive }: {
+  item: NavItem
+  description: string
+  image?: string
+  onEnter: (item: NavItem, desc: string, image?: string) => void
+  onLeave: () => void
+  isActive: boolean
+}) {
   return (
-    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
-      <button className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
+    <div
+      className="relative"
+      onMouseEnter={() => onEnter(item, description, image)}
+      onMouseLeave={onLeave}
+    >
+      <button className={`flex items-center gap-1 px-3 py-1.5 text-sm font-medium transition-colors rounded-md ${
+        isActive ? "text-white bg-white/20" : "text-white/90 hover:text-white hover:bg-white/15"
+      }`}>
         {item.label}
-        <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className={`w-3.5 h-3.5 opacity-50 transition-transform duration-200 ${isActive ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
-      {open && (
-        <div
-          className="fixed top-[72px] left-0 right-0 bg-white border-b border-[var(--border)] shadow-2xl z-50 flex h-72"
-          onMouseEnter={enter}
-          onMouseLeave={leave}
-        >
-          <div className="w-1/3 bg-[var(--bg-secondary)] px-12 py-10 flex items-center border-r border-[var(--border)]">
-            <div>
-              <Link href={href} className="text-lg font-semibold text-[var(--text)] hover:text-[var(--accent)] transition-colors block mb-3">
-                {item.label}
-              </Link>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{description}</p>
-            </div>
-          </div>
-          <div className="w-1/3 px-12 py-10 flex items-start">
-            <ul className="space-y-4 w-full">
-              {item.children?.map((child) => {
-                const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
-                return (
-                  <li key={child.label}>
-                    <Link
-                      href={child.href || "#"}
-                      {...childLinkProps}
-                      className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-colors flex items-center gap-1.5 group"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                      {child.label}
-                      {child.external && <span className="text-xs opacity-40">↗</span>}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-          <div className="w-1/3 overflow-hidden">
-            <img src="/fondo.png" alt="" className="w-full h-full object-cover" />
-          </div>
+    </div>
+  )
+}
+
+// Panel compartido — se monta una vez por sección activa, anima la entrada
+function MegaPanel({ item, description, image = "/fotos/fondo.png", onMouseEnter, onMouseLeave }: {
+  item: NavItem
+  description: string
+  image?: string
+  onMouseEnter: () => void
+  onMouseLeave: () => void
+}) {
+  const [show, setShow] = useState(false)
+  const href = item.href || "#"
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setShow(true))
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 72,
+        left: 0,
+        right: 0,
+        height: 320,
+        zIndex: 39,
+        display: "flex",
+        background: "white",
+        borderBottom: "1px solid var(--border)",
+        boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1)",
+        overflow: "hidden",
+        opacity: show ? 1 : 0,
+        transform: show ? "translateY(0)" : "translateY(-8px)",
+        transition: "opacity 0.18s ease, transform 0.18s ease",
+      }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* Columna descripción */}
+      <div style={{
+        flex: "0 0 26%",
+        boxSizing: "border-box",
+        padding: "0 56px",
+        display: "flex",
+        alignItems: "center",
+        borderRight: "1px solid var(--border)",
+      }}>
+        <div>
+          <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 12 }}>{item.label}</p>
+          <p style={{ fontSize: 14, color: "var(--text-secondary)", lineHeight: 1.6 }}>{description}</p>
+          <Link href={href} style={{ display: "inline-block", marginTop: 20, fontSize: 12, fontWeight: 600, color: "var(--accent)", textDecoration: "none" }}
+            onMouseEnter={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseLeave={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            Ver todo →
+          </Link>
         </div>
-      )}
+      </div>
+      {/* Columna links */}
+      <div style={{
+        flex: "0 0 26%",
+        boxSizing: "border-box",
+        padding: "0 56px",
+        display: "flex",
+        alignItems: "center",
+      }}>
+        <ul style={{ listStyle: "none", margin: 0, padding: 0, width: "100%" }}>
+          {item.children?.map((child) => {
+            const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
+            return (
+              <li key={child.label} style={{ marginBottom: 22 }}>
+                <Link
+                  href={child.href || "#"}
+                  {...childLinkProps}
+                  style={{ fontSize: 14, color: "var(--text)", textDecoration: "none", transition: "color 0.15s" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = "var(--accent)")}
+                  onMouseLeave={e => (e.currentTarget.style.color = "var(--text)")}
+                >
+                  {child.label}
+                  {child.external && <span style={{ fontSize: 11, opacity: 0.4, marginLeft: 4 }}>↗</span>}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+      {/* Imagen */}
+      <div style={{ flex: "0 0 48%", overflow: "hidden" }}>
+        <img src={image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+      </div>
     </div>
   )
 }
@@ -172,27 +255,13 @@ function NavDropdown({ item }: { item: NavItem }) {
   )
 }
 
-const langLabels: Record<Lang, string> = {
-  es: "Español",
-  ca: "Català",
-  en: "English",
-  de: "Deutsch",
-}
-
-const langUILabel: Record<Lang, string> = {
-  es: "Idioma",
-  ca: "Idioma",
-  en: "Language",
-  de: "Sprache",
-}
-
 function LangDropdown() {
   const { lang: currentLang, setLang } = useLanguage()
   const { open, enter, leave, close } = useHoverDelay()
 
   const langs: { label: string; code: Lang }[] = [
     { label: "Español", code: "es" },
-    { label: "Català", code: "ca" },
+    { label: "Català",  code: "ca" },
     { label: "English", code: "en" },
     { label: "Deutsch", code: "de" },
   ]
@@ -208,24 +277,25 @@ function LangDropdown() {
         <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
         </svg>
-        {langUILabel[currentLang]}
+        Idioma
         <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
-        <ul className="absolute top-full right-0 bg-white border border-[var(--border)] rounded-xl shadow-xl py-1 min-w-[140px] z-50">
+        <ul className="absolute top-full right-0 bg-white border border-[var(--border)] rounded-xl shadow-xl py-1 min-w-[160px] z-50">
           {langs.map((lang) => (
             <li key={lang.code}>
               <button
                 onClick={() => switchLang(lang.code)}
-                className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors whitespace-nowrap ${
+                className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors whitespace-nowrap ${
                   currentLang === lang.code
                     ? "text-[var(--accent)] bg-[var(--accent-light)] font-medium"
                     : "text-[var(--text)] hover:text-[var(--accent)] hover:bg-[var(--accent-light)]"
                 }`}
               >
-                {lang.label}
+                <span className="w-5 h-4 flex items-center shrink-0">{langFlags[lang.code]}</span>
+                <span className="flex-1 text-left">{lang.label}</span>
                 {currentLang === lang.code && (
                   <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -249,20 +319,9 @@ function MobileLangPicker({ onClose }: { onClose: () => void }) {
     return () => cancelAnimationFrame(id)
   }, [])
 
-  const senyera = (
-    <svg viewBox="0 0 30 20" width="28" height="19" style={{ borderRadius: 2, display: "block", flexShrink: 0 }}>
-      <rect width="30" height="20" fill="#FCDD09"/>
-      <rect y="0"    width="30" height="2.22" fill="#DA121A"/>
-      <rect y="4.44" width="30" height="2.22" fill="#DA121A"/>
-      <rect y="8.89" width="30" height="2.22" fill="#DA121A"/>
-      <rect y="13.33" width="30" height="2.22" fill="#DA121A"/>
-      <rect y="17.78" width="30" height="2.22" fill="#DA121A"/>
-    </svg>
-  )
-
   const langs: { code: Lang; label: string; flag: React.ReactNode }[] = [
     { code: "es", label: "Español", flag: <span className="text-xl leading-none">🇪🇸</span> },
-    { code: "ca", label: "Català",  flag: senyera },
+    { code: "ca", label: "Català",  flag: <SenyeraSVG width={28} height={19} /> },
     { code: "en", label: "English", flag: <span className="text-xl leading-none">🇬🇧</span> },
     { code: "de", label: "Deutsch", flag: <span className="text-xl leading-none">🇩🇪</span> },
   ]
@@ -431,6 +490,17 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileLangOpen, setMobileLangOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeMega, setActiveMega] = useState<{ item: NavItem; description: string; image?: string } | null>(null)
+  const closeMegaTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const onMegaEnter = useCallback((item: NavItem, description: string, image?: string) => {
+    if (closeMegaTimer.current) clearTimeout(closeMegaTimer.current)
+    setActiveMega({ item, description, image })
+  }, [])
+
+  const onMegaLeave = useCallback(() => {
+    closeMegaTimer.current = setTimeout(() => setActiveMega(null), 200)
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -443,7 +513,7 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-          scrolled || !isHome ? "bg-[#003087] shadow-md" : "bg-transparent"
+          scrolled || !isHome || activeMega !== null ? "bg-[#003087] shadow-md" : "bg-transparent"
         }`}
       >
         {/* Fila principal: logo + nav */}
@@ -471,18 +541,42 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <MegaDropdown item={getSecondaryNav(lang)[0]} description={t("who.subtitle", lang)} />
+            <MegaDropdown
+              item={getSecondaryNav(lang)[0]}
+              description={t("who.subtitle", lang)}
+              onEnter={onMegaEnter}
+              onLeave={onMegaLeave}
+              isActive={activeMega?.item.label === getSecondaryNav(lang)[0].label}
+            />
             {getMainNav(lang).map((item) => {
               const descKey: Record<string, string> = {
-                [t("stage.escoleta", lang)]:    t("escoleta.subtitle", lang),
-                [t("stage.infantil", lang)]:    t("infantil.subtitle", lang),
-                [t("stage.primaria", lang)]:    t("primaria.subtitle", lang),
-                [t("stage.secundaria", lang)]:  t("secundaria.subtitle", lang),
+                [t("stage.escoleta", lang)]:     t("escoleta.subtitle", lang),
+                [t("stage.infantil", lang)]:     t("infantil.subtitle", lang),
+                [t("stage.primaria", lang)]:     t("primaria.subtitle", lang),
+                [t("stage.secundaria", lang)]:   t("secundaria.subtitle", lang),
                 [t("stage.bachillerato", lang)]: t("bach.subtitle", lang),
                 "IB": t("ib.subtitle", lang),
               }
+              const imageKey: Record<string, string> = {
+                [t("stage.escoleta", lang)]:     "/fotos/escoleta.jpg",
+                [t("stage.infantil", lang)]:     "/fotos/infantil.jpg",
+                [t("stage.primaria", lang)]:     "/fotos/primaria.png",
+                [t("stage.secundaria", lang)]:   "/fotos/secundaria.jpg",
+                [t("stage.bachillerato", lang)]: "/fotos/bachillerato.jpg",
+                "IB":                            "/fotos/IB.jpg",
+              }
               const description = descKey[item.label]
-              if (description) return <MegaDropdown key={item.label} item={item} description={description} />
+              if (description) return (
+                <MegaDropdown
+                  key={item.label}
+                  item={item}
+                  description={description}
+                  image={imageKey[item.label]}
+                  onEnter={onMegaEnter}
+                  onLeave={onMegaLeave}
+                  isActive={activeMega?.item.label === item.label}
+                />
+              )
               return <NavDropdown key={item.label} item={item} />
             })}
             <div className="w-px h-4 bg-white/20 mx-1" />
@@ -513,6 +607,16 @@ export default function Header() {
 
       </header>
 
+      {activeMega && (
+        <MegaPanel
+          key={activeMega.item.label}
+          item={activeMega.item}
+          description={activeMega.description}
+          image={activeMega.image}
+          onMouseEnter={() => { if (closeMegaTimer.current) clearTimeout(closeMegaTimer.current) }}
+          onMouseLeave={onMegaLeave}
+        />
+      )}
       {mobileLangOpen && <MobileLangPicker onClose={() => setMobileLangOpen(false)} />}
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />

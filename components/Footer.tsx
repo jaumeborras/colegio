@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="flex justify-center items-center md:pl-12">
             <Link href="/">
               <Image
-                src="/sombreado.png"
+                src="/fotos/sombreado.png"
                 alt="Colegio San Cayetano"
                 width={520}
                 height={520}
