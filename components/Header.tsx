@@ -79,7 +79,7 @@ function DropdownItem({ item, depth = 0 }: { item: NavItem; depth?: number }) {
   )
 }
 
-function MegaDropdown({ item, lang }: { item: NavItem; lang: Lang }) {
+function MegaDropdown({ item, description }: { item: NavItem; description: string }) {
   const { open, enter, leave } = useHoverDelay(200)
   const href = item.href || "#"
 
@@ -102,9 +102,7 @@ function MegaDropdown({ item, lang }: { item: NavItem; lang: Lang }) {
               <Link href={href} className="text-lg font-semibold text-[var(--text)] hover:text-[var(--accent)] transition-colors block mb-3">
                 {item.label}
               </Link>
-              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                {t("who.subtitle", lang)}
-              </p>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{description}</p>
             </div>
           </div>
           <div className="w-1/3 px-12 py-10 flex items-start">
@@ -403,10 +401,20 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <MegaDropdown item={getSecondaryNav(lang)[0]} lang={lang} />
-            {getMainNav(lang).map((item) => (
-              <NavDropdown key={item.label} item={item} />
-            ))}
+            <MegaDropdown item={getSecondaryNav(lang)[0]} description={t("who.subtitle", lang)} />
+            {getMainNav(lang).map((item) => {
+              const descKey: Record<string, string> = {
+                [t("stage.escoleta", lang)]:    t("escoleta.subtitle", lang),
+                [t("stage.infantil", lang)]:    t("infantil.subtitle", lang),
+                [t("stage.primaria", lang)]:    t("primaria.subtitle", lang),
+                [t("stage.secundaria", lang)]:  t("secundaria.subtitle", lang),
+                [t("stage.bachillerato", lang)]: t("bach.subtitle", lang),
+                "IB": t("ib.subtitle", lang),
+              }
+              const description = descKey[item.label]
+              if (description) return <MegaDropdown key={item.label} item={item} description={description} />
+              return <NavDropdown key={item.label} item={item} />
+            })}
             <div className="w-px h-4 bg-white/20 mx-1" />
             <LangDropdown />
           </nav>
