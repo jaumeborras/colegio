@@ -1,5 +1,6 @@
 "use client"
 import PageHero from "@/components/PageHero"
+import Image from "next/image"
 import Link from "next/link"
 import { t } from "@/lib/i18n"
 import { useLanguage } from "@/lib/i18n-context"
@@ -27,7 +28,15 @@ export default function QuienesSomosPage() {
       <div className="max-w-screen-xl mx-auto px-6 py-14">
         {/* Director */}
         <div className="flex items-start gap-6 p-6 rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)] mb-12">
-          <div className="w-14 h-14 rounded-full bg-[var(--accent-light)] flex items-center justify-center text-2xl shrink-0">👤</div>
+          <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[var(--border)]">
+            <Image
+              src="/pablo.png"
+              alt="Pablo Guerrero Pacheco"
+              width={64}
+              height={64}
+              className="object-cover w-full h-full"
+            />
+          </div>
           <div>
             <p className="text-xs text-[var(--text-secondary)] uppercase tracking-wider mb-1">{t("who.director.label", lang)}</p>
             <p className="font-semibold text-[var(--text)]">Pablo Guerrero Pacheco, C.R.</p>

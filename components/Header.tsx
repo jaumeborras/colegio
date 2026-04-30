@@ -3,6 +3,7 @@
 import { useState, useRef, useCallback, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { getMainNav, getSecondaryNav, NavItem } from "./nav-data"
 import { useLanguage } from "@/lib/i18n-context"
 import type { Lang } from "@/lib/i18n"
@@ -300,6 +301,8 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
 
 export default function Header() {
   const { lang } = useLanguage()
+  const pathname = usePathname()
+  const isHome = pathname === "/"
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -314,7 +317,7 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 w-full z-40 transition-all duration-300 ${
-          scrolled ? "bg-[#003087] shadow-md" : "bg-transparent"
+          scrolled || !isHome ? "bg-[#003087] shadow-md" : "bg-transparent"
         }`}
       >
         {/* Fila principal: logo + nav */}
