@@ -6,6 +6,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { getMainNav, getSecondaryNav, NavItem } from "./nav-data"
 import { useLanguage } from "@/lib/i18n-context"
+import { t } from "@/lib/i18n"
 import type { Lang } from "@/lib/i18n"
 
 function useHoverDelay(delay = 120) {
@@ -75,6 +76,63 @@ function DropdownItem({ item, depth = 0 }: { item: NavItem; depth?: number }) {
         </ul>
       )}
     </li>
+  )
+}
+
+function MegaDropdown({ item, lang }: { item: NavItem; lang: Lang }) {
+  const { open, enter, leave } = useHoverDelay(200)
+  const href = item.href || "#"
+
+  return (
+    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
+      <button className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
+        {item.label}
+        <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div
+          className="fixed top-[72px] left-0 right-0 bg-white border-b border-[var(--border)] shadow-2xl z-50 flex h-72"
+          onMouseEnter={enter}
+          onMouseLeave={leave}
+        >
+          <div className="w-1/3 bg-[var(--bg-secondary)] px-12 py-10 flex items-center border-r border-[var(--border)]">
+            <div>
+              <Link href={href} className="text-lg font-semibold text-[var(--text)] hover:text-[var(--accent)] transition-colors block mb-3">
+                {item.label}
+              </Link>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                {t("who.subtitle", lang)}
+              </p>
+            </div>
+          </div>
+          <div className="w-1/3 px-12 py-10 flex items-start">
+            <ul className="space-y-4 w-full">
+              {item.children?.map((child) => {
+                const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
+                return (
+                  <li key={child.label}>
+                    <Link
+                      href={child.href || "#"}
+                      {...childLinkProps}
+                      className="text-sm text-[var(--text)] hover:text-[var(--accent)] transition-colors flex items-center gap-1.5 group"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                      {child.label}
+                      {child.external && <span className="text-xs opacity-40">↗</span>}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+          <div className="w-1/3 overflow-hidden">
+            <img src="/fondo.png" alt="" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -345,7 +403,7 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
-            <NavDropdown item={getSecondaryNav(lang)[0]} />
+            <MegaDropdown item={getSecondaryNav(lang)[0]} lang={lang} />
             {getMainNav(lang).map((item) => (
               <NavDropdown key={item.label} item={item} />
             ))}
