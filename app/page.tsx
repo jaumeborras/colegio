@@ -95,11 +95,11 @@ export default function HomePage() {
 
   const news = [
     {
-      title: "El Colegio San Cayetano celebra sus más de 50 años de historia educativa en Palma",
-      img: "/fotos/actos.jpg",
-      href: "https://www.colegiosancayetano.com",
-      source: "colegiosancayetano.com",
-      date: "Abril 2026",
+      title: "Los colegios privados de Mallorca apuestan por el Bachillerato Internacional",
+      img: "/fotos/IB.jpg",
+      href: "https://www.diariodemallorca.es/mallorca/2026/04/28/colegios-privados-mallorca-bachillerato-internacional-bc-129564438.html",
+      source: "Diario de Mallorca",
+      date: "28 abril 2026",
     },
     {
       title: "Alumnos del programa IB representan al colegio en el Model United Nations internacional",
@@ -366,12 +366,12 @@ export default function HomePage() {
           </FadeIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.map((item, i) => (
-              <FadeIn key={item.title} delay={i * 80}>
+              <FadeIn key={item.title} delay={i * 80} className="h-full">
                 <a
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
+                  className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
                 >
                   <div className="aspect-[16/9] overflow-hidden">
                     <img
