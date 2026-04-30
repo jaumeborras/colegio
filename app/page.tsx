@@ -44,7 +44,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden flex items-center -mt-[72px]">
+      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden flex items-end sm:items-center pb-14 sm:pb-0 -mt-[72px]">
         <Image
           src="/header.jpg"
           alt="Colegio San Cayetano"
@@ -52,14 +52,14 @@ export default function HomePage() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.22)" }} />
+        <div className="absolute inset-0 hidden sm:block" style={{ background: "rgba(0,0,0,0.22)" }} />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 hidden sm:block"
           style={{ background: "linear-gradient(to right, transparent 30%, rgba(0,0,0,0.48) 65%, rgba(0,0,0,0.62) 100%)" }}
         />
 
         {/* Lema */}
-        <div className="relative z-10 w-full flex justify-end pr-8 sm:pr-14 lg:pr-20">
+        <div className="relative z-10 w-full flex justify-end pr-6 sm:pr-14 lg:pr-20">
           <div className="max-w-[460px] text-right">
             <h1
               style={{
