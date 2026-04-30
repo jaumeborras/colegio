@@ -404,8 +404,8 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
     <div
       className="fixed inset-0 z-50 lg:hidden bg-white flex flex-col"
       style={{
-        transform: show ? "translateY(0)" : "translateY(100%)",
-        transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+        transform: show ? "translateX(0)" : "translateX(100%)",
+        transition: "transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
       {/* Cabecera */}
@@ -435,12 +435,21 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
 
       {/* Navegación */}
       <nav className="flex-1 overflow-y-auto">
-        {allItems.map((item) => {
+        {allItems.map((item, idx) => {
           const isOpen = expanded === item.label
           const linkProps = item.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
           const href = item.href || "#"
           return (
-            <div key={item.label} className="border-b border-[var(--border)]">
+            <div
+              key={item.label}
+              className="border-b border-[var(--border)]"
+              style={{
+                opacity: show ? 1 : 0,
+                transform: show ? "translateX(0)" : "translateX(32px)",
+                transition: "opacity 0.35s ease, transform 0.35s ease",
+                transitionDelay: show ? `${idx * 55 + 120}ms` : "0ms",
+              }}
+            >
               <div className="flex items-center justify-between px-6">
                 <Link
                   href={href}
