@@ -46,12 +46,12 @@ export default function QuienesSomosPage() {
 
         {/* Carta del director */}
         <div className="mb-14 space-y-5 text-[var(--text-secondary)] leading-relaxed text-justify">
-          <p>Siempre se ha dicho que el futuro de una sociedad se forja en la educación de las nuevas generaciones. En el Colegio San Cayetano, tenemos claro que tenemos el <strong className="text-[var(--text)] font-semibold">FUTURO EN NUESTRAS MANOS</strong>. No es una frase cualquiera, tampoco es un alarde de grandeza, se trata de una realidad, todos nosotros, los que formamos la comunidad educativa tenemos, año tras año, el futuro de 1740 alumnos en nuestras manos, las de los padres, las de los profesores, las del Equipo Directivo.</p>
-          <p>Desde hace más de cincuenta años, nuestro Colegio, desde el compromiso cristiano con la educación de la Orden Teatina, ha estado al servicio de la sociedad mallorquina, con una vocación de formar personas sabiendo que los primeros educadores han de ser los padres, esa es su vocación y su responsabilidad. El Colegio es un colaborador privilegiado en esa tarea, también desde una vocación muy específica definida en nuestra Misión: sabiendo que el hombre tiene una dimensión trascendente y por ello, la formación completa debe incluir la instrucción en la fe, la explicación del sentido cristiano de la vida y la transmisión de una escala coherente de valores humanos, en un marco de máximo respeto a las personas, a las ideas, a las cosas materiales que nos rodean y al medio ambiente.</p>
-          <p>Esta web que ahora comienzan a visitar quiere mostrar a todos el esfuerzo de nuestros profesionales por innovar día a día y su dedicación constante a esa Misión, el trabajo de los alumnos por construir desde el esfuerzo, y la responsabilidad de ese futuro lejano para unos, muy cercano para otros, en definitiva la vida de un Colegio vivo.</p>
-          <p>Nuestro Colegio ha hecho desde sus orígenes una apuesta por una enseñanza de calidad que incide, de forma especial, en el ámbito lingüístico. Fruto de este esfuerzo es la nueva oferta académica en inglés que afecta al Bachillerato y que de forma progresiva cobrará mayor importancia. Así como el inicio temprano en una segunda lengua extranjera que ya desarrollamos en 5º y 6º de Educación Primaria. Igualmente, fruto de esta búsqueda de calidad, hemos introducido en nuestro Currículo de Bachillerato la asignatura de Proyectos de Investigación que finaliza con la realización y exposición pública del proyecto escogido por los propios alumnos.</p>
-          <p>Apostamos también, dentro de la formación de nuestros alumnos por el voluntariado, con la creación hace ya dos años de la Asociación de Voluntarios San Cayetano que busca concienciar de la necesidad de dedicar un poco de nuestro tiempo a los más necesitados y de comprometernos en la mejora de nuestra sociedad mallorquina colaborando con numerosas asociaciones e instituciones, públicas o privadas, para conseguir este objetivo.</p>
-          <p>Les invito a realizar un recorrido por nuestra web con la seguridad de que encontrarán en él un presente vivo y un futuro pleno de esperanza.</p>
+          <p>{t("who.director.p1a", lang)}<strong className="text-[var(--text)] font-semibold">{t("who.director.p1bold", lang)}</strong>{t("who.director.p1b", lang)}</p>
+          <p>{t("who.director.p2", lang)}</p>
+          <p>{t("who.director.p3", lang)}</p>
+          <p>{t("who.director.p4", lang)}</p>
+          <p>{t("who.director.p5", lang)}</p>
+          <p>{t("who.director.p6", lang)}</p>
           <div className="pt-4">
             <p className="text-[var(--text)] font-semibold">Pablo Guerrero Pacheco, C.R.</p>
             <p className="text-sm">{t("who.director.label", lang)}</p>

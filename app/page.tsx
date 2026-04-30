@@ -93,15 +93,6 @@ export default function HomePage() {
     return () => obs.disconnect()
   }, [])
 
-  const stages = [
-    { key: "stage.escoleta", ages: lang === "ca" ? "1–2 anys" : lang === "en" ? "1–2 years" : lang === "de" ? "1–2 Jahre" : "1–2 años", href: "/etapas/escoleta", icon: "🌱" },
-    { key: "stage.infantil", ages: lang === "ca" ? "3–5 anys" : lang === "en" ? "3–5 years" : lang === "de" ? "3–5 Jahre" : "3–5 años", href: "/etapas/infantil", icon: "🎨" },
-    { key: "stage.primaria", ages: lang === "ca" ? "6–11 anys" : lang === "en" ? "6–11 years" : lang === "de" ? "6–11 Jahre" : "6–11 años", href: "/etapas/primaria", icon: "📚" },
-    { key: "stage.secundaria", ages: lang === "ca" ? "12–15 anys" : lang === "en" ? "12–15 years" : lang === "de" ? "12–15 Jahre" : "12–15 años", href: "/etapas/secundaria", icon: "🔬" },
-    { key: "stage.bachillerato", ages: lang === "ca" ? "16–17 anys" : lang === "en" ? "16–17 years" : lang === "de" ? "16–17 Jahre" : "16–17 años", href: "/etapas/bachillerato", icon: "🎓" },
-    { key: "stage.ib", ages: lang === "ca" ? "Diploma Internacional" : lang === "en" ? "International Diploma" : lang === "de" ? "Internationales Diplom" : "Diploma Internacional", href: "/etapas/ib", icon: "🌍" },
-  ]
-
   const quickLinks = [
     { label: "Alexia (familias)", href: "https://web2.alexiaedu.com/ACWeb/LogOn.aspx?key=bhaA17N5NZc%3d", external: true },
     { label: "ManageBac (IB)", href: "https://colegiosancayetano.managebac.com/", external: true },
@@ -244,22 +235,41 @@ export default function HomePage() {
       </section>
 
       {/* ── ETAPAS ── */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white py-16 md:py-24">
         <div className="max-w-screen-xl mx-auto px-6">
-          <FadeIn className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text)] tracking-tight">{t("home.stages.title", lang)}</h2>
-            <p className="text-[var(--text-secondary)] mt-2 text-sm sm:text-base">{t("home.stages.subtitle", lang)}</p>
+          <FadeIn className="mb-10 md:mb-14">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tight mb-6">{t("home.stages.title", lang)}</h2>
+            <div className="w-full h-px bg-[var(--border)] mb-8" />
+            <p className="text-[var(--text-secondary)] text-sm sm:text-base max-w-xl leading-relaxed">{t("home.stages.subtitle", lang)}</p>
           </FadeIn>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {stages.map((s, i) => (
-              <FadeIn key={s.key} delay={i * 70}>
-                <Link
-                  href={s.href}
-                  className="group flex flex-col items-center text-center p-4 sm:p-5 rounded-2xl border border-[var(--border)] hover:border-[var(--accent)] hover:bg-[var(--accent-light)] transition-all h-full"
-                >
-                  <span className="text-2xl sm:text-3xl mb-2 sm:mb-3">{s.icon}</span>
-                  <p className="text-sm font-semibold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">{t(s.key, lang)}</p>
-                  <p className="text-xs text-[var(--text-secondary)] mt-1 hidden sm:block">{s.ages}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            {[
+              { key: "stage.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta" },
+              { key: "stage.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil" },
+              { key: "stage.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria" },
+              { key: "stage.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria" },
+              { key: "stage.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato" },
+            ].map((s, i) => (
+              <FadeIn key={s.key} delay={i * 80}>
+                <Link href={s.href} className="group relative block overflow-hidden rounded-2xl aspect-[3/4]">
+                  {/* Foto de fondo */}
+                  <img
+                    src={s.img}
+                    alt={t(s.key, lang)}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Gradiente permanente abajo */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  {/* Overlay hover azul */}
+                  <div className="absolute inset-0 bg-[var(--accent)]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white text-xs font-semibold uppercase tracking-widest border border-white/60 px-4 py-2 rounded-full">
+                      {t("ui.more", lang)}
+                    </span>
+                  </div>
+                  {/* Texto abajo */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <p className="text-white font-semibold text-sm sm:text-base leading-tight">{t(s.key, lang)}</p>
+                  </div>
                 </Link>
               </FadeIn>
             ))}
