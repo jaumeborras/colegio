@@ -50,15 +50,15 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 | 3 | Idiomas |
 | IB | Bachillerato Internacional |
 
-### Etapas educativas (tarjetas)
-| Etapa | Edades | Ruta |
+### Etapas educativas (tarjetas foto)
+Tarjetas de foto con gradiente, sin numeración. 5 etapas (sin IB).
+| Etapa | Imagen | Ruta |
 |---|---|---|
-| Escoleta | 1–2 años | `/etapas/escoleta` |
-| Infantil | 3–5 años | `/etapas/infantil` |
-| Primaria | 6–11 años | `/etapas/primaria` |
-| Secundaria | 12–15 años | `/etapas/secundaria` |
-| Bachillerato | 16–17 años | `/etapas/bachillerato` |
-| IB | Diploma Internacional | `/etapas/ib` |
+| Escoleta | `/fotos/escoleta.jpg` | `/etapas/escoleta` |
+| Infantil | `/fotos/infantil.jpg` | `/etapas/infantil` |
+| Primaria | `/fotos/primaria.png` | `/etapas/primaria` |
+| Secundaria | `/fotos/secundaria.jpg` | `/etapas/secundaria` |
+| Bachillerato | `/fotos/bachillerato.jpg` | `/etapas/bachillerato` |
 
 ### Accesos rápidos
 | Etiqueta | Destino |
@@ -70,22 +70,28 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 | Comedor | `/comedor` |
 | Extraescolares | `/extraescolares` |
 
-### Valores
-| Título | Descripción |
-|---|---|
-| Compromiso | Educación cristiana con respeto y valores humanos. |
-| Calidad | Excelencia académica y proyectos de investigación. |
-| Idiomas | Trilingüe: castellano, catalán e inglés. |
-| Comunidad | Voluntariado y responsabilidad social activa. |
+### Bachillerato Internacional (sección)
+- Imagen: `/fotos/IB.jpg`
+- Título: "Programa Diploma IB"
+- Texto: "El Programa Diploma del IB es un currículo internacional de dos años reconocido por las mejores universidades del mundo. Rigor académico, pensamiento crítico y perspectiva global."
+- Enlaces:
+  - Ver programa IB → `/etapas/ib`
+  - Programa Diploma IB → https://sites.google.com/csc.edu.es/csc22esp-ibprograma (externo)
+  - IB-ManageBac → https://colegiosancayetano.managebac.com/ (externo)
+  - Biblioteca → https://biblioteca.colegiosancayetano.com/ (externo)
+
+### Últimas noticias
+| # | Título | Fuente | Fecha | Imagen | Enlace |
+|---|---|---|---|---|---|
+| 1 | Colegio San Cayetano: la educación integral que empieza en la Escoleta y culmina en el Bachillerato Internacional | Diario de Mallorca | 28 abril 2026 | `/fotos/noticias1.png` | https://www.diariodemallorca.es/mallorca/2026/04/28/colegios-privados-mallorca-bachillerato-internacional-bc-129564438.html |
+| 2 | San Cayetano: una ventana al mundo a través del Bachillerato Internacional | Ultima Hora | 22 abril 2026 | `/fotos/noticias2.jpg` | https://www.ultimahora.es/monograficos/centros-privados-concertados/2026/04/22/14773/san-cayetano-ventana-mundo-traves-del-bachillerato-internacional.html |
+| 3 | Un colegio de Palma, líder mundial en lectura en inglés entre más de 9.000 escuelas | Diario de Mallorca | 25 febrero 2026 | `/fotos/noticias3.png` | https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html |
 
 ### CTA Admisiones
 > ¿Quieres formar parte de nuestra comunidad?  
 > Descubre el proceso de admisión para el curso 2026–2027 y da el primer paso.
 
-### Contacto rápido
-- Dirección: Av. Picasso, 21 · 07014 Palma de Mallorca
-- Teléfono: 971 22 05 75
-- Botón: "Contactar" → `/contacto`
+*(Sección "Contacto rápido" eliminada — información ya presente en el footer)*
 
 ---
 
@@ -340,6 +346,43 @@ Admisiones · Información general · Comedor · Extraescolares · Otro
 ## Pastoral
 
 Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
+
+---
+
+## Imágenes (`public/fotos/`)
+
+| Archivo | Uso |
+|---|---|
+| `sombreado.png` | Hero home (logo + nombre + ubicación en blanco) |
+| `fondo.png` | Fondo PageHero páginas interiores |
+| `pablo.png` | Foto director Pablo Guerrero Pacheco |
+| `escoleta.jpg` | Tarjeta etapa Escoleta |
+| `infantil.jpg` | Tarjeta etapa Infantil |
+| `primaria.png` | Tarjeta etapa Primaria |
+| `secundaria.jpg` | Tarjeta etapa Secundaria |
+| `bachillerato.jpg` | Tarjeta etapa Bachillerato |
+| `IB.jpg` | Sección IB home + mega menú IB |
+| `actos.jpg` | Mega menú Quiénes somos |
+| `noticias1.png` | Noticia 1 (Diario de Mallorca, abril 2026) |
+| `noticias2.jpg` | Noticia 2 (Ultima Hora, abril 2026) |
+| `noticias3.png` | Noticia 3 (Diario de Mallorca, febrero 2026) |
+
+---
+
+## Header y navegación
+
+### Menú desktop
+- Mega menú full-width con dos columnas de texto + foto a la derecha
+- Cada sección del menú tiene su propia foto (ver `imageKey` en `Header.tsx`)
+- Selector de idioma: icono globo + texto "Idioma" (permanente, sin bandera)
+- Idiomas disponibles: Español, Català, English, Deutsch
+
+### Menú móvil
+- Pantalla completa, desliza desde la derecha
+- Items aparecen en cascada de arriba a abajo
+- Icono `+` que rota a `×` al expandir secciones
+- Footer azul con accesos directos a Admisiones y Contacto
+- Scroll del fondo bloqueado mientras el menú está abierto
 
 ---
 
