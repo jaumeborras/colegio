@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import FloatingContact from "@/components/FloatingContact"
 import { getLang, htmlLang } from "@/lib/lang"
 import { LanguageProvider } from "@/lib/i18n-context"
 
@@ -29,6 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           <main className="flex-1 pt-[72px]">{children}</main>
           <Footer />
+          <FloatingContact />
         </LanguageProvider>
       </body>
     </html>

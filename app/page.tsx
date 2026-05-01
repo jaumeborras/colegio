@@ -69,16 +69,9 @@ function StatCounter({ value, enabled }: { value: string; enabled: boolean }) {
 // ────────────────────────────────────────────────────────
 
 const LOGO_URL = "https://www.colegiosancayetano.com/wp-content/uploads/2021/12/Colegio-San-Cayetano-sombreado.png"
-const HERO_IMAGES = ["/fotos/header.jpg", "/fotos/dron.jpg", "/fotos/futbol.jpg", "/fotos/estatua.jpg", "/fotos/actos.jpg", "/fotos/campo.jpg", "/fotos/piscina.jpg"]
 
 export default function HomePage() {
   const { lang } = useLanguage()
-
-  const [heroIndex, setHeroIndex] = useState(0)
-  useEffect(() => {
-    const id = setInterval(() => setHeroIndex(i => (i + 1) % HERO_IMAGES.length), 5000)
-    return () => clearInterval(id)
-  }, [])
 
   const statsRef = useRef<HTMLElement>(null)
   const [statsInView, setStatsInView] = useState(false)
@@ -128,7 +121,7 @@ export default function HomePage() {
 
   const stats = [
     { value: "1.740", label: t("stats.students", lang) },
-    { value: "+50", label: t("stats.years", lang) },
+    { value: "+60", label: t("stats.years", lang) },
     { value: "3", label: t("stats.languages", lang) },
     { value: "IB", label: t("stats.ib", lang) },
   ]
@@ -136,155 +129,161 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden -mt-[72px]">
-        {/* Overlay discreto para legibilidad del header */}
-        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.22)" }} />
+      <section className="relative w-full h-[88svh] min-h-[520px] overflow-hidden -mt-[72px]">
+        {/* Overlay para legibilidad */}
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.55)" }} />
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 100%)" }} />
 
-        {HERO_IMAGES.map((src, i) => (
-          <Image
-            key={src}
-            src={src}
-            alt="Colegio San Cayetano"
-            fill
-            className="object-cover object-center"
-            priority={i === 0}
-            style={{
-              opacity: heroIndex === i ? 1 : 0,
-              transition: "opacity 1.2s ease-in-out",
-              zIndex: heroIndex === i ? 1 : 0,
-            }}
-          />
-        ))}
+        <Image
+          src="/fotos/dron.jpg"
+          alt="Colegio San Cayetano"
+          fill
+          className="object-cover object-center"
+          priority
+        />
 
-        {/* Pills admisiones / información */}
-        <div className="absolute top-[80px] right-6 lg:right-10 z-10 hidden lg:flex gap-2">
-          <Link
-            href="/informacion"
-            className="text-xs font-medium text-white/75 border border-white/30 rounded-full px-4 py-1.5 hover:bg-white/15 hover:text-white hover:border-white/55 transition-all"
-          >
-            {t("home.hero.info", lang)}
-          </Link>
-          <Link
-            href="/admisiones"
-            className="text-xs font-medium text-white border border-white/55 rounded-full px-4 py-1.5 hover:bg-white/15 hover:border-white/90 transition-all"
-          >
-            {t("home.hero.adm", lang)}
-          </Link>
+
+        {/* Titular central */}
+        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
+          <p className="hero-tag text-[10px] sm:text-xs font-semibold text-white/60 uppercase tracking-[0.35em] mb-6">
+            Colegio San Cayetano · Palma de Mallorca
+          </p>
+          <h1 className="hero-title" style={{ fontFamily: "var(--font-serif)" }}>
+            <span className="block font-bold text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
+              {t("home.hero.line1", lang)}
+            </span>
+            <span className="block font-bold italic text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
+              {t("home.hero.line2", lang)}
+            </span>
+          </h1>
+          <p className="hero-cta mt-7 sm:mt-10 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em]">
+            Desde 1970
+          </p>
         </div>
 
+
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40">
-          <svg className="w-5 h-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/80 animate-bounce">
+          <svg className="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
       </section>
 
-      {/* ── LEMA ── */}
-      <div className="bg-white py-10 md:py-12 px-6 text-center">
-        <p style={{ fontFamily: "var(--font-serif)", lineHeight: 1.2 }}>
-          <span className="font-bold text-2xl sm:text-3xl md:text-4xl" style={{ color: "var(--accent)" }}>
-            {t("home.hero.line1", lang)}
-          </span>
-          <span className="mx-3 hidden sm:inline font-light" style={{ color: "var(--accent)", opacity: 0.3 }}>·</span>
-          <span className="block sm:inline font-bold italic text-2xl sm:text-3xl md:text-4xl" style={{ color: "var(--accent)" }}>
-            {t("home.hero.line2", lang)}
-          </span>
-        </p>
-      </div>
 
       {/* ── INTRO ── */}
-      <section className="bg-white pb-16 md:pb-20">
-        <FadeIn className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
-          <div className="shrink-0 flex items-center justify-center w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-3xl bg-[var(--accent-light)] border border-[var(--border)]">
-            <Image
-              src={LOGO_URL}
+      <section className="bg-white pt-16 md:pt-24 pb-16 md:pb-20">
+        <div className="max-w-screen-xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-16">
+          <FadeIn className="shrink-0 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56">
+            <img
+              src="https://www.colegiosancayetano.com/wp-content/uploads/2021/11/cropped-logo2-300x300.jpg"
               alt="Escudo Colegio San Cayetano"
-              width={160}
-              height={160}
-              className="object-contain p-4 w-full h-full"
-              unoptimized
+              className="w-full h-full object-contain"
             />
-          </div>
+          </FadeIn>
           <div className="flex-1 text-center md:text-left">
-            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.mission.tag", lang)}</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight leading-snug mb-5">
-              {t("home.mission.title", lang)}
-            </h2>
-            <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
-              {t("home.mission.p1", lang)}
-            </p>
-            <p className="text-[var(--text-secondary)] leading-relaxed mb-7">
-              {t("home.mission.p2", lang)}
-            </p>
-            <Link href="/quienes-somos" className="inline-flex items-center gap-2 text-[var(--accent)] text-sm font-medium hover:underline">
-              {t("ui.learnMore", lang)}
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            <FadeIn delay={80}>
+              <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.mission.tag", lang)}</p>
+            </FadeIn>
+            <FadeIn delay={160}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight leading-snug mb-5">
+                {t("home.mission.title", lang)}
+              </h2>
+            </FadeIn>
+            <FadeIn delay={240}>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
+                {t("home.mission.p1", lang)}
+              </p>
+            </FadeIn>
+            <FadeIn delay={320}>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-7">
+                {t("home.mission.p2", lang)}
+              </p>
+            </FadeIn>
+            <FadeIn delay={400}>
+              <Link href="/quienes-somos" className="inline-flex items-center gap-2 text-[var(--accent)] text-sm font-medium hover:underline">
+                {t("ui.learnMore", lang)}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </FadeIn>
           </div>
-        </FadeIn>
+        </div>
       </section>
 
       {/* ── STATS ── */}
-      <section ref={statsRef} className="bg-[var(--accent)] text-white overflow-hidden">
-        <div className="max-w-screen-xl mx-auto">
+      <section ref={statsRef} className="relative bg-[var(--accent)] text-white overflow-hidden">
+        {/* Imagen de fondo con opacidad baja */}
+        <img
+          src="/fotos/header.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          style={{ opacity: 0.08, mixBlendMode: "luminosity" }}
+        />
+        {/* Línea dorada superior */}
+        <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "var(--gold)" }} />
+
+        <div className="relative max-w-screen-xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {stats.map((s, i) => (
               <div
                 key={s.label}
-                className={`flex flex-col items-center justify-center text-center px-6 py-12 md:py-16 relative
+                className={`flex flex-col items-center justify-center text-center px-6 py-16 md:py-20 relative
                   ${i % 2 === 0 && i < 3 ? "after:absolute after:right-0 after:top-1/4 after:h-1/2 after:w-px after:bg-white/15" : ""}
                   ${i < 2 ? "border-b border-white/10 md:border-b-0" : ""}
                   ${i === 1 ? "md:after:absolute md:after:right-0 md:after:top-1/4 md:after:h-1/2 md:after:w-px md:after:bg-white/15" : ""}
                 `}
               >
-                <div className="w-8 h-[2px] rounded-full mb-5" style={{ background: "var(--gold, #c9a84c)" }} />
-                <p className="text-[2.6rem] sm:text-5xl md:text-6xl font-black tracking-tight leading-none tabular-nums">
+                <div className="w-10 h-[3px] rounded-full mb-6" style={{ background: "var(--gold)" }} />
+                <p className="text-[3.2rem] sm:text-6xl md:text-7xl font-black tracking-tight leading-none tabular-nums">
                   <StatCounter value={s.value} enabled={statsInView} />
                 </p>
-                <p className="text-[10px] sm:text-xs text-white/50 mt-4 uppercase tracking-[0.18em] font-medium">{s.label}</p>
+                <p className="text-[10px] sm:text-xs text-white/50 mt-5 uppercase tracking-[0.22em] font-semibold">{s.label}</p>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Línea dorada inferior */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px]" style={{ background: "var(--gold)" }} />
       </section>
 
       {/* ── ETAPAS ── */}
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-screen-xl mx-auto px-6">
-          <FadeIn className="mb-10 md:mb-14">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tight mb-6">{t("home.stages.title", lang)}</h2>
-            <div className="w-full h-px bg-[var(--border)] mb-8" />
-            <p className="text-[var(--text-secondary)] text-sm sm:text-base max-w-xl leading-relaxed">{t("home.stages.subtitle", lang)}</p>
+          <FadeIn className="mb-6 md:mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tight mb-4">{t("home.stages.title", lang)}</h2>
+            <div className="flex items-center gap-4">
+              <div className="h-px bg-[var(--border)]" style={{ width: "2rem", flexShrink: 0 }} />
+              <p className="text-[var(--text-secondary)] text-sm sm:text-base whitespace-nowrap">{t("home.stages.subtitle", lang)}</p>
+            </div>
           </FadeIn>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {[
-              { key: "stage.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta" },
-              { key: "stage.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil" },
-              { key: "stage.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria" },
-              { key: "stage.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria" },
-              { key: "stage.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato" },
+              { key: "stage.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta",    ages: "1–2 años" },
+              { key: "stage.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil",    ages: "3–5 años" },
+              { key: "stage.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria",    ages: "6–11 años" },
+              { key: "stage.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria",  ages: "12–15 años" },
+              { key: "stage.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato",ages: "16–17 años" },
+              { key: "stage.ib",          img: "/fotos/IB.jpg",          href: "/etapas/ib",          ages: "16–19 años" },
             ].map((s, i) => (
               <FadeIn key={s.key} delay={i * 80}>
                 <Link href={s.href} className="group relative block overflow-hidden rounded-2xl aspect-[3/4]">
-                  {/* Foto de fondo */}
                   <img
                     src={s.img}
                     alt={t(s.key, lang)}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* Gradiente permanente abajo */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                  {/* Overlay hover azul */}
                   <div className="absolute inset-0 bg-[var(--accent)]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="text-white text-xs font-semibold uppercase tracking-widest border border-white/60 px-4 py-2 rounded-full">
                       {t("ui.more", lang)}
                     </span>
                   </div>
-                  {/* Texto abajo */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <p className="text-white/60 text-[10px] font-medium uppercase tracking-widest mb-1">{s.ages}</p>
                     <p className="text-white font-semibold text-sm sm:text-base leading-tight">{t(s.key, lang)}</p>
                   </div>
                 </Link>
@@ -295,24 +294,41 @@ export default function HomePage() {
       </section>
 
       {/* ── BACHILLERATO INTERNACIONAL ── */}
-      <section className="bg-white py-16 md:py-24">
-        <div className="max-w-screen-xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <section className="relative overflow-hidden py-20 md:py-28" style={{ background: "#0a1628" }}>
+        {/* Foto de fondo con opacidad muy baja */}
+        <img
+          src="/fotos/IB.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          style={{ opacity: 0.12, mixBlendMode: "luminosity" }}
+        />
+        {/* Línea dorada superior */}
+        <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "var(--gold)" }} />
+
+        <div className="relative max-w-screen-xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <FadeIn>
-              <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-4">Bachillerato Internacional</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight leading-tight mb-6">
-                Programa Diploma IB
+              <p className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "var(--gold)" }}>
+                Bachillerato Internacional
+              </p>
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6"
+                style={{ fontFamily: "var(--font-serif)", color: "#ffffff" }}
+              >
+                Programa<br />
+                <span className="italic" style={{ color: "var(--gold)" }}>Diploma IB</span>
               </h2>
-              <p className="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base mb-10">
+              <p className="leading-relaxed text-sm sm:text-base mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
                 El Programa Diploma del IB es un currículo internacional de dos años reconocido por las mejores universidades del mundo. Rigor académico, pensamiento crítico y perspectiva global.
               </p>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <Link
                   href="/etapas/ib"
                   className="flex items-center gap-3 group"
                 >
-                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
-                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">Ver programa IB</span>
+                  <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
+                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>Ver programa IB</span>
                 </Link>
                 <a
                   href="https://sites.google.com/csc.edu.es/csc22esp-ibprograma"
@@ -320,8 +336,8 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 group"
                 >
-                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
-                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">{t("nav.ib.diploma", lang)} ↗</span>
+                  <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
+                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("nav.ib.diploma", lang)} ↗</span>
                 </a>
                 <a
                   href="https://colegiosancayetano.managebac.com/"
@@ -329,8 +345,8 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 group"
                 >
-                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
-                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">IB-ManageBac ↗</span>
+                  <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
+                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>IB-ManageBac ↗</span>
                 </a>
                 <a
                   href="https://biblioteca.colegiosancayetano.com/"
@@ -338,23 +354,34 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 group"
                 >
-                  <span className="w-8 h-px bg-[var(--accent)] group-hover:w-12 transition-all duration-300" />
-                  <span className="text-sm font-medium text-[var(--accent)] group-hover:underline">{t("stage.library", lang)} ↗</span>
+                  <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
+                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("stage.library", lang)} ↗</span>
                 </a>
               </div>
             </FadeIn>
-            <FadeIn delay={120} className="relative">
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
+
+            <FadeIn delay={120}>
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3]" style={{ boxShadow: "0 0 0 1px rgba(201,150,42,0.25), 0 24px 60px rgba(0,0,0,0.5)" }}>
                 <img
                   src="/fotos/IB.jpg"
                   alt="Bachillerato Internacional IB"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(10,22,40,0.6) 0%, transparent 60%)" }} />
+                {/* Badge dorado */}
+                <div className="absolute bottom-5 left-5 flex items-center gap-3">
+                  <div className="w-8 h-[2px]" style={{ background: "var(--gold)" }} />
+                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--gold)" }}>
+                    +75 países · +2.000 universidades
+                  </span>
+                </div>
               </div>
             </FadeIn>
           </div>
         </div>
+
+        {/* Línea dorada inferior */}
+        <div className="absolute bottom-0 left-0 right-0 h-[3px]" style={{ background: "var(--gold)" }} />
       </section>
 
       {/* ── ÚLTIMAS NOTICIAS ── */}
@@ -364,8 +391,40 @@ export default function HomePage() {
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">Actualidad</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">Últimas noticias</h2>
           </FadeIn>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {news.map((item, i) => (
+          {/* Noticia destacada */}
+          <FadeIn className="mb-6">
+            <a
+              href={news[0].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
+            >
+              <div className="sm:w-1/2 aspect-[16/9] sm:aspect-auto overflow-hidden">
+                <img
+                  src={news[0].img}
+                  alt={news[0].title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-col flex-1 p-6 sm:p-8 justify-center">
+                <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-2">{news[0].source}</p>
+                <p className="text-xs text-[var(--text-secondary)] mb-4">{news[0].date}</p>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--text)] leading-snug group-hover:text-[var(--accent)] transition-colors duration-200">
+                  {news[0].title}
+                </h3>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
+                  Leer noticia
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </FadeIn>
+
+          {/* Noticias secundarias */}
+          <div className="grid sm:grid-cols-2 gap-6">
+            {news.slice(1).map((item, i) => (
               <FadeIn key={item.title} delay={i * 80} className="h-full">
                 <a
                   href={item.href}
@@ -381,16 +440,11 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="flex flex-col flex-1 p-5">
+                    <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-1">{item.source}</p>
                     <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
                     <h3 className="text-sm sm:text-base font-semibold text-[var(--text)] leading-snug flex-1 group-hover:text-[var(--accent)] transition-colors duration-200">
                       {item.title}
                     </h3>
-                    <div className="mt-4 pt-4 border-t border-[var(--border)] flex items-center gap-2">
-                      <svg className="w-3.5 h-3.5 text-[var(--text-secondary)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                      </svg>
-                      <span className="text-xs text-[var(--text-secondary)] truncate">{item.source}</span>
-                    </div>
                   </div>
                 </a>
               </FadeIn>
@@ -400,8 +454,26 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA ADMISIONES ── */}
-      <section className="bg-[var(--accent-light)] py-14 md:py-16">
-        <FadeIn className="max-w-screen-xl mx-auto px-6 text-center">
+      <section className="bg-[var(--accent-light)] overflow-hidden">
+        {/* Marquee */}
+        <div className="overflow-hidden pt-10">
+          <div className="marquee-track flex gap-3" style={{ width: "max-content" }}>
+            {[
+              "/fotos/actos.jpg", "/fotos/futbol.jpg", "/fotos/campo.jpg",
+              "/fotos/piscina.jpg", "/fotos/estatua.jpg", "/fotos/infantil.jpg",
+              "/fotos/primaria.png", "/fotos/secundaria.jpg", "/fotos/bachillerato.jpg",
+              "/fotos/actos.jpg", "/fotos/futbol.jpg", "/fotos/campo.jpg",
+              "/fotos/piscina.jpg", "/fotos/estatua.jpg", "/fotos/infantil.jpg",
+              "/fotos/primaria.png", "/fotos/secundaria.jpg", "/fotos/bachillerato.jpg",
+            ].map((src, i) => (
+              <div key={i} className="shrink-0 w-64 h-44 rounded-2xl overflow-hidden">
+                <img src={src} alt="" aria-hidden="true" className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Texto + CTA */}
+        <FadeIn className="max-w-screen-xl mx-auto px-6 py-12 md:py-14 text-center">
           <h2 className="text-xl sm:text-2xl font-bold text-[var(--text)] mb-3">{t("home.cta.title", lang)}</h2>
           <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-sm sm:text-base">
             {t("home.cta.desc", lang)}

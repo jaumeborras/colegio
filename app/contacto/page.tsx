@@ -40,6 +40,18 @@ export default function ContactoPage() {
                   >
                     {t("contact.map.label", lang)} ↗
                   </a>
+                  <div className="mt-4 rounded-xl overflow-hidden border border-[var(--border)]">
+                    <iframe
+                      src="https://maps.google.com/maps?q=Av.+Picasso,+21,+07014+Palma+de+Mallorca&output=embed"
+                      width="100%"
+                      height="220"
+                      style={{ border: 0, display: "block" }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Ubicación Colegio San Cayetano"
+                    />
+                  </div>
                 </div>
               </div>
 

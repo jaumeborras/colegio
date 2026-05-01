@@ -112,7 +112,7 @@ function MegaDropdown({ item, description, image, onEnter, onLeave, isActive }: 
       onMouseEnter={() => onEnter(item, description, image)}
       onMouseLeave={onLeave}
     >
-      <button className={`flex items-center gap-1 px-3 py-1.5 text-sm font-medium transition-colors rounded-md ${
+      <button className={`flex items-center gap-1 px-3 py-2 text-base font-medium transition-colors rounded-md ${
         isActive ? "text-white bg-white/20" : "text-white/90 hover:text-white hover:bg-white/15"
       }`}>
         {item.label}
@@ -229,7 +229,7 @@ function NavDropdown({ item }: { item: NavItem }) {
       <Link
         href={href}
         {...linkProps}
-        className="px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
+        className="px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
       >
         {item.label}
       </Link>
@@ -238,7 +238,7 @@ function NavDropdown({ item }: { item: NavItem }) {
 
   return (
     <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
-      <button className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
+      <button className="flex items-center gap-1 px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
         {item.label}
         <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -638,6 +638,13 @@ export default function Header() {
               )
               return <NavDropdown key={item.label} item={item} />
             })}
+            <div className="w-px h-4 bg-white/20 mx-1" />
+            <Link
+              href="/admisiones"
+              className="px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
+            >
+              {t("nav.admissions", lang)}
+            </Link>
             <div className="w-px h-4 bg-white/20 mx-1" />
             <LangDropdown />
           </nav>

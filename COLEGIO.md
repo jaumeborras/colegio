@@ -25,7 +25,7 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 | Titularidad | Concertado — Orden Teatina (Clérigos Regulares) |
 | Director | Pablo Guerrero Pacheco, C.R. |
 | Alumnos | 1.740 |
-| Años de historia | Más de 50 |
+| Años de historia | Más de 60 |
 | Idiomas | Trilingüe: castellano, catalán, inglés |
 
 ---
@@ -33,32 +33,38 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 ## Home (`/`)
 
 ### Hero
-- Imagen de fondo: foto del claustro del colegio
-- Logo: sombreado.png (escudo + nombre + ubicación en blanco)
-- CTA 1: "Proceso de admisión" → `/admisiones`
-- CTA 2: "Quiénes somos" → `/quienes-somos`
+- Imagen de fondo: `/fotos/dron.jpg` (foto aérea fija, sin slideshow)
+- Overlay oscuro al 55% para legibilidad
+- Tag superior: "COLEGIO SAN CAYETANO · PALMA DE MALLORCA"
+- Titular serif centrado: "Educamos personas, / formamos el futuro" (animación de entrada)
+- Subtítulo inferior: "Desde 1970"
+- Flecha de scroll visible abajo al centro
+- Hero height: 88svh (deja asomar la sección siguiente)
+- Botón "Admisiones" en top-right eliminado (Admisiones está en el nav principal)
 
 ### Sección intro — Misión
 > Somos un colegio concertado con más de 50 años de historia en Palma de Mallorca, vinculados a la Orden Teatina. Formamos personas con sentido crítico y excelencia académica.
 > Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y 1.740 alumnos que confían en nosotros cada día.
 
 ### Stats
+Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y abajo.
 | Valor | Etiqueta |
 |---|---|
 | 1.740 | Alumnos |
-| +50 | Años de historia |
+| +60 | Años de historia |
 | 3 | Idiomas |
 | IB | Bachillerato Internacional |
 
 ### Etapas educativas (tarjetas foto)
-Tarjetas de foto con gradiente, sin numeración. 5 etapas (sin IB).
-| Etapa | Imagen | Ruta |
-|---|---|---|
-| Escoleta | `/fotos/escoleta.jpg` | `/etapas/escoleta` |
-| Infantil | `/fotos/infantil.jpg` | `/etapas/infantil` |
-| Primaria | `/fotos/primaria.png` | `/etapas/primaria` |
-| Secundaria | `/fotos/secundaria.jpg` | `/etapas/secundaria` |
-| Bachillerato | `/fotos/bachillerato.jpg` | `/etapas/bachillerato` |
+6 etapas en grid 2 cols (móvil) / 3 cols (desktop). Cada tarjeta muestra rango de edad encima del nombre.
+| Etapa | Edades | Imagen | Ruta |
+|---|---|---|---|
+| Escoleta | 1–2 años | `/fotos/escoleta.jpg` | `/etapas/escoleta` |
+| Infantil | 3–5 años | `/fotos/infantil.jpg` | `/etapas/infantil` |
+| Primaria | 6–11 años | `/fotos/primaria.png` | `/etapas/primaria` |
+| Secundaria | 12–15 años | `/fotos/secundaria.jpg` | `/etapas/secundaria` |
+| Bachillerato | 16–17 años | `/fotos/bachillerato.jpg` | `/etapas/bachillerato` |
+| IB | 16–19 años | `/fotos/IB.jpg` | `/etapas/ib` |
 
 ### Accesos rápidos
 | Etiqueta | Destino |
@@ -87,11 +93,14 @@ Tarjetas de foto con gradiente, sin numeración. 5 etapas (sin IB).
 | 2 | San Cayetano: una ventana al mundo a través del Bachillerato Internacional | Ultima Hora | 22 abril 2026 | `/fotos/noticias2.jpg` | https://www.ultimahora.es/monograficos/centros-privados-concertados/2026/04/22/14773/san-cayetano-ventana-mundo-traves-del-bachillerato-internacional.html |
 | 3 | Un colegio de Palma, líder mundial en lectura en inglés entre más de 9.000 escuelas | Diario de Mallorca | 25 febrero 2026 | `/fotos/noticias3.png` | https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html |
 
+### Noticias — layout editorial
+- Primera noticia: tarjeta destacada a ancho completo (imagen izquierda + texto derecha)
+- Noticias 2 y 3: dos columnas iguales debajo
+
 ### CTA Admisiones
+Sección con marquee de fotos de vida escolar (scroll infinito automático) seguido del texto y botón.
 > ¿Quieres formar parte de nuestra comunidad?  
 > Descubre el proceso de admisión para el curso 2026–2027 y da el primer paso.
-
-*(Sección "Contacto rápido" eliminada — información ya presente en el footer)*
 
 ---
 
@@ -374,6 +383,9 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 ### Menú desktop
 - Mega menú full-width con dos columnas de texto + foto a la derecha
 - Cada sección del menú tiene su propia foto (ver `imageKey` en `Header.tsx`)
+- Texto de nav en `text-base` (antes `text-sm`)
+- Orden nav: Quiénes somos · Etapas · Pastoral · **Admisiones** · Idioma
+- "Información" movida al submenú de Quiénes somos (segunda opción)
 - Selector de idioma: icono globo + texto "Idioma" (permanente, sin bandera)
 - Idiomas disponibles: Español, Català, English, Deutsch
 
@@ -383,6 +395,17 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 - Icono `+` que rota a `×` al expandir secciones
 - Footer azul con accesos directos a Admisiones y Contacto
 - Scroll del fondo bloqueado mientras el menú está abierto
+
+### Widget flotante — Contáctanos
+- Botón fijo bottom-right en todas las páginas: icono chat + "Contáctanos"
+- Al hacer clic abre panel estilo chat con formulario completo (nombre, email, asunto, mensaje)
+- Header del panel muestra logo del colegio + "¿En qué podemos ayudarte?"
+- Tras enviar muestra confirmación con tick verde
+- Componente: `components/FloatingContact.tsx`
+
+### Mapa Google Maps — Contacto
+- Embed iframe de Google Maps añadido en `/contacto` dentro del bloque de dirección
+- URL: `https://maps.google.com/maps?q=Av.+Picasso,+21,+07014+Palma+de+Mallorca&output=embed`
 
 ---
 
