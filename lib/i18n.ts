@@ -44,10 +44,10 @@ const d: Dict = {
     de: "Wir bilden mit Werten, Exzellenz und Engagement",
   },
   "home.mission.p1": {
-    es: "Somos un colegio privado con más de 60 años de historia en Palma de Mallorca, vinculados a la Orden Teatina.",
-    ca: "Som un col·legi privat amb més de 60 anys d'història a Palma de Mallorca, vinculats a l'Orde Teatina.",
-    en: "We are a private school with over 60 years of history in Palma de Mallorca, affiliated with the Theatine Order.",
-    de: "Wir sind eine Privatschule mit über 60 Jahren Geschichte in Palma de Mallorca, verbunden mit dem Theatinerorden.",
+    es: "Somos un colegio privado con más de 60 años de historia en Palma de Mallorca de la Orden Teatina.",
+    ca: "Som un col·legi privat amb més de 60 anys d'història a Palma de Mallorca de l'Orde Teatina.",
+    en: "We are a private school with over 60 years of history in Palma de Mallorca of the Theatine Order.",
+    de: "Wir sind eine Privatschule mit über 60 Jahren Geschichte in Palma de Mallorca des Theatinerordens.",
   },
   "home.mission.p2": {
     es: "Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y 1.740 alumnos que confían en nosotros cada día.",
