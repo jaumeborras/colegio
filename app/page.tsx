@@ -197,11 +197,16 @@ export default function HomePage() {
               </p>
             </FadeIn>
             <FadeIn delay={320}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-7">
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
                 {t("home.mission.p2", lang)}
               </p>
             </FadeIn>
             <FadeIn delay={400}>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-7">
+                {t("home.mission.p3", lang)}
+              </p>
+            </FadeIn>
+            <FadeIn delay={480}>
               <Link href="/quienes-somos" className="inline-flex items-center gap-2 text-[var(--accent)] text-sm font-medium hover:underline">
                 {t("ui.learnMore", lang)}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
