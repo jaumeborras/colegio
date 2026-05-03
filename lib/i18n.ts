@@ -116,6 +116,7 @@ const d: Dict = {
   "stats.years":     { es: "Años de historia",         ca: "Anys d'història",          en: "Years of history",          de: "Jahre Geschichte" },
   "stats.languages": { es: "Idiomas",                  ca: "Idiomes",                  en: "Languages",                 de: "Sprachen" },
   "stats.ib":        { es: "Bachillerato Internacional", ca: "Batxillerat Internacional", en: "International Baccalaureate", de: "Internationales Abitur" },
+  "stats.facilities": { es: "m² de instalaciones",       ca: "m² d'instal·lacions",      en: "m² of facilities",          de: "m² Einrichtungen" },
 
   // ── Stage names ──────────────────────────────────────────────────────────────
   "stage.escoleta":    { es: "Escoleta",      ca: "Escoleta",    en: "Nursery",       de: "Krippe" },
