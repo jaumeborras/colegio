@@ -31,8 +31,8 @@ const d: Dict = {
   "footer.school":     { es: "Colegio San Cayetano",    ca: "Col·legi Sant Gaietà",      en: "San Cayetano School", de: "Schule San Cayetano" },
 
   // ── Home ─────────────────────────────────────────────────────────────────────
-  "home.hero.line1":   { es: "Educamos personas,",     ca: "Eduquem persones,",      en: "We educate people,",        de: "Wir bilden Menschen," },
-  "home.hero.line2":   { es: "formamos el futuro",     ca: "formem el futur",        en: "we shape the future",       de: "wir formen die Zukunft" },
+  "home.hero.line1":   { es: "Educamos personas con valores",     ca: "Eduquem persones amb valors",      en: "We educate people with values",        de: "Wir bilden Menschen mit Werten" },
+  "home.hero.line2":   { es: "para un futuro global",     ca: "per a un futur global",        en: "for a global future",       de: "für eine globale Zukunft" },
   "home.hero.info":    { es: "Información",             ca: "Informació",             en: "Information",               de: "Information" },
   "home.hero.adm":     { es: "Admisiones",              ca: "Admissions",             en: "Admissions",                de: "Anmeldung" },
 
