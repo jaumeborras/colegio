@@ -23,7 +23,10 @@ export default function Footer() {
               <p>07014 Palma de Mallorca</p>
               <p>Islas Baleares — España</p>
             </div>
-            <a href="tel:971220575" className="block text-base font-bold text-white hover:text-white/75 transition-colors mb-5">
+            <a href="tel:971220575" className="inline-flex items-center gap-2 text-base font-bold text-white hover:text-white/75 transition-colors mb-5">
+              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
               971 22 05 75
             </a>
             <div className="flex gap-5 items-center">
