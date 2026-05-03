@@ -453,7 +453,7 @@ export default function HomePage() {
               <div className="flex flex-col flex-1 p-6 sm:p-8 justify-center">
                 <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-2">{news[0].source}</p>
                 <p className="text-xs text-[var(--text-secondary)] mb-4">{news[0].date}</p>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--text)] leading-snug group-hover:text-[var(--accent)] transition-colors duration-200">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--accent)] leading-snug">
                   {news[0].title}
                 </h3>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
@@ -486,7 +486,7 @@ export default function HomePage() {
                   <div className="flex flex-col flex-1 p-5">
                     <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-1">{item.source}</p>
                     <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
-                    <h3 className="text-sm sm:text-base font-semibold text-[var(--text)] leading-snug flex-1 group-hover:text-[var(--accent)] transition-colors duration-200">
+                    <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1">
                       {item.title}
                     </h3>
                   </div>
