@@ -144,8 +144,9 @@ export default function HomePage() {
 
         {/* Titular central */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
-          <p className="hero-tag text-[10px] sm:text-xs font-semibold text-white/60 uppercase tracking-[0.35em] mb-6">
-            Colegio San Cayetano · Palma de Mallorca
+          <p className="hero-tag text-[10px] sm:text-xs font-semibold text-white/60 uppercase tracking-[0.35em] mb-6 leading-relaxed">
+            <span className="block">Colegio San Cayetano</span>
+            <span className="block">Palma de Mallorca</span>
           </p>
           <h1 className="hero-title" style={{ fontFamily: "var(--font-serif)" }}>
             <span className="block font-bold text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
