@@ -609,20 +609,16 @@ export default function Header() {
             />
             {getMainNav(lang).map((item) => {
               const descKey: Record<string, string> = {
-                [t("stage.escoleta", lang)]:     t("escoleta.subtitle", lang),
-                [t("stage.infantil", lang)]:     t("infantil.subtitle", lang),
-                [t("stage.primaria", lang)]:     t("primaria.subtitle", lang),
-                [t("stage.secundaria", lang)]:   t("secundaria.subtitle", lang),
-                [t("stage.bachillerato", lang)]: t("bach.subtitle", lang),
-                "IB": t("ib.subtitle", lang),
+                [t("nav.stages", lang)]:      t("stages.subtitle", lang),
+                "IB":                         t("ib.subtitle", lang),
+                [t("nav.virtual", lang)]:     t("virtual.subtitle", lang),
+                [t("nav.school.life", lang)]: t("school.life.subtitle", lang),
               }
               const imageKey: Record<string, string> = {
-                [t("stage.escoleta", lang)]:     "/fotos/escoleta.jpg",
-                [t("stage.infantil", lang)]:     "/fotos/infantil.jpg",
-                [t("stage.primaria", lang)]:     "/fotos/primaria.png",
-                [t("stage.secundaria", lang)]:   "/fotos/secundaria.jpg",
-                [t("stage.bachillerato", lang)]: "/fotos/bachillerato.jpg",
-                "IB":                            "/fotos/IB.jpg",
+                [t("nav.stages", lang)]:      "/fotos/primaria.png",
+                "IB":                         "/fotos/IB.jpg",
+                [t("nav.virtual", lang)]:     "/fotos/fondo.png",
+                [t("nav.school.life", lang)]: "/fotos/actos.jpg",
               }
               const description = descKey[item.label]
               if (description) return (

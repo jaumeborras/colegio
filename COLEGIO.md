@@ -24,9 +24,9 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 | Email | csc@colegiosancayetano.com |
 | Titularidad | Privado — Orden Teatina (Clérigos Regulares) |
 | Director | Pablo Guerrero Pacheco, C.R. |
-| Alumnos | 1.740 |
+| Alumnos | Más de 1.800 |
 | Años de historia | Más de 60 |
-| Idiomas | Trilingüe: castellano, catalán, inglés |
+| Idiomas | Cuatrilingüe: castellano, catalán, inglés, alemán (desde 5º Primaria) |
 
 ---
 
@@ -35,25 +35,38 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 ### Hero
 - Imagen de fondo: `/fotos/dron.jpg` (foto aérea fija, sin slideshow)
 - Overlay oscuro al 55% para legibilidad
-- Tag superior: "COLEGIO SAN CAYETANO · PALMA DE MALLORCA"
-- Titular serif centrado: "Educamos personas, / formamos el futuro" (animación de entrada)
-- Subtítulo inferior: "Desde 1970"
+- Tag superior: "COLEGIO SAN CAYETANO" / "PALMA DE MALLORCA" (dos líneas)
+- Titular serif centrado: "Educamos personas con valores / para un futuro global" (animación de entrada)
+- Subtítulo inferior: "Desde 1962"
 - Flecha de scroll visible abajo al centro
 - Hero height: 88svh (deja asomar la sección siguiente)
 - Botón "Admisiones" en top-right eliminado (Admisiones está en el nav principal)
 
 ### Sección intro — Misión
-> Somos un colegio privado con más de 60 años de historia en Palma de Mallorca, vinculados a la Orden Teatina. Formamos personas con sentido crítico y excelencia académica.
-> Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y 1.740 alumnos que confían en nosotros cada día.
+> Somos un colegio privado con más de 60 años de historia en Palma de Mallorca de la Orden Teatina.
+> Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y más de 1.800 alumnos que confían en nosotros cada día.
+> Ofrecemos un proyecto educativo integral donde cada alumno desarrolla todo su potencial en un entorno multilingüe con proyección internacional.
+
+### Por qué elegirnos
+**Tag:** ¿Por qué elegirnos?  
+**Título:** Un proyecto educativo diferente  
+4 tarjetas en grid 1/2/4 cols:
+
+| Título | Descripción |
+|---|---|
+| Multilingüismo | Castellano, catalán e inglés en todas las etapas. Alemán a partir de quinto de primaria. |
+| Excelencia académica | Educación de calidad con buenos resultados. |
+| Atención personalizada | Profesores y orientadores acompañan a los estudiantes durante el proceso. |
+| Educación en valores | Nuestro proyecto educativo va más allá de los resultados académicos. |
 
 ### Stats
 Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y abajo.
 | Valor | Etiqueta |
 |---|---|
-| 1.740 | Alumnos |
+| +1.800 | Alumnos |
 | +60 | Años de historia |
-| 3 | Idiomas |
-| IB | Bachillerato Internacional |
+| 4 | Idiomas |
+| 1.800 | m² de instalaciones |
 
 ### Etapas educativas (tarjetas foto)
 6 etapas en grid 2 cols (móvil) / 3 cols (desktop). Cada tarjeta muestra rango de edad encima del nombre.
@@ -397,11 +410,14 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 - Scroll del fondo bloqueado mientras el menú está abierto
 
 ### Widget flotante — Contáctanos
-- Botón fijo bottom-right en todas las páginas: icono chat + "Contáctanos"
-- Al hacer clic abre panel estilo chat con formulario completo (nombre, email, asunto, mensaje)
+- Botón circular absolute bottom-left dentro del hero: solo icono chat (sin texto)
+- Al hacer clic abre panel estilo chat a la izquierda con formulario completo (nombre, email, asunto, mensaje)
 - Header del panel muestra logo del colegio + "¿En qué podemos ayudarte?"
 - Tras enviar muestra confirmación con tick verde
 - Componente: `components/FloatingContact.tsx`
+
+### Footer
+- Teléfono con icono de teléfono inline a la izquierda del número
 
 ### Mapa Google Maps — Contacto
 - Embed iframe de Google Maps añadido en `/contacto` dentro del bloque de dirección
