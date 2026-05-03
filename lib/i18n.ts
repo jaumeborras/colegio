@@ -56,6 +56,37 @@ const d: Dict = {
     de: "Dreisprachige Bildung (Spanisch, Katalanisch, Englisch), Internationales Abitur und 1.740 Schüler, die uns jeden Tag vertrauen.",
   },
 
+  "home.whyus.tag":    { es: "¿Por qué elegirnos?",         ca: "Per què triar-nos?",           en: "Why choose us?",                de: "Warum uns wählen?" },
+  "home.whyus.title":  { es: "Un proyecto educativo diferente", ca: "Un projecte educatiu diferent", en: "A different educational project", de: "Ein anderes Bildungsprojekt" },
+  "home.whyus.multilingual.title": { es: "Multilingüismo",       ca: "Multilingüisme",          en: "Multilingualism",              de: "Mehrsprachigkeit" },
+  "home.whyus.multilingual.desc":  {
+    es: "Castellano, catalán e inglés en todas las etapas. Alemán a partir de quinto de primaria.",
+    ca: "Castellà, català i anglès a totes les etapes. Alemany a partir de cinquè de primària.",
+    en: "Spanish, Catalan and English in all stages. German from 5th grade of primary onwards.",
+    de: "Spanisch, Katalanisch und Englisch in allen Stufen. Deutsch ab der 5. Klasse der Grundschule.",
+  },
+  "home.whyus.excellence.title": { es: "Excelencia académica", ca: "Excel·lència acadèmica",    en: "Academic excellence",          de: "Akademische Exzellenz" },
+  "home.whyus.excellence.desc":  {
+    es: "Educación de calidad con buenos resultados.",
+    ca: "Educació de qualitat amb bons resultats.",
+    en: "Quality education with strong results.",
+    de: "Hochwertige Bildung mit guten Ergebnissen.",
+  },
+  "home.whyus.personalized.title": { es: "Atención personalizada", ca: "Atenció personalitzada", en: "Personalized attention",       de: "Persönliche Betreuung" },
+  "home.whyus.personalized.desc":  {
+    es: "Profesores y orientadores acompañan a los estudiantes durante el proceso.",
+    ca: "Professors i orientadors acompanyen els estudiants durant el procés.",
+    en: "Teachers and counsellors support students throughout the process.",
+    de: "Lehrkräfte und Berater begleiten die Schüler während des gesamten Prozesses.",
+  },
+  "home.whyus.values.title": { es: "Educación en valores",    ca: "Educació en valors",          en: "Values education",             de: "Werteerziehung" },
+  "home.whyus.values.desc":  {
+    es: "Nuestro proyecto educativo va más allá de los resultados académicos.",
+    ca: "El nostre projecte educatiu va més enllà dels resultats acadèmics.",
+    en: "Our educational project goes beyond academic results.",
+    de: "Unser Bildungsprojekt geht über akademische Ergebnisse hinaus.",
+  },
+
   "home.stages.title":    { es: "Etapas educativas",          ca: "Etapes educatives",            en: "Educational stages",           de: "Bildungsstufen" },
   "home.stages.subtitle": {
     es: "Un proyecto educativo completo, desde los primeros meses hasta la universidad.",
