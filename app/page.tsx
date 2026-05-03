@@ -235,44 +235,20 @@ export default function HomePage() {
           </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {[
-              {
-                titleKey: "home.whyus.multilingual.title",
-                descKey: "home.whyus.multilingual.desc",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M3.6 9h16.8M3.6 15h16.8M11.5 3a17 17 0 0 0 0 18M12.5 3a17 17 0 0 1 0 18M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
-                ),
-              },
-              {
-                titleKey: "home.whyus.excellence.title",
-                descKey: "home.whyus.excellence.desc",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 0 0 .95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 0 0-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 0 0-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 0 0-.363-1.118L2.05 10.1c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 0 0 .951-.69l1.519-4.674z" />
-                ),
-              },
-              {
-                titleKey: "home.whyus.personalized.title",
-                descKey: "home.whyus.personalized.desc",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6 5.87v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm10-1a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                ),
-              },
-              {
-                titleKey: "home.whyus.values.title",
-                descKey: "home.whyus.values.desc",
-                icon: (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.7} d="M4.318 6.318a4.5 4.5 0 0 0 0 6.364L12 20.364l7.682-7.682a4.5 4.5 0 0 0-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 0 0-6.364 0z" />
-                ),
-              },
+              { titleKey: "home.whyus.multilingual.title",  descKey: "home.whyus.multilingual.desc",  img: "/fotos/multi.jpg" },
+              { titleKey: "home.whyus.excellence.title",    descKey: "home.whyus.excellence.desc",    img: "/fotos/excelencia.jpg" },
+              { titleKey: "home.whyus.personalized.title",  descKey: "home.whyus.personalized.desc",  img: "/fotos/bachillerato.jpg" },
+              { titleKey: "home.whyus.values.title",        descKey: "home.whyus.values.desc",        img: "/fotos/edu.jpeg" },
             ].map((item, i) => (
               <FadeIn key={item.titleKey} delay={i * 80} className="h-full">
-                <div className="h-full bg-white border border-[var(--border)] rounded-2xl p-6 md:p-7 hover:border-[var(--accent)] hover:shadow-md transition-all duration-300">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: "var(--accent-light)" }}>
-                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="var(--accent)">
-                      {item.icon}
-                    </svg>
+                <div className="h-full bg-white border border-[var(--border)] rounded-2xl overflow-hidden hover:border-[var(--accent)] hover:shadow-md transition-all duration-300">
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img src={item.img} alt="" className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                   </div>
-                  <h3 className="text-lg font-bold text-[var(--text)] mb-2 tracking-tight">{t(item.titleKey, lang)}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t(item.descKey, lang)}</p>
+                  <div className="p-6 md:p-7">
+                    <h3 className="text-lg font-bold text-[var(--text)] mb-2 tracking-tight">{t(item.titleKey, lang)}</h3>
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t(item.descKey, lang)}</p>
+                  </div>
                 </div>
               </FadeIn>
             ))}
