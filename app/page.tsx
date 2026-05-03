@@ -320,8 +320,8 @@ export default function HomePage() {
           <FadeIn className="mb-6 md:mb-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text)] tracking-tight mb-4">{t("home.stages.title", lang)}</h2>
             <div className="flex items-center gap-4">
-              <div className="h-px bg-[var(--border)]" style={{ width: "2rem", flexShrink: 0 }} />
-              <p className="text-[var(--text-secondary)] text-sm sm:text-base whitespace-nowrap">{t("home.stages.subtitle", lang)}</p>
+              <div className="h-px bg-[var(--border)] hidden sm:block" style={{ width: "2rem", flexShrink: 0 }} />
+              <p className="text-[var(--text-secondary)] text-sm sm:text-base">{t("home.stages.subtitle", lang)}</p>
             </div>
           </FadeIn>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
