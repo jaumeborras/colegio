@@ -22,7 +22,7 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 | Dirección | Av. Picasso, 21 · 07014 Palma de Mallorca, Islas Baleares |
 | Teléfono | 971 22 05 75 |
 | Email | csc@colegiosancayetano.com |
-| Titularidad | Concertado — Orden Teatina (Clérigos Regulares) |
+| Titularidad | Privado — Orden Teatina (Clérigos Regulares) |
 | Director | Pablo Guerrero Pacheco, C.R. |
 | Alumnos | 1.740 |
 | Años de historia | Más de 60 |
@@ -43,7 +43,7 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 - Botón "Admisiones" en top-right eliminado (Admisiones está en el nav principal)
 
 ### Sección intro — Misión
-> Somos un colegio concertado con más de 50 años de historia en Palma de Mallorca, vinculados a la Orden Teatina. Formamos personas con sentido crítico y excelencia académica.
+> Somos un colegio privado con más de 60 años de historia en Palma de Mallorca, vinculados a la Orden Teatina. Formamos personas con sentido crítico y excelencia académica.
 > Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y 1.740 alumnos que confían en nosotros cada día.
 
 ### Stats
@@ -107,7 +107,7 @@ Sección con marquee de fotos de vida escolar (scroll infinito automático) segu
 ## Quiénes somos (`/quienes-somos`)
 
 **Tag:** El colegio  
-**Subtitle:** Más de 50 años al servicio de la sociedad mallorquina, bajo los principios de la Orden Teatina.
+**Subtitle:** Más de 60 años al servicio de la sociedad mallorquina, bajo los principios de la Orden Teatina.
 
 ### Director
 Pablo Guerrero Pacheco, C.R. — Orden Teatina (Clérigos Regulares)
@@ -117,7 +117,7 @@ Pablo Guerrero Pacheco, C.R. — Orden Teatina (Clérigos Regulares)
 
 ### Visión
 > "El futuro de una sociedad se forja en la educación de las nuevas generaciones."  
-> Somos un colegio con más de 50 años de historia, vinculado a la Orden Teatina y al servicio de la sociedad mallorquina desde nuestros inicios.
+> Somos un colegio con más de 60 años de historia, vinculado a la Orden Teatina y al servicio de la sociedad mallorquina desde nuestros inicios.
 
 ### Valores
 | Título | Descripción |

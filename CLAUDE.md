@@ -64,7 +64,7 @@ Usar siempre `var(--token)` en lugar de colores directos de Tailwind.
 - **Nombre**: Colegio San Cayetano
 - **Dirección**: Av. Picasso, 21 · 07014 Palma de Mallorca
 - **Teléfono**: 971 22 05 75
-- **Titularidad**: concertado, vinculado a la Orden Teatina
+- **Titularidad**: privado, vinculado a la Orden Teatina
 - **Alumnos**: 1.740
 - **Etapas**: Escoleta (1–2 años) › Infantil › Primaria › Secundaria › Bachillerato › IB
 - **Idiomas**: castellano, catalán, inglés (trilingüe)
