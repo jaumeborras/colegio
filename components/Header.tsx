@@ -612,13 +612,15 @@ export default function Header() {
                 [t("nav.stages", lang)]:      t("stages.subtitle", lang),
                 "IB":                         t("ib.subtitle", lang),
                 [t("nav.virtual", lang)]:     t("virtual.subtitle", lang),
+                [t("nav.families", lang)]:    t("families.subtitle", lang),
                 [t("nav.school.life", lang)]: t("school.life.subtitle", lang),
               }
               const imageKey: Record<string, string> = {
                 [t("nav.stages", lang)]:      "/fotos/primaria.png",
                 "IB":                         "/fotos/IB.jpg",
                 [t("nav.virtual", lang)]:     "/fotos/fondo.png",
-                [t("nav.school.life", lang)]: "/fotos/actos.jpg",
+                [t("nav.families", lang)]:    "/fotos/actos.jpg",
+                [t("nav.school.life", lang)]: "/fotos/dron.jpg",
               }
               const description = descKey[item.label]
               if (description) return (

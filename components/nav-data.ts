@@ -47,6 +47,21 @@ export function getMainNav(lang: Lang): NavItem[] {
       ],
     },
     {
+      label: t("nav.families", lang),
+      href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general",
+      external: true,
+      children: [
+        { label: t("families.schedule", lang),          href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/horarios", external: true },
+        { label: t("families.calendar.school", lang),   href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/calendario-escolar", external: true },
+        { label: t("families.calendar.academic", lang), href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/calendario-académico", external: true },
+        { label: t("families.transport", lang),         href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/transporte-y-comedor", external: true },
+        { label: t("families.books", lang),             href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/libros-licencias-digitales-y-material-escolar", external: true },
+        { label: t("families.uniform", lang),           href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/uniformidad", external: true },
+        { label: t("families.scholarship", lang),       href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/beca-san-cayetano", external: true },
+        { label: t("families.enrollment", lang),        href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/renovación-de-matrícula", external: true },
+      ],
+    },
+    {
       label: t("nav.school.life", lang),
       href: "#",
       children: [
