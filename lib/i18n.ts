@@ -34,8 +34,10 @@ const d: Dict = {
 
   // ── Footer ───────────────────────────────────────────────────────────────────
   "footer.hours":      { es: "L a V de 8:00 a 14:30h", ca: "Dl a Dv de 8:00 a 14:30h", en: "Mon–Fri 8:00–14:30", de: "Mo–Fr 8:00–14:30 Uhr" },
-  "footer.complaints": { es: "Canal de denuncias",      ca: "Canal de denúncies",        en: "Complaints channel",  de: "Beschwerdekanal" },
-  "footer.jobs":       { es: "Trabaja con nosotros",    ca: "Treballa amb nosaltres",    en: "Work with us",        de: "Arbeite mit uns" },
+  "footer.complaints": { es: "Canal de denuncias",               ca: "Canal de denúncies",           en: "Complaints channel",    de: "Beschwerdekanal" },
+  "footer.jobs":       { es: "Trabaja con nosotros",             ca: "Treballa amb nosaltres",        en: "Work with us",          de: "Arbeite mit uns" },
+  "footer.legal":      { es: "Aviso legal y privacidad",         ca: "Avís legal i privacitat",       en: "Legal notice & privacy", de: "Impressum & Datenschutz" },
+  "footer.cookies":    { es: "Política de cookies",              ca: "Política de galetes",           en: "Cookie policy",          de: "Cookie-Richtlinie" },
   "footer.school":     { es: "Colegio San Cayetano",    ca: "Col·legi Sant Gaietà",      en: "San Cayetano School", de: "Schule San Cayetano" },
 
   // ── Home ─────────────────────────────────────────────────────────────────────

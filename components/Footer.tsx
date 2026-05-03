@@ -85,9 +85,11 @@ export default function Footer() {
           <p className="text-sm text-white">
             © {new Date().getFullYear()} {t("footer.school", lang)} · Palma de Mallorca
           </p>
-          <div className="flex gap-5 text-sm text-white">
+          <div className="flex flex-wrap gap-5 text-sm text-white">
             <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
             <a href="https://forms.gle/WXyGe2xq6AtCfqBf8" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.jobs", lang)}</a>
+            <Link href="/aviso-legal" className="hover:opacity-60 transition-opacity">{t("footer.legal", lang)}</Link>
+            <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
           </div>
         </div>
       </div>
