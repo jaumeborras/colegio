@@ -157,7 +157,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="hero-cta mt-7 sm:mt-10 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em]">
-            Desde 1970
+            Desde 1962
           </p>
         </div>
 
