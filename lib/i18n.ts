@@ -55,6 +55,12 @@ const d: Dict = {
     en: "Trilingual education (Spanish, Catalan, English), International Baccalaureate, and 1,740 students who trust us every day.",
     de: "Dreisprachige Bildung (Spanisch, Katalanisch, Englisch), Internationales Abitur und 1.740 Schüler, die uns jeden Tag vertrauen.",
   },
+  "home.mission.p3": {
+    es: "Ofrecemos un proyecto educativo integral donde cada alumno desarrolla todo su potencial en un entorno multilingüe con proyección internacional.",
+    ca: "Oferim un projecte educatiu integral on cada alumne desenvolupa tot el seu potencial en un entorn multilingüe amb projecció internacional.",
+    en: "We offer a comprehensive educational project where every student develops their full potential in a multilingual environment with international scope.",
+    de: "Wir bieten ein ganzheitliches Bildungsprojekt, in dem jeder Schüler sein volles Potenzial in einer mehrsprachigen Umgebung mit internationaler Ausrichtung entfaltet.",
+  },
 
   "home.whyus.tag":    { es: "¿Por qué elegirnos?",         ca: "Per què triar-nos?",           en: "Why choose us?",                de: "Warum uns wählen?" },
   "home.whyus.title":  { es: "Un proyecto educativo diferente", ca: "Un projecte educatiu diferent", en: "A different educational project", de: "Ein anderes Bildungsprojekt" },
