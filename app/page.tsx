@@ -149,7 +149,10 @@ export default function HomePage() {
           </p>
           <h1 className="hero-title" style={{ fontFamily: "var(--font-serif)" }}>
             <span className="block font-bold text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
-              {t("home.hero.line1", lang)}
+              {t("home.hero.line1a", lang)}
+              <span className="hidden sm:inline"> </span>
+              <br className="sm:hidden" />
+              {t("home.hero.line1b", lang)}
             </span>
             <span className="block font-bold italic text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
               {t("home.hero.line2", lang)}
