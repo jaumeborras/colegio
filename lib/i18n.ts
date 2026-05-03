@@ -172,8 +172,8 @@ const d: Dict = {
   "stage.ages.infantil":     { es: "3–5 años",   ca: "3–5 anys",   en: "3–5 years",   de: "3–5 Jahre" },
   "stage.ages.primaria":     { es: "6–11 años",  ca: "6–11 anys",  en: "6–11 years",  de: "6–11 Jahre" },
   "stage.ages.secundaria":   { es: "12–15 años", ca: "12–15 anys", en: "12–15 years", de: "12–15 Jahre" },
-  "stage.ages.bachillerato": { es: "16–17 años", ca: "16–17 anys", en: "16–17 years", de: "16–17 Jahre" },
-  "stage.ages.ib":           { es: "16–19 años", ca: "16–19 anys", en: "16–19 years", de: "16–19 Jahre" },
+  "stage.ages.bachillerato": { es: "16–18 años", ca: "16–18 anys", en: "16–18 years", de: "16–18 Jahre" },
+  "stage.ages.ib":           { es: "16–18 años", ca: "16–18 anys", en: "16–18 years", de: "16–18 Jahre" },
 
   // ── IB section (home) ────────────────────────────────────────────────────────
   "home.ib.tag":   { es: "Bachillerato Internacional", ca: "Batxillerat Internacional", en: "International Baccalaureate", de: "Internationales Abitur" },

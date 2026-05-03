@@ -76,8 +76,8 @@ Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y ab
 | Infantil | 3–5 años | `/fotos/infantil.jpg` | `/etapas/infantil` |
 | Primaria | 6–11 años | `/fotos/primaria.png` | `/etapas/primaria` |
 | Secundaria | 12–15 años | `/fotos/secundaria.jpg` | `/etapas/secundaria` |
-| Bachillerato | 16–17 años | `/fotos/bachillerato.jpg` | `/etapas/bachillerato` |
-| IB | 16–19 años | `/fotos/IB.jpg` | `/etapas/ib` |
+| Bachillerato | 16–18 años | `/fotos/bachillerato.jpg` | `/etapas/bachillerato` |
+| IB | 16–18 años | `/fotos/IB.jpg` | `/etapas/ib` |
 
 ### Accesos rápidos
 | Etiqueta | Destino |
