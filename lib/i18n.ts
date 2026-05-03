@@ -164,6 +164,34 @@ const d: Dict = {
   "stats.ib":        { es: "Bachillerato Internacional", ca: "Batxillerat Internacional", en: "International Baccalaureate", de: "Internationales Abitur" },
   "stats.facilities": { es: "m² de instalaciones",       ca: "m² d'instal·lacions",      en: "m² of facilities",          de: "m² Einrichtungen" },
 
+  // ── Hero ─────────────────────────────────────────────────────────────────────
+  "home.hero.since": { es: "Desde 1962", ca: "Des de 1962", en: "Since 1962", de: "Seit 1962" },
+
+  // ── Stage ages ───────────────────────────────────────────────────────────────
+  "stage.ages.escoleta":     { es: "1–2 años",   ca: "1–2 anys",   en: "1–2 years",   de: "1–2 Jahre" },
+  "stage.ages.infantil":     { es: "3–5 años",   ca: "3–5 anys",   en: "3–5 years",   de: "3–5 Jahre" },
+  "stage.ages.primaria":     { es: "6–11 años",  ca: "6–11 anys",  en: "6–11 years",  de: "6–11 Jahre" },
+  "stage.ages.secundaria":   { es: "12–15 años", ca: "12–15 anys", en: "12–15 years", de: "12–15 Jahre" },
+  "stage.ages.bachillerato": { es: "16–17 años", ca: "16–17 anys", en: "16–17 years", de: "16–17 Jahre" },
+  "stage.ages.ib":           { es: "16–19 años", ca: "16–19 anys", en: "16–19 years", de: "16–19 Jahre" },
+
+  // ── IB section (home) ────────────────────────────────────────────────────────
+  "home.ib.tag":   { es: "Bachillerato Internacional", ca: "Batxillerat Internacional", en: "International Baccalaureate", de: "Internationales Abitur" },
+  "home.ib.title": { es: "Programa",                   ca: "Programa",                  en: "Programme",                   de: "Programm" },
+  "home.ib.desc":  {
+    es: "El Programa Diploma del IB es un currículo internacional de dos años reconocido por las mejores universidades del mundo. Rigor académico, pensamiento crítico y perspectiva global.",
+    ca: "El Programa Diploma de l'IB és un currículum internacional de dos anys reconegut per les millors universitats del món. Rigor acadèmic, pensament crític i perspectiva global.",
+    en: "The IB Diploma Programme is a two-year international curriculum recognised by the world's leading universities. Academic rigour, critical thinking and global perspective.",
+    de: "Das IB-Diploma-Programm ist ein zweijähriger internationaler Lehrplan, der von den besten Universitäten der Welt anerkannt wird. Akademische Strenge, kritisches Denken und globale Perspektive.",
+  },
+  "home.ib.link":  { es: "Ver programa IB",   ca: "Veure programa IB",  en: "View IB programme",  de: "IB-Programm ansehen" },
+  "home.ib.badge": { es: "+75 países · +2.000 universidades", ca: "+75 països · +2.000 universitats", en: "+75 countries · +2,000 universities", de: "+75 Länder · +2.000 Universitäten" },
+
+  // ── News section (home) ──────────────────────────────────────────────────────
+  "home.news.tag":   { es: "Actualidad",       ca: "Actualitat",       en: "News",              de: "Neuigkeiten" },
+  "home.news.title": { es: "Últimas noticias", ca: "Últimes notícies", en: "Latest news",        de: "Aktuelle Nachrichten" },
+  "home.news.read":  { es: "Leer noticia",     ca: "Llegir notícia",   en: "Read article",       de: "Artikel lesen" },
+
   // ── Stage names ──────────────────────────────────────────────────────────────
   "nav.stages":       { es: "Etapas",      ca: "Etapes",    en: "Stages",      de: "Stufen" },
   "stages.subtitle":  {

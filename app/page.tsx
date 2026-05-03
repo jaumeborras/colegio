@@ -160,7 +160,7 @@ export default function HomePage() {
             </span>
           </h1>
           <p className="hero-cta mt-7 sm:mt-10 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em]">
-            Desde 1962
+            {t("home.hero.since", lang)}
           </p>
         </div>
 
@@ -330,12 +330,12 @@ export default function HomePage() {
           </FadeIn>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {[
-              { key: "stage.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta",    ages: "1–2 años" },
-              { key: "stage.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil",    ages: "3–5 años" },
-              { key: "stage.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria",    ages: "6–11 años" },
-              { key: "stage.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria",  ages: "12–15 años" },
-              { key: "stage.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato",ages: "16–17 años" },
-              { key: "stage.ib",          img: "/fotos/IB.jpg",          href: "/etapas/ib",          ages: "16–19 años" },
+              { key: "stage.escoleta",    agesKey: "stage.ages.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta" },
+              { key: "stage.infantil",    agesKey: "stage.ages.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil" },
+              { key: "stage.primaria",    agesKey: "stage.ages.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria" },
+              { key: "stage.secundaria",  agesKey: "stage.ages.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria" },
+              { key: "stage.bachillerato",agesKey: "stage.ages.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato" },
+              { key: "stage.ib",          agesKey: "stage.ages.ib",          img: "/fotos/IB.jpg",          href: "/etapas/ib" },
             ].map((s, i) => (
               <FadeIn key={s.key} delay={i * 80}>
                 <Link href={s.href} className="group relative block overflow-hidden rounded-2xl aspect-[3/4]">
@@ -351,7 +351,7 @@ export default function HomePage() {
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <p className="text-white/60 text-[10px] font-medium uppercase tracking-widest mb-1">{s.ages}</p>
+                    <p className="text-white/60 text-[10px] font-medium uppercase tracking-widest mb-1">{t(s.agesKey, lang)}</p>
                     <p className="text-white font-semibold text-sm sm:text-base leading-tight">{t(s.key, lang)}</p>
                   </div>
                 </Link>
@@ -378,17 +378,17 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <FadeIn>
               <p className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "var(--gold)" }}>
-                Bachillerato Internacional
+                {t("home.ib.tag", lang)}
               </p>
               <h2
                 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6"
                 style={{ fontFamily: "var(--font-serif)", color: "#ffffff" }}
               >
-                Programa<br />
+                {t("home.ib.title", lang)}<br />
                 <span className="italic" style={{ color: "var(--gold)" }}>Diploma IB</span>
               </h2>
               <p className="leading-relaxed text-sm sm:text-base mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
-                El Programa Diploma del IB es un currículo internacional de dos años reconocido por las mejores universidades del mundo. Rigor académico, pensamiento crítico y perspectiva global.
+                {t("home.ib.desc", lang)}
               </p>
               <div className="space-y-4">
                 <Link
@@ -396,7 +396,7 @@ export default function HomePage() {
                   className="flex items-center gap-3 group"
                 >
                   <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
-                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>Ver programa IB</span>
+                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("home.ib.link", lang)}</span>
                 </Link>
                 <a
                   href="https://sites.google.com/csc.edu.es/csc22esp-ibprograma"
@@ -440,7 +440,7 @@ export default function HomePage() {
                 <div className="absolute bottom-5 left-5 flex items-center gap-3">
                   <div className="w-8 h-[2px]" style={{ background: "var(--gold)" }} />
                   <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--gold)" }}>
-                    +75 países · +2.000 universidades
+                    {t("home.ib.badge", lang)}
                   </span>
                 </div>
               </div>
@@ -456,8 +456,8 @@ export default function HomePage() {
       <section className="bg-[var(--bg-secondary)] py-16 md:py-24">
         <div className="max-w-screen-xl mx-auto px-6">
           <FadeIn className="mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">Actualidad</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">Últimas noticias</h2>
+            <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.news.tag", lang)}</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text)] tracking-tight">{t("home.news.title", lang)}</h2>
           </FadeIn>
           {/* Noticia destacada */}
           <FadeIn className="mb-6">
@@ -481,7 +481,7 @@ export default function HomePage() {
                   {news[0].title}
                 </h3>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
-                  Leer noticia
+                  {t("home.news.read", lang)}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
