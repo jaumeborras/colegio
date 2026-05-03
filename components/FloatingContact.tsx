@@ -28,7 +28,7 @@ export default function FloatingContact() {
     <>
       {/* Panel */}
       <div
-        className="fixed bottom-24 left-5 z-50 w-[340px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-[var(--border)] flex flex-col overflow-hidden"
+        className="absolute bottom-24 left-5 z-40 w-[340px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-[var(--border)] flex flex-col overflow-hidden"
         style={{
           opacity: open ? 1 : 0,
           transform: open ? "translateY(0) scale(1)" : "translateY(16px) scale(0.97)",
@@ -144,7 +144,7 @@ export default function FloatingContact() {
       {/* Botón flotante */}
       <button
         onClick={() => setOpen(v => !v)}
-        className="fixed bottom-5 left-5 z-50 flex items-center justify-center w-14 h-14 rounded-full text-white shadow-xl transition-all hover:scale-105 active:scale-95"
+        className="absolute bottom-5 left-5 z-40 flex items-center justify-center w-14 h-14 rounded-full text-white shadow-xl transition-all hover:scale-105 active:scale-95"
         style={{ background: "var(--accent)" }}
         aria-label="Contáctanos"
       >

@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { t } from "@/lib/i18n"
 import { useLanguage } from "@/lib/i18n-context"
+import FloatingContact from "@/components/FloatingContact"
 
 // ── Animaciones de scroll ────────────────────────────────
 function useInView() {
@@ -166,6 +167,8 @@ export default function HomePage() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </div>
+
+        <FloatingContact />
       </section>
 
 
