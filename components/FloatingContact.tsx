@@ -28,13 +28,13 @@ export default function FloatingContact() {
     <>
       {/* Panel */}
       <div
-        className="fixed bottom-24 right-5 z-50 w-[340px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-[var(--border)] flex flex-col overflow-hidden"
+        className="fixed bottom-24 left-5 z-50 w-[340px] sm:w-[380px] bg-white rounded-2xl shadow-2xl border border-[var(--border)] flex flex-col overflow-hidden"
         style={{
           opacity: open ? 1 : 0,
           transform: open ? "translateY(0) scale(1)" : "translateY(16px) scale(0.97)",
           pointerEvents: open ? "auto" : "none",
           transition: "opacity 0.25s ease, transform 0.25s ease",
-          transformOrigin: "bottom right",
+          transformOrigin: "bottom left",
         }}
       >
         {/* Header */}
@@ -144,20 +144,19 @@ export default function FloatingContact() {
       {/* Botón flotante */}
       <button
         onClick={() => setOpen(v => !v)}
-        className="fixed bottom-5 right-5 z-50 flex items-center gap-2.5 px-5 py-3.5 rounded-full text-white text-sm font-semibold shadow-xl transition-all hover:scale-105 active:scale-95"
+        className="fixed bottom-5 left-5 z-50 flex items-center justify-center w-14 h-14 rounded-full text-white shadow-xl transition-all hover:scale-105 active:scale-95"
         style={{ background: "var(--accent)" }}
         aria-label="Contáctanos"
       >
         {open ? (
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
           </svg>
         )}
-        Contáctanos
       </button>
     </>
   )
