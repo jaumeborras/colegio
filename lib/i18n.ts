@@ -50,10 +50,10 @@ const d: Dict = {
     de: "Wir sind eine Privatschule mit über 60 Jahren Geschichte in Palma de Mallorca des Theatinerordens.",
   },
   "home.mission.p2": {
-    es: "Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y 1.740 alumnos que confían en nosotros cada día.",
-    ca: "Educació trilingüe (castellà, català, anglès), Batxillerat Internacional i 1.740 alumnes que confien en nosaltres cada dia.",
-    en: "Trilingual education (Spanish, Catalan, English), International Baccalaureate, and 1,740 students who trust us every day.",
-    de: "Dreisprachige Bildung (Spanisch, Katalanisch, Englisch), Internationales Abitur und 1.740 Schüler, die uns jeden Tag vertrauen.",
+    es: "Educación trilingüe (castellano, catalán, inglés), Bachillerato Internacional y más de 1.800 alumnos que confían en nosotros cada día.",
+    ca: "Educació trilingüe (castellà, català, anglès), Batxillerat Internacional i més de 1.800 alumnes que confien en nosaltres cada dia.",
+    en: "Trilingual education (Spanish, Catalan, English), International Baccalaureate, and more than 1,800 students who trust us every day.",
+    de: "Dreisprachige Bildung (Spanisch, Katalanisch, Englisch), Internationales Abitur und mehr als 1.800 Schüler, die uns jeden Tag vertrauen.",
   },
   "home.mission.p3": {
     es: "Ofrecemos un proyecto educativo integral donde cada alumno desarrolla todo su potencial en un entorno multilingüe con proyección internacional.",
