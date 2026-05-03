@@ -123,7 +123,7 @@ export default function HomePage() {
     { value: "1.740", label: t("stats.students", lang) },
     { value: "+60", label: t("stats.years", lang) },
     { value: "3", label: t("stats.languages", lang) },
-    { value: "IB", label: t("stats.ib", lang) },
+    { value: "1.800", label: t("stats.facilities", lang) },
   ]
 
   return (
