@@ -60,10 +60,8 @@ function StatCounter({ value, enabled }: { value: string; enabled: boolean }) {
   const num = parseInt(cleaned, 10)
   const isNum = !isNaN(num) && cleaned.length > 0
   const count = useCounter(isNum ? num : 0, 2200, enabled && isNum)
-  const display = !isNum ? value
-    : num >= 1000 ? count.toLocaleString("es-ES")
-    : isPlus ? `+${count}`
-    : String(count)
+  const formatted = num >= 1000 ? count.toLocaleString("es-ES") : String(count)
+  const display = !isNum ? value : isPlus ? `+${formatted}` : formatted
   return <>{display}</>
 }
 // ────────────────────────────────────────────────────────
@@ -120,9 +118,9 @@ export default function HomePage() {
   ]
 
   const stats = [
-    { value: "1.740", label: t("stats.students", lang) },
+    { value: "+1.800", label: t("stats.students", lang) },
     { value: "+60", label: t("stats.years", lang) },
-    { value: "3", label: t("stats.languages", lang) },
+    { value: "4", label: t("stats.languages", lang) },
     { value: "1.800", label: t("stats.facilities", lang) },
   ]
 
