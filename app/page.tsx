@@ -246,7 +246,7 @@ export default function HomePage() {
                     <img src={item.img} alt="" className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
                   </div>
                   <div className="p-6 md:p-7">
-                    <h3 className="text-lg font-bold text-[var(--text)] mb-2 tracking-tight">{t(item.titleKey, lang)}</h3>
+                    <h3 className="text-lg font-bold text-[var(--accent)] mb-2 tracking-tight">{t(item.titleKey, lang)}</h3>
                     <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t(item.descKey, lang)}</p>
                   </div>
                 </div>
