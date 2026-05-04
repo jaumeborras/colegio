@@ -336,7 +336,6 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
                 <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
-                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 md:mb-4 block">01</span>
                   <h3 className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3 leading-tight" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.multilingual.title", lang)}</h3>
                   <p className="text-white/70 text-sm leading-relaxed max-w-sm">{t("home.whyus.multilingual.desc", lang)}</p>
                 </div>
@@ -349,7 +348,6 @@ export default function HomePage() {
                 <img src="/fotos/excelencia.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">02</span>
                   <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.excellence.title", lang)}</h3>
                   <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.excellence.desc", lang)}</p>
                 </div>
@@ -362,7 +360,6 @@ export default function HomePage() {
                 <img src="/fotos/bachillerato.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">03</span>
                   <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.personalized.title", lang)}</h3>
                   <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.personalized.desc", lang)}</p>
                 </div>
@@ -375,7 +372,6 @@ export default function HomePage() {
                 <img src="/fotos/edu.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover object-[center_33%] transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
-                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">04</span>
                   <h3 className="text-lg md:text-2xl font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.values.title", lang)}</h3>
                   <p className="text-white/70 text-sm leading-relaxed max-w-xl">{t("home.whyus.values.desc", lang)}</p>
                 </div>
