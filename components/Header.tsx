@@ -636,19 +636,20 @@ export default function Header() {
               )
               return <NavDropdown key={item.label} item={item} />
             })}
-            <div className="w-px h-4 bg-white/20 mx-1" />
             {getSecondaryNav(lang).slice(1).map((item) => (
-              <Link
-                key={item.label}
-                href={item.href || "#"}
-                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className={item.cta
-                  ? "px-4 py-1.5 text-base font-medium text-white border border-white/60 rounded-full hover:bg-white/15 transition-colors"
-                  : "px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
-                }
-              >
-                {item.label}
-              </Link>
+              <React.Fragment key={item.label}>
+                {item.cta && <div className="w-px h-4 bg-white/20 mx-1" />}
+                <Link
+                  href={item.href || "#"}
+                  {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className={item.cta
+                    ? "px-4 py-1.5 text-base font-medium text-white border border-white/60 rounded-full hover:bg-white/15 transition-colors"
+                    : "px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
+                  }
+                >
+                  {item.label}
+                </Link>
+              </React.Fragment>
             ))}
             <div className="w-px h-4 bg-white/20 mx-1" />
             <LangDropdown />
