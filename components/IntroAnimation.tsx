@@ -7,11 +7,15 @@ export default function IntroAnimation() {
   useEffect(() => {
     if (sessionStorage.getItem("intro_shown")) {
       setPhase("done")
+      sessionStorage.setItem("intro_complete", "1")
       return
     }
     sessionStorage.setItem("intro_shown", "1")
     const t1 = setTimeout(() => setPhase("out"), 1400)
-    const t2 = setTimeout(() => setPhase("done"), 2600)
+    const t2 = setTimeout(() => {
+      setPhase("done")
+      sessionStorage.setItem("intro_complete", "1")
+    }, 2600)
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [])
 

@@ -16,7 +16,9 @@ function TypewriterHero({ line1a, line1b, line2 }: { line1a: string; line1b: str
   const [phase, setPhase] = useState<"idle" | "l1a" | "l1b" | "l2" | "dot" | "static">("idle")
 
   useEffect(() => {
-    const t = setTimeout(() => setPhase("l1a"), 700)
+    const alreadyDone = !!sessionStorage.getItem("intro_complete")
+    const delay = alreadyDone ? 700 : 1800
+    const t = setTimeout(() => setPhase("l1a"), delay)
     return () => clearTimeout(t)
   }, [])
 
