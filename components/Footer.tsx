@@ -133,14 +133,20 @@ export default function Footer() {
           <p className="text-sm text-white order-2 sm:order-none text-center sm:text-left">
             © {new Date().getFullYear()} {t("footer.school", lang)} · Palma de Mallorca
           </p>
-          <div className="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-2 sm:gap-x-3 text-sm text-white order-1 sm:order-none">
-            <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
-            <span className="hidden sm:inline text-white/30" aria-hidden="true">·</span>
-            <Link href="/aviso-legal" className="hover:opacity-60 transition-opacity">{t("footer.legal", lang)}</Link>
-            <span className="hidden sm:inline text-white/30" aria-hidden="true">·</span>
-            <Link href="/politica-privacidad" className="hover:opacity-60 transition-opacity">{t("footer.privacy", lang)}</Link>
-            <span className="hidden sm:inline text-white/30" aria-hidden="true">·</span>
-            <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
+          <div className="grid grid-cols-2 gap-x-6 gap-y-2 sm:flex sm:flex-row sm:items-center sm:gap-x-0 text-sm text-white order-1 sm:order-none">
+            {/* Columna 1 móvil: Canal de denuncias + Aviso legal */}
+            <div className="flex flex-col gap-y-2 sm:contents">
+              <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
+              <span className="hidden sm:inline text-white/30 mx-2" aria-hidden="true">·</span>
+              <Link href="/aviso-legal" className="hover:opacity-60 transition-opacity">{t("footer.legal", lang)}</Link>
+              <span className="hidden sm:inline text-white/30 mx-2" aria-hidden="true">·</span>
+            </div>
+            {/* Columna 2 móvil: Política de privacidad + Política de cookies */}
+            <div className="flex flex-col gap-y-2 sm:contents">
+              <Link href="/politica-privacidad" className="hover:opacity-60 transition-opacity">{t("footer.privacy", lang)}</Link>
+              <span className="hidden sm:inline text-white/30 mx-2" aria-hidden="true">·</span>
+              <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
+            </div>
           </div>
         </div>
       </div>
