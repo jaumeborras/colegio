@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import IntroAnimation from "@/components/IntroAnimation"
 import { getLang, htmlLang } from "@/lib/lang"
 import { LanguageProvider } from "@/lib/i18n-context"
 
@@ -26,6 +27,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={htmlLang(lang)} className="h-full">
       <body className="min-h-full flex flex-col antialiased">
         <LanguageProvider initialLang={lang}>
+          <IntroAnimation />
           <Header />
           <main className="flex-1 pt-[72px]">{children}</main>
           <Footer />
