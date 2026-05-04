@@ -6,6 +6,68 @@ import { t } from "@/lib/i18n"
 import { useLanguage } from "@/lib/i18n-context"
 import FloatingContact from "@/components/FloatingContact"
 
+// ── Typewriter hero ──────────────────────────────────────
+const cursor = <span className="blink-cursor" style={{ fontStyle: "normal" }}>|</span>
+
+function TypewriterHero({ line1, line2 }: { line1: string; line2: string }) {
+  const [l1, setL1] = useState("")
+  const [l2, setL2] = useState("")
+  const [phase, setPhase] = useState<"idle" | "line1" | "line2" | "dot" | "static">("idle")
+
+  useEffect(() => {
+    const t = setTimeout(() => setPhase("line1"), 700)
+    return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    if (phase === "line1") {
+      if (l1.length < line1.length) {
+        const timer = setTimeout(() => setL1(line1.slice(0, l1.length + 1)), 55)
+        return () => clearTimeout(timer)
+      } else {
+        setPhase("line2")
+      }
+    }
+    if (phase === "line2") {
+      if (l2.length < line2.length) {
+        const timer = setTimeout(() => setL2(line2.slice(0, l2.length + 1)), 65)
+        return () => clearTimeout(timer)
+      } else {
+        setPhase("dot")
+      }
+    }
+    if (phase === "dot") {
+      const timer = setTimeout(() => setPhase("static"), 4000)
+      return () => clearTimeout(timer)
+    }
+  }, [phase, l1, l2, line1, line2])
+
+  const dot = (
+    <span
+      className={phase === "dot" ? "blink-fast" : ""}
+      style={{ fontStyle: "normal", fontSize: "0.7em", verticalAlign: "0em" }}
+    >.</span>
+  )
+
+  return (
+    <h1 style={{
+      fontFamily: "var(--font-serif)",
+      opacity: phase === "idle" ? 0 : 1,
+      transition: "opacity 0.3s ease",
+    }}>
+      <span className="block font-bold text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
+        {l1}
+        {phase === "line1" && cursor}
+      </span>
+      <span className="block font-bold italic text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg" style={{ minHeight: "1.2em" }}>
+        {l2}
+        {phase === "line2" && cursor}
+        {(phase === "dot" || phase === "static") && dot}
+      </span>
+    </h1>
+  )
+}
+
 // ── Animaciones de scroll ────────────────────────────────
 function useInView() {
   const ref = useRef<HTMLDivElement>(null)
@@ -178,17 +240,10 @@ export default function HomePage() {
             <span className="block">Colegio San Cayetano</span>
             <span className="block">Palma de Mallorca</span>
           </p>
-          <h1 className="hero-title" style={{ fontFamily: "var(--font-serif)" }}>
-            <span className="block font-bold text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
-              {t("home.hero.line1a", lang)}
-              <span className="hidden sm:inline"> </span>
-              <br className="sm:hidden" />
-              {t("home.hero.line1b", lang)}
-            </span>
-            <span className="block font-bold italic text-2xl sm:text-4xl md:text-6xl lg:text-[4.5rem] text-white leading-tight drop-shadow-lg">
-              {t("home.hero.line2", lang)}
-            </span>
-          </h1>
+          <TypewriterHero
+            line1={t("home.hero.line1a", lang) + " " + t("home.hero.line1b", lang)}
+            line2={t("home.hero.line2", lang)}
+          />
           <p className="hero-cta mt-7 sm:mt-10 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em]">
             {t("home.hero.since", lang)}
           </p>
