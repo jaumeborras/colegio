@@ -15,6 +15,19 @@ function TypewriterHero({ line1a, line1b, line2 }: { line1a: string; line1b: str
   const [l2, setL2] = useState("")
   const [phase, setPhase] = useState<"idle" | "l1a" | "l1b" | "l2" | "dot" | "static">("idle")
 
+  const isFirstMount = useRef(true)
+
+  useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false
+      return
+    }
+    setL1a(line1a)
+    setL1b(line1b)
+    setL2(line2)
+    setPhase("static")
+  }, [line1a, line1b, line2])
+
   useEffect(() => {
     const alreadyDone = !!sessionStorage.getItem("intro_complete")
     const delay = alreadyDone ? 700 : 1800
@@ -249,7 +262,6 @@ export default function HomePage() {
             <span className="block">Palma de Mallorca</span>
           </p>
           <TypewriterHero
-            key={lang}
             line1a={t("home.hero.line1a", lang)}
             line1b={t("home.hero.line1b", lang)}
             line2={t("home.hero.line2", lang)}
