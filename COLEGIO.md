@@ -49,15 +49,15 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 
 ### Por qué elegirnos
 **Tag:** ¿Por qué elegirnos?  
-**Título:** Un proyecto educativo diferente  
-4 tarjetas en grid 1/2/4 cols:
+**Título:** Un proyecto educativo diferente (en azul corporativo)  
+4 tarjetas en grid 1/2/4 cols con foto en la parte superior (ratio 16:9) + título en azul + descripción:
 
-| Título | Descripción |
-|---|---|
-| Multilingüismo | Castellano, catalán e inglés en todas las etapas. Alemán a partir de quinto de primaria. |
-| Excelencia académica | Educación de calidad con buenos resultados. |
-| Atención personalizada | Profesores y orientadores acompañan a los estudiantes durante el proceso. |
-| Educación en valores | Nuestro proyecto educativo va más allá de los resultados académicos. |
+| Título | Descripción | Imagen |
+|---|---|---|
+| Multilingüismo | Castellano, catalán e inglés en todas las etapas. Alemán a partir de quinto de primaria. | `/fotos/multi.jpg` |
+| Excelencia académica | Educación de calidad con buenos resultados. | `/fotos/excelencia.jpg` |
+| Atención personalizada | Profesores y orientadores acompañan a los estudiantes durante el proceso. | `/fotos/bachillerato.jpg` |
+| Educación en valores | Nuestro proyecto educativo va más allá de los resultados académicos. | `/fotos/edu.jpeg` |
 
 ### Stats
 Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y abajo.
@@ -109,6 +109,7 @@ Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y ab
 ### Noticias — layout editorial
 - Primera noticia: tarjeta destacada a ancho completo (imagen izquierda + texto derecha)
 - Noticias 2 y 3: dos columnas iguales debajo
+- Títulos de noticias en azul corporativo (`var(--accent)`)
 
 ### CTA Admisiones
 Sección con marquee de fotos de vida escolar (scroll infinito automático) seguido del texto y botón.
@@ -146,6 +147,7 @@ Pablo Guerrero Pacheco, C.R. — Orden Teatina (Clérigos Regulares)
 - Sanca TV: http://www.sanca.tv
 - Instagram: https://www.instagram.com/sancayetanopalma/
 - Facebook: https://www.facebook.com/Colegio-San-Cayetano-Palma-de-Mallorca-100322058504103
+- YouTube: https://www.youtube.com/@sancatv1252
 
 ---
 
@@ -361,6 +363,7 @@ Admisiones · Información general · Comedor · Extraescolares · Otro
 - Instagram colegio: https://www.instagram.com/sancayetanopalma/
 - Instagram Escoleta: https://www.instagram.com/escoletasancayetano/
 - Facebook: https://www.facebook.com/Colegio-San-Cayetano-Palma-de-Mallorca-100322058504103
+- YouTube: https://www.youtube.com/@sancatv1252
 - Sanca TV: http://www.sanca.tv
 
 ---
@@ -384,7 +387,10 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 | `secundaria.jpg` | Tarjeta etapa Secundaria |
 | `bachillerato.jpg` | Tarjeta etapa Bachillerato |
 | `IB.jpg` | Sección IB home + mega menú IB |
-| `actos.jpg` | Mega menú Quiénes somos |
+| `actos.jpg` | Mega menú Quiénes somos + mega menú Familias |
+| `multi.jpg` | Tarjeta Multilingüismo (Por qué elegirnos) |
+| `excelencia.jpg` | Tarjeta Excelencia académica (Por qué elegirnos) |
+| `edu.jpeg` | Tarjeta Educación en valores (Por qué elegirnos) |
 | `noticias1.png` | Noticia 1 (Diario de Mallorca, abril 2026) |
 | `noticias2.jpg` | Noticia 2 (Ultima Hora, abril 2026) |
 | `noticias3.png` | Noticia 3 (Diario de Mallorca, febrero 2026) |
@@ -397,8 +403,7 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 - Mega menú full-width con dos columnas de texto + foto a la derecha
 - Cada sección del menú tiene su propia foto (ver `imageKey` en `Header.tsx`)
 - Texto de nav en `text-base` (antes `text-sm`)
-- Orden nav: Quiénes somos · Etapas · Pastoral · **Admisiones** · Idioma
-- "Información" movida al submenú de Quiénes somos (segunda opción)
+- Orden nav: Quiénes somos · Etapas · IB · Pastoral · Familias · Oficina Virtual · Vida Escolar | **Admisiones** | Idioma
 - Selector de idioma: icono globo + texto "Idioma" (permanente, sin bandera)
 - Idiomas disponibles: Español, Català, English, Deutsch
 
@@ -418,6 +423,25 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 
 ### Footer
 - Teléfono con icono de teléfono inline a la izquierda del número
+- Iconos redes: Instagram · Facebook · YouTube (https://www.youtube.com/@sancatv1252) · Sanca TV
+- Barra inferior: Canal de denuncias · Trabaja con nosotros · Aviso legal y privacidad (`/aviso-legal`) · Política de cookies (`/politica-cookies`)
+
+### Familias (nav)
+Sección nueva en el menú principal con 8 submenús enlazados a Google Sites:
+| Submenú | URL |
+|---|---|
+| Horarios | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/horarios |
+| Calendario escolar | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/calendario-escolar |
+| Calendario académico | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/calendario-académico |
+| Transporte y comedor | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/transporte-y-comedor |
+| Material escolar | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/libros-licencias-digitales-y-material-escolar |
+| Uniformidad | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/uniformidad |
+| Beca San Cayetano | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/beca-san-cayetano |
+| Renovación de matrícula | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/renovación-de-matrícula |
+
+### Colores de títulos
+Todos los títulos principales de secciones del home usan `var(--accent)` (#003087 azul corporativo):
+Misión · Por qué elegirnos · Etapas educativas · Últimas noticias · CTA admisiones · Títulos de tarjetas · Títulos de noticias
 
 ### Mapa Google Maps — Contacto
 - Embed iframe de Google Maps añadido en `/contacto` dentro del bloque de dirección
