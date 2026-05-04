@@ -249,6 +249,7 @@ export default function HomePage() {
             <span className="block">Palma de Mallorca</span>
           </p>
           <TypewriterHero
+            key={lang}
             line1a={t("home.hero.line1a", lang)}
             line1b={t("home.hero.line1b", lang)}
             line2={t("home.hero.line2", lang)}
