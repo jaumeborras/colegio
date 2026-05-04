@@ -112,11 +112,11 @@ export default function Footer() {
                 </svg>
               </a>
               <a href="http://www.sanca.tv" target="_blank" rel="noopener noreferrer" aria-label="Sanca TV" className="hover:opacity-60 transition-opacity">
-                <div style={{ width: 180, height: 19, overflow: "hidden" }}>
+                <div style={{ width: 200, height: 22, overflow: "hidden" }}>
                   <img
                     src="/fotos/sancatv.jpg"
                     alt="Sanca TV"
-                    style={{ width: 180, display: "block", filter: "brightness(0) invert(1)" }}
+                    style={{ width: 200, display: "block", filter: "invert(1) grayscale(1) brightness(2)", mixBlendMode: "screen" }}
                   />
                 </div>
               </a>
