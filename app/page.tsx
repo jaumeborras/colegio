@@ -221,22 +221,22 @@ export default function HomePage() {
               <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.mission.tag", lang)}</p>
             </FadeIn>
             <FadeIn delay={160}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--accent)] tracking-tight leading-snug mb-5">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--accent)] leading-tight mb-5" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.title", lang)}
               </h2>
             </FadeIn>
             <FadeIn delay={240}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.p1", lang)}
               </p>
             </FadeIn>
             <FadeIn delay={320}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-4">
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.p2", lang)}
               </p>
             </FadeIn>
             <FadeIn delay={400}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-7">
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-7" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.p3", lang)}
               </p>
             </FadeIn>
@@ -259,7 +259,7 @@ export default function HomePage() {
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">
               {t("home.whyus.tag", lang)}
             </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--accent)] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--accent)] leading-tight" style={{ fontFamily: "var(--font-serif)" }}>
               {t("home.whyus.title", lang)}
             </h2>
           </FadeIn>
@@ -273,7 +273,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
                   <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 md:mb-4 block">01</span>
-                  <h3 className="text-lg md:text-3xl font-bold text-white mb-2 md:mb-3 tracking-tight leading-tight">{t("home.whyus.multilingual.title", lang)}</h3>
+                  <h3 className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3 leading-tight" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.multilingual.title", lang)}</h3>
                   <p className="text-white/70 text-sm leading-relaxed max-w-sm">{t("home.whyus.multilingual.desc", lang)}</p>
                 </div>
               </div>
@@ -286,7 +286,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">02</span>
-                  <h3 className="text-lg font-bold text-white mb-1 tracking-tight">{t("home.whyus.excellence.title", lang)}</h3>
+                  <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.excellence.title", lang)}</h3>
                   <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.excellence.desc", lang)}</p>
                 </div>
               </div>
@@ -299,7 +299,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">03</span>
-                  <h3 className="text-lg font-bold text-white mb-1 tracking-tight">{t("home.whyus.personalized.title", lang)}</h3>
+                  <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.personalized.title", lang)}</h3>
                   <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.personalized.desc", lang)}</p>
                 </div>
               </div>
@@ -312,7 +312,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
                   <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">04</span>
-                  <h3 className="text-lg md:text-2xl font-bold text-white mb-1 tracking-tight">{t("home.whyus.values.title", lang)}</h3>
+                  <h3 className="text-lg md:text-2xl font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.values.title", lang)}</h3>
                   <p className="text-white/70 text-sm leading-relaxed max-w-xl">{t("home.whyus.values.desc", lang)}</p>
                 </div>
               </div>
@@ -364,7 +364,7 @@ export default function HomePage() {
       <section className="bg-white py-16 md:py-24">
         <div className="max-w-screen-xl mx-auto px-6">
           <FadeIn className="mb-6 md:mb-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--accent)] tracking-tight mb-4">{t("home.stages.title", lang)}</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--accent)] leading-tight mb-4" style={{ fontFamily: "var(--font-serif)" }}>{t("home.stages.title", lang)}</h2>
             <div className="flex items-center gap-4">
               <div className="h-px bg-[var(--border)] hidden sm:block" style={{ width: "2rem", flexShrink: 0 }} />
               <p className="text-[var(--text-secondary)] text-sm sm:text-base">{t("home.stages.subtitle", lang)}</p>
@@ -423,13 +423,13 @@ export default function HomePage() {
                 {t("home.ib.tag", lang)}
               </p>
               <h2
-                className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl font-light leading-tight mb-6"
                 style={{ fontFamily: "var(--font-serif)", color: "#ffffff" }}
               >
                 {t("home.ib.title", lang)}<br />
                 <span className="italic" style={{ color: "var(--gold)" }}>Diploma IB</span>
               </h2>
-              <p className="leading-relaxed text-sm sm:text-base mb-10" style={{ color: "rgba(255,255,255,0.65)" }}>
+              <p className="leading-relaxed text-sm sm:text-base mb-10" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "var(--font-serif)" }}>
                 {t("home.ib.desc", lang)}
               </p>
               <div className="space-y-4">
@@ -499,7 +499,7 @@ export default function HomePage() {
         <div className="max-w-screen-xl mx-auto px-6">
           <FadeIn className="mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.news.tag", lang)}</p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--accent)] tracking-tight">{t("home.news.title", lang)}</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[var(--accent)] leading-tight" style={{ fontFamily: "var(--font-serif)" }}>{t("home.news.title", lang)}</h2>
           </FadeIn>
           {/* Noticia destacada */}
           <FadeIn className="mb-6">
@@ -522,7 +522,7 @@ export default function HomePage() {
                   <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{news[0].source}</p>
                 </div>
                 <p className="text-xs text-[var(--text-secondary)] mb-4">{news[0].date}</p>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--accent)] leading-snug">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--accent)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
                   {news[0].title}
                 </h3>
                 <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
@@ -558,7 +558,7 @@ export default function HomePage() {
                       <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
                     </div>
                     <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
-                    <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1">
+                    <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1" style={{ fontFamily: "var(--font-serif)" }}>
                       {item.title}
                     </h3>
                   </div>
@@ -590,8 +590,8 @@ export default function HomePage() {
         </div>
         {/* Texto + CTA */}
         <FadeIn className="max-w-screen-xl mx-auto px-6 py-12 md:py-14 text-center">
-          <h2 className="text-xl sm:text-2xl font-bold text-[var(--accent)] mb-3">{t("home.cta.title", lang)}</h2>
-          <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-sm sm:text-base">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-light text-[var(--accent)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>{t("home.cta.title", lang)}</h2>
+          <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-sm sm:text-base" style={{ fontFamily: "var(--font-serif)" }}>
             {t("home.cta.desc", lang)}
           </p>
           <Link
