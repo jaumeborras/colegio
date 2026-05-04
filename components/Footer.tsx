@@ -37,12 +37,11 @@ export default function Footer() {
         src="/fotos/fondo.png"
         alt=""
         aria-hidden="true"
-        className="absolute inset-x-0 w-full pointer-events-none select-none"
+        className="absolute inset-x-0 w-full pointer-events-none select-none footer-bg"
         style={{
           top: "-20%",
           height: "140%",
           objectFit: "cover",
-          objectPosition: "right center",
           opacity: 0.18,
           mixBlendMode: "luminosity",
           transform: `translateY(${parallax}px)`,

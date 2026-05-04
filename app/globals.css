@@ -68,6 +68,15 @@
   animation: pageFadeIn 0.35s ease both;
 }
 
+.footer-bg {
+  object-position: center center;
+}
+@media (max-width: 767px) {
+  .footer-bg {
+    object-position: 75% center;
+  }
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
