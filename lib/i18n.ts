@@ -64,7 +64,7 @@ const d: Dict = {
 
   "home.mission.tag":   { es: "Nuestra misión",   ca: "La nostra missió", en: "Our mission", de: "Unsere Mission" },
   "home.mission.title": {
-    es: "Educamos con valores, excelencia y compromiso",
+    es: "Educamos con valores, excelencia y compromiso",
     ca: "Eduquem amb valors, excel·lència i compromís",
     en: "We educate with values, excellence and commitment",
     de: "Wir bilden mit Werten, Exzellenz und Engagement",
