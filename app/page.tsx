@@ -280,12 +280,10 @@ export default function HomePage() {
               <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-48 group">
                 <img src="/fotos/edu.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover object-[center_33%] transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
-                <div className="absolute inset-0 flex items-center p-5 md:px-9">
-                  <div>
-                    <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">04</span>
-                    <h3 className="text-lg md:text-2xl font-bold text-white mb-2 tracking-tight">{t("home.whyus.values.title", lang)}</h3>
-                    <p className="text-white/70 text-sm leading-relaxed max-w-xl">{t("home.whyus.values.desc", lang)}</p>
-                  </div>
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
+                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">04</span>
+                  <h3 className="text-lg md:text-2xl font-bold text-white mb-1 tracking-tight">{t("home.whyus.values.title", lang)}</h3>
+                  <p className="text-white/70 text-sm leading-relaxed max-w-xl">{t("home.whyus.values.desc", lang)}</p>
                 </div>
               </div>
             </FadeIn>
