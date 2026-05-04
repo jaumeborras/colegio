@@ -129,7 +129,7 @@ export default function Footer() {
         </div>
 
         {/* Barra inferior */}
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-baseline items-center justify-between gap-4">
           <p className="text-sm text-white order-2 sm:order-none text-center sm:text-left">
             © {new Date().getFullYear()} {t("footer.school", lang)} · Palma de Mallorca
           </p>
