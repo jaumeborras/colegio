@@ -33,10 +33,12 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 ## Home (`/`)
 
 ### Hero
-- Imagen de fondo: `/fotos/dron.jpg` (foto aérea fija, sin slideshow)
+- Imagen de fondo: `/fotos/dron.jpg` con efecto parallax (scroll 0.25×)
 - Overlay oscuro al 55% para legibilidad
 - Tag superior: "COLEGIO SAN CAYETANO" / "PALMA DE MALLORCA" (dos líneas)
-- Titular serif centrado: "Educamos personas con valores / para un futuro global" (animación de entrada)
+- Titular serif centrado (Cormorant Garamond, font-light): "Educamos personas con valores / para un futuro global"
+  - **Efecto typewriter**: se escribe línea a línea (55ms/carácter línea 1, 65ms/carácter línea 2)
+  - Al terminar aparece un punto parpadeante (4s) que luego queda fijo
 - Subtítulo inferior: "Desde 1962"
 - Flecha de scroll visible abajo al centro
 - Hero height: 88svh (deja asomar la sección siguiente)
@@ -49,8 +51,8 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 
 ### Por qué elegirnos
 **Tag:** ¿Por qué elegirnos?  
-**Título:** Un proyecto educativo diferente (en azul corporativo)  
-4 tarjetas en grid 1/2/4 cols con foto en la parte superior (ratio 16:9) + título en azul + descripción:
+**Título:** Un proyecto educativo diferente (Cormorant Garamond, font-light, azul corporativo)  
+4 tarjetas en bento grid (tarjeta 1: 2 cols × 2 filas; tarjetas 2–3: 1 col × 1 fila; tarjeta 4: 3 cols ancho completo). Foto + título serif + descripción sobre overlay oscuro:
 
 | Título | Descripción | Imagen |
 |---|---|---|
@@ -382,13 +384,13 @@ Enlace externo: https://sites.google.com/csc.edu.es/cs22esp-pastoral
 | `fondo.png` | Fondo PageHero páginas interiores |
 | `pablo.png` | Foto director Pablo Guerrero Pacheco |
 | `escoleta.jpg` | Tarjeta etapa Escoleta |
-| `infantil.jpg` | Tarjeta etapa Infantil |
+| `infantil.jpg` | Tarjeta etapa Infantil + mega menú Familias |
 | `primaria.png` | Tarjeta etapa Primaria |
 | `secundaria.jpg` | Tarjeta etapa Secundaria |
 | `bachillerato.jpg` | Tarjeta etapa Bachillerato |
 | `IB.jpg` | Sección IB home + mega menú IB |
-| `actos.jpg` | Mega menú Quiénes somos + mega menú Familias |
-| `multi.jpg` | Tarjeta Multilingüismo (Por qué elegirnos) |
+| `actos.jpg` | Mega menú Quiénes somos (marquee CTA admisiones) |
+| `multi.jpg` | Tarjeta Multilingüismo (Por qué elegirnos) + mega menú Vida Escolar |
 | `excelencia.jpg` | Tarjeta Excelencia académica (Por qué elegirnos) |
 | `edu.jpeg` | Tarjeta Educación en valores (Por qué elegirnos) |
 | `noticias1.png` | Noticia 1 (Diario de Mallorca, abril 2026) |
@@ -438,6 +440,13 @@ Sección nueva en el menú principal con 8 submenús enlazados a Google Sites:
 | Uniformidad | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/uniformidad |
 | Beca San Cayetano | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/beca-san-cayetano |
 | Renovación de matrícula | https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/información-general/renovación-de-matrícula |
+
+### Tipografía home
+- **Cormorant Garamond** (Google Fonts, pesos 300/400/600) aplicada a todos los títulos y textos principales del home
+- Títulos de sección (h2): `font-light` — Nuestra Misión, Por qué elegirnos, Etapas educativas, Últimas noticias, CTA admisiones, IB
+- Párrafos de texto: peso 400 — Misión (3 párrafos), IB descripción, CTA descripción
+- Títulos de tarjetas (h3): `font-semibold` — bento cards, noticias
+- Hero h1: `font-light` con typewriter + italic para línea 2
 
 ### Colores de títulos
 Todos los títulos principales de secciones del home usan `var(--accent)` (#003087 azul corporativo):
