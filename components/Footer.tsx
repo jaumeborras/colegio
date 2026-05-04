@@ -42,6 +42,7 @@ export default function Footer() {
           top: "-20%",
           height: "140%",
           objectFit: "cover",
+          objectPosition: "right center",
           opacity: 0.18,
           mixBlendMode: "luminosity",
           transform: `translateY(${parallax}px)`,
