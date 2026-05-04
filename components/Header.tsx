@@ -619,8 +619,8 @@ export default function Header() {
                 [t("nav.stages", lang)]:      "/fotos/primaria.png",
                 "IB":                         "/fotos/IB.jpg",
                 [t("nav.virtual", lang)]:     "/fotos/fondo.png",
-                [t("nav.families", lang)]:    "/fotos/actos.jpg",
-                [t("nav.school.life", lang)]: "/fotos/dron.jpg",
+                [t("nav.families", lang)]:    "/fotos/infantil.jpg",
+                [t("nav.school.life", lang)]: "/fotos/multi.jpg",
               }
               const description = descKey[item.label]
               if (description) return (
