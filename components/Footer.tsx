@@ -136,6 +136,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-5 text-sm text-white">
             <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
             <Link href="/aviso-legal" className="hover:opacity-60 transition-opacity">{t("footer.legal", lang)}</Link>
+            <Link href="/politica-privacidad" className="hover:opacity-60 transition-opacity">{t("footer.privacy", lang)}</Link>
             <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
           </div>
         </div>
