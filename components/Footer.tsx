@@ -130,6 +130,9 @@ export default function Footer() {
 
         {/* Barra inferior */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-white order-2 sm:order-none text-center sm:text-left">
+            © {new Date().getFullYear()} {t("footer.school", lang)} · Palma de Mallorca
+          </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-center gap-y-2 sm:gap-x-3 text-sm text-white order-1 sm:order-none">
             <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
             <span className="hidden sm:inline text-white/30" aria-hidden="true">·</span>
@@ -139,9 +142,6 @@ export default function Footer() {
             <span className="hidden sm:inline text-white/30" aria-hidden="true">·</span>
             <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
           </div>
-          <p className="text-sm text-white order-2 sm:order-none text-center sm:text-left">
-            © {new Date().getFullYear()} {t("footer.school", lang)} · Palma de Mallorca
-          </p>
         </div>
       </div>
     </footer>
