@@ -189,11 +189,11 @@ function MegaPanel({ item, description, image = "/fotos/fondo.png", onMouseEnter
         display: "flex",
         alignItems: "center",
       }}>
-        <ul style={{ listStyle: "none", margin: 0, padding: 0, width: "100%" }}>
+        <ul style={{ listStyle: "none", margin: 0, padding: 0, width: "100%", display: "flex", flexDirection: "column", gap: 14 }}>
           {item.children?.map((child) => {
             const childLinkProps = child.external ? { target: "_blank", rel: "noopener noreferrer" } : {}
             return (
-              <li key={child.label} style={{ marginBottom: 22 }}>
+              <li key={child.label}>
                 <Link
                   href={child.href || "#"}
                   {...childLinkProps}

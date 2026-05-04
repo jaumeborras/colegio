@@ -74,6 +74,8 @@ export default function HomePage() {
 
   const statsRef = useRef<HTMLElement>(null)
   const [statsInView, setStatsInView] = useState(false)
+  const [heroParallax, setHeroParallax] = useState(0)
+
   useEffect(() => {
     const el = statsRef.current
     if (!el) return
@@ -85,12 +87,28 @@ export default function HomePage() {
     return () => obs.disconnect()
   }, [])
 
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setHeroParallax(window.scrollY * 0.25)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   const news = [
     {
       title: "Colegio San Cayetano: la educación integral que empieza en la Escoleta y culmina en el Bachillerato Internacional",
       img: "/fotos/noticias1.png",
       href: "https://www.diariodemallorca.es/mallorca/2026/04/28/colegios-privados-mallorca-bachillerato-internacional-bc-129564438.html",
       source: "Diario de Mallorca",
+      logo: "https://www.google.com/s2/favicons?domain=diariodemallorca.es&sz=32",
       date: "28 abril 2026",
     },
     {
@@ -98,6 +116,7 @@ export default function HomePage() {
       img: "/fotos/noticias2.jpg",
       href: "https://www.ultimahora.es/monograficos/centros-privados-concertados/2026/04/22/14773/san-cayetano-ventana-mundo-traves-del-bachillerato-internacional.html",
       source: "Ultima Hora",
+      logo: "https://www.google.com/s2/favicons?domain=ultimahora.es&sz=32",
       date: "22 abril 2026",
     },
     {
@@ -105,6 +124,7 @@ export default function HomePage() {
       img: "/fotos/noticias3.png",
       href: "https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html",
       source: "Diario de Mallorca",
+      logo: "https://www.google.com/s2/favicons?domain=diariodemallorca.es&sz=32",
       date: "25 febrero 2026",
     },
   ]
@@ -133,13 +153,23 @@ export default function HomePage() {
         <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.55)" }} />
         <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 100%)" }} />
 
-        <Image
-          src="/fotos/dron.jpg"
-          alt="Colegio San Cayetano"
-          fill
-          className="object-cover object-center"
-          priority
-        />
+        <div
+          className="absolute inset-x-0 pointer-events-none"
+          style={{
+            top: "-25%",
+            height: "150%",
+            transform: `translateY(${heroParallax}px)`,
+            willChange: "transform",
+          }}
+        >
+          <Image
+            src="/fotos/dron.jpg"
+            alt="Colegio San Cayetano"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+        </div>
 
 
         {/* Titular central */}
@@ -487,7 +517,10 @@ export default function HomePage() {
                 />
               </div>
               <div className="flex flex-col flex-1 p-6 sm:p-8 justify-center">
-                <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-2">{news[0].source}</p>
+                <div className="flex items-center gap-2 mb-2">
+                  <img src={news[0].logo} alt={news[0].source} className="w-4 h-4 object-contain rounded-sm" />
+                  <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{news[0].source}</p>
+                </div>
                 <p className="text-xs text-[var(--text-secondary)] mb-4">{news[0].date}</p>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--accent)] leading-snug">
                   {news[0].title}
@@ -520,7 +553,10 @@ export default function HomePage() {
                     />
                   </div>
                   <div className="flex flex-col flex-1 p-5">
-                    <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-1">{item.source}</p>
+                    <div className="flex items-center gap-2 mb-1">
+                      <img src={item.logo} alt={item.source} className="w-4 h-4 object-contain rounded-sm" />
+                      <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
+                    </div>
                     <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
                     <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1">
                       {item.title}

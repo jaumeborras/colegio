@@ -3,6 +3,7 @@ import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import IntroAnimation from "@/components/IntroAnimation"
+import PageTransition from "@/components/PageTransition"
 import { getLang, htmlLang } from "@/lib/lang"
 import { LanguageProvider } from "@/lib/i18n-context"
 
@@ -29,7 +30,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LanguageProvider initialLang={lang}>
           <IntroAnimation />
           <Header />
-          <main className="flex-1 pt-[72px]">{children}</main>
+          <main className="flex-1 pt-[72px]"><PageTransition>{children}</PageTransition></main>
           <Footer />
         </LanguageProvider>
       </body>
