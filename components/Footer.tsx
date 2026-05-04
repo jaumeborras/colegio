@@ -133,10 +133,13 @@ export default function Footer() {
           <p className="text-sm text-white">
             © {new Date().getFullYear()} {t("footer.school", lang)} · Palma de Mallorca
           </p>
-          <div className="flex flex-wrap gap-5 text-sm text-white">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white">
             <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
+            <span className="text-white/30" aria-hidden="true">·</span>
             <Link href="/aviso-legal" className="hover:opacity-60 transition-opacity">{t("footer.legal", lang)}</Link>
+            <span className="text-white/30" aria-hidden="true">·</span>
             <Link href="/politica-privacidad" className="hover:opacity-60 transition-opacity">{t("footer.privacy", lang)}</Link>
+            <span className="text-white/30" aria-hidden="true">·</span>
             <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
           </div>
         </div>
