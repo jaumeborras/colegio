@@ -80,7 +80,7 @@ export function getSecondaryNav(lang: Lang): NavItem[] {
       label: t("who.title", lang),
       href: "/quienes-somos",
       children: [
-        { label: t("who.title", lang), href: "/quienes-somos" },
+        { label: t("who.carta.title", lang), href: "/quienes-somos" },
         { label: t("nav.info", lang), href: "/informacion" },
         { label: "Sanca TV", href: "http://www.sanca.tv", external: true },
         { label: "Facebook", href: "https://www.facebook.com/Colegio-San-Cayetano-Palma-de-Mallorca-100322058504103", external: true },

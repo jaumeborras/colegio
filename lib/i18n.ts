@@ -232,6 +232,7 @@ const d: Dict = {
   // ── Quiénes somos ────────────────────────────────────────────────────────────
   "who.tag":      { es: "El colegio",   ca: "El col·legi", en: "The school",  de: "Die Schule" },
   "who.title":    { es: "Quiénes somos", ca: "Qui som",    en: "About us",    de: "Über uns" },
+  "who.carta.title": { es: "Carta del director", ca: "Carta del director", en: "Letter from the Headmaster", de: "Brief des Direktors" },
   "who.subtitle": {
     es: "Más de 50 años al servicio de la sociedad mallorquina, bajo los principios de la Orden Teatina.",
     ca: "Més de 50 anys al servei de la societat mallorquina, sota els principis de l'Orde Teatina.",
@@ -295,17 +296,17 @@ const d: Dict = {
     de: "Wir verpflichten uns, Menschen mit einer transzendenten Dimension zu formen, indem wir Unterricht, Glauben, christlichen Lebenssinn und menschliche Werte in einen Rahmen des größtmöglichen Respekts vor jeder Person integrieren.",
   },
   "who.mission.p2": {
-    es: "Tenemos el futuro de 1.740 alumnos en nuestras manos, y eso nos exige rigor, vocación y compromiso cada día.",
-    ca: "Tenim el futur de 1.740 alumnes a les nostres mans, i això ens exigeix rigor, vocació i compromís cada dia.",
-    en: "We hold the future of 1,740 students in our hands, and that demands rigour, vocation and commitment every single day.",
-    de: "Wir tragen die Verantwortung für die Zukunft von 1.740 Schülern, und das erfordert täglich Strenge, Berufung und Engagement.",
+    es: "Tenemos el futuro de más de 1.800 alumnos en nuestras manos, y eso nos exige rigor, vocación y compromiso cada día.",
+    ca: "Tenim el futur de més de 1.800 alumnes a les nostres mans, i això ens exigeix rigor, vocació i compromís cada dia.",
+    en: "We hold the future of more than 1,800 students in our hands, and that demands rigour, vocation and commitment every single day.",
+    de: "Wir tragen die Verantwortung für die Zukunft von mehr als 1.800 Schülern, und das erfordert täglich Strenge, Berufung und Engagement.",
   },
   "who.vision.title": { es: "Visión",   ca: "Visió",    en: "Vision",   de: "Vision" },
   "who.vision.quote": {
-    es: "\"El futuro de una sociedad se forja en la educación de las nuevas generaciones.\"",
-    ca: "\"El futur d'una societat es forja en l'educació de les noves generacions.\"",
-    en: "\"The future of a society is forged in the education of the new generations.\"",
-    de: "\"Die Zukunft einer Gesellschaft wird in der Bildung der neuen Generationen geschmiedet.\"",
+    es: "El futuro de una sociedad se forja en la educación de las nuevas generaciones.",
+    ca: "El futur d'una societat es forja en l'educació de les noves generacions.",
+    en: "The future of a society is forged in the education of the new generations.",
+    de: "Die Zukunft einer Gesellschaft wird in der Bildung der neuen Generationen geschmiedet.",
   },
   "who.vision.p": {
     es: "Somos un colegio con más de 50 años de historia, vinculado a la Orden Teatina y al servicio de la sociedad mallorquina desde nuestros inicios.",
