@@ -108,6 +108,7 @@ export default function Footer() {
               <li><a href="https://colegiosancayetano.managebac.com/" target="_blank" rel="noopener noreferrer" className="text-base text-white hover:opacity-70 transition-opacity">ManageBac (IB)</a></li>
               <li><a href="https://biblioteca.colegiosancayetano.com/" target="_blank" rel="noopener noreferrer" className="text-base text-white hover:opacity-70 transition-opacity">{t("stage.library", lang)}</a></li>
               <li><Link href="/contacto" className="text-base text-white hover:opacity-70 transition-opacity">{t("contact.title", lang)}</Link></li>
+              <li><a href="https://forms.gle/WXyGe2xq6AtCfqBf8" target="_blank" rel="noopener noreferrer" className="text-base text-white hover:opacity-70 transition-opacity">{t("footer.jobs", lang)}</a></li>
             </ul>
           </div>
 
@@ -135,7 +136,6 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap gap-5 text-sm text-white">
             <a href="https://whistleblowersoftware.com/secure/csc" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.complaints", lang)}</a>
-            <a href="https://forms.gle/WXyGe2xq6AtCfqBf8" target="_blank" rel="noopener noreferrer" className="hover:opacity-60 transition-opacity">{t("footer.jobs", lang)}</a>
             <Link href="/aviso-legal" className="hover:opacity-60 transition-opacity">{t("footer.legal", lang)}</Link>
             <Link href="/politica-cookies" className="hover:opacity-60 transition-opacity">{t("footer.cookies", lang)}</Link>
           </div>
