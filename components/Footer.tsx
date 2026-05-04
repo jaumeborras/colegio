@@ -1,4 +1,5 @@
 "use client"
+import { useRef, useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { t } from "@/lib/i18n"
@@ -6,10 +7,51 @@ import { useLanguage } from "@/lib/i18n-context"
 
 export default function Footer() {
   const { lang } = useLanguage()
+  const footerRef = useRef<HTMLElement>(null)
+  const [parallax, setParallax] = useState(0)
+
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          if (footerRef.current) {
+            const rect = footerRef.current.getBoundingClientRect()
+            const center = rect.top + rect.height / 2
+            setParallax((window.innerHeight / 2 - center) * 0.18)
+          }
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
   return (
-    <footer style={{ backgroundColor: "#002060" }}>
-      <div className="max-w-screen-xl mx-auto px-6 py-14 lg:py-16">
+    <footer ref={footerRef} className="relative overflow-hidden" style={{ backgroundColor: "#001440" }}>
+      {/* Imagen de fondo con parallax */}
+      <img
+        src="/fotos/fondo.png"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-x-0 w-full pointer-events-none select-none"
+        style={{
+          top: "-20%",
+          height: "140%",
+          objectFit: "cover",
+          opacity: 0.18,
+          mixBlendMode: "luminosity",
+          transform: `translateY(${parallax}px)`,
+          willChange: "transform",
+        }}
+      />
+      {/* Overlay oscuro para legibilidad */}
+      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,20,64,0.55) 0%, rgba(0,20,64,0.45) 100%)" }} />
+
+      <div className="relative max-w-screen-xl mx-auto px-6 py-14 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.7fr_0.7fr_3.5fr] gap-8 items-start">
 
           {/* Col 1: datos del colegio */}

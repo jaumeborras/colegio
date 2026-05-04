@@ -156,8 +156,11 @@ export default function HomePage() {
   const { lang } = useLanguage()
 
   const statsRef = useRef<HTMLElement>(null)
+  const ibSectionRef = useRef<HTMLElement>(null)
   const [statsInView, setStatsInView] = useState(false)
   const [heroParallax, setHeroParallax] = useState(0)
+  const [ibParallax, setIbParallax] = useState(0)
+  const [statsParallax, setStatsParallax] = useState(0)
 
   useEffect(() => {
     const el = statsRef.current
@@ -176,6 +179,16 @@ export default function HomePage() {
       if (!ticking) {
         requestAnimationFrame(() => {
           setHeroParallax(window.scrollY * 0.25)
+          if (ibSectionRef.current) {
+            const rect = ibSectionRef.current.getBoundingClientRect()
+            const center = rect.top + rect.height / 2
+            setIbParallax((window.innerHeight / 2 - center) * 0.18)
+          }
+          if (statsRef.current) {
+            const rect = statsRef.current.getBoundingClientRect()
+            const center = rect.top + rect.height / 2
+            setStatsParallax((window.innerHeight / 2 - center) * 0.18)
+          }
           ticking = false
         })
         ticking = true
@@ -257,17 +270,18 @@ export default function HomePage() {
 
         {/* Titular central */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
-          <p className="hero-tag text-[10px] sm:text-xs font-semibold text-white/60 uppercase tracking-[0.35em] mb-6 leading-relaxed">
-            <span className="block">Colegio San Cayetano</span>
-            <span className="block">Palma de Mallorca</span>
+          <p className="hero-tag text-xs sm:text-sm font-semibold text-white/70 uppercase tracking-[0.35em] mb-4">
+            Colegio San Cayetano
           </p>
           <TypewriterHero
             line1a={t("home.hero.line1a", lang)}
             line1b={t("home.hero.line1b", lang)}
             line2={t("home.hero.line2", lang)}
           />
-          <p className="hero-cta mt-7 sm:mt-10 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em]">
-            {t("home.hero.since", lang)}
+          <p className="hero-cta mt-5 sm:mt-7 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em] flex items-center gap-3">
+            <span>Palma de Mallorca</span>
+            <span className="text-white/30 text-base leading-none">·</span>
+            <span>{t("home.hero.since", lang)}</span>
           </p>
         </div>
 
@@ -397,13 +411,22 @@ export default function HomePage() {
 
       {/* ── STATS ── */}
       <section ref={statsRef} className="relative bg-[var(--accent)] text-white overflow-hidden">
-        {/* Imagen de fondo con opacidad baja */}
+        {/* Imagen de fondo con parallax */}
         <img
           src="/fotos/header.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
-          style={{ opacity: 0.08, mixBlendMode: "luminosity" }}
+          className="absolute inset-x-0 w-full pointer-events-none"
+          style={{
+            top: "-20%",
+            height: "140%",
+            objectFit: "cover",
+            objectPosition: "center",
+            opacity: 0.08,
+            mixBlendMode: "luminosity",
+            transform: `translateY(${statsParallax}px)`,
+            willChange: "transform",
+          }}
         />
         {/* Línea dorada superior */}
         <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "var(--gold)" }} />
@@ -478,14 +501,22 @@ export default function HomePage() {
       </section>
 
       {/* ── BACHILLERATO INTERNACIONAL ── */}
-      <section className="relative overflow-hidden py-20 md:py-28" style={{ background: "#0a1628" }}>
-        {/* Foto de fondo con opacidad muy baja */}
+      <section ref={ibSectionRef} className="relative overflow-hidden py-20 md:py-28" style={{ background: "#0a1628" }}>
+        {/* Foto de fondo con parallax */}
         <img
           src="/fotos/IB.jpg"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          style={{ opacity: 0.12, mixBlendMode: "luminosity" }}
+          className="absolute inset-x-0 w-full pointer-events-none"
+          style={{
+            top: "-20%",
+            height: "140%",
+            objectFit: "cover",
+            opacity: 0.12,
+            mixBlendMode: "luminosity",
+            transform: `translateY(${ibParallax}px)`,
+            willChange: "transform",
+          }}
         />
         {/* Línea dorada superior */}
         <div className="absolute top-0 left-0 right-0 h-[3px]" style={{ background: "var(--gold)" }} />
