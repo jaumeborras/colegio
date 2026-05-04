@@ -5,6 +5,7 @@ export type NavItem = {
   href?: string
   external?: boolean
   children?: NavItem[]
+  cta?: boolean
 }
 
 export function getMainNav(lang: Lang): NavItem[] {
@@ -84,6 +85,6 @@ export function getSecondaryNav(lang: Lang): NavItem[] {
       ],
     },
     { label: t("nav.pastoral", lang), href: "https://sites.google.com/csc.edu.es/cs22esp-pastoral", external: true },
-    { label: t("nav.admissions", lang), href: "/admisiones" },
+    { label: t("nav.admissions", lang), href: "/admisiones", cta: true },
   ]
 }

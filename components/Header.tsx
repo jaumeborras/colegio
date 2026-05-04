@@ -642,7 +642,10 @@ export default function Header() {
                 key={item.label}
                 href={item.href || "#"}
                 {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                className="px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
+                className={item.cta
+                  ? "px-4 py-1.5 text-base font-medium text-white border border-white/60 rounded-full hover:bg-white/15 transition-colors"
+                  : "px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md"
+                }
               >
                 {item.label}
               </Link>
