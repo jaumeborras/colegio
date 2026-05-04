@@ -651,7 +651,6 @@ export default function Header() {
                 </Link>
               </React.Fragment>
             ))}
-            <div className="w-px h-4 bg-white/20 mx-1" />
             <LangDropdown />
           </nav>
 
