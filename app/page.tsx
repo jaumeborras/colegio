@@ -236,14 +236,14 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
 
             {/* Tarjeta grande: 2 cols × 2 filas */}
-            <FadeIn delay={0} className="md:col-span-2 md:row-span-2 h-64 md:h-full">
-              <div className="relative rounded-2xl overflow-hidden h-full min-h-[260px] group">
+            <FadeIn delay={0} className="md:col-span-2 md:row-span-2 aspect-[16/9] md:aspect-auto md:h-full">
+              <div className="relative rounded-2xl overflow-hidden h-full group">
                 <img src="/fotos/multi.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
                 <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
-                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-4 block">01</span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 tracking-tight leading-tight">{t("home.whyus.multilingual.title", lang)}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
+                  <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 md:mb-4 block">01</span>
+                  <h3 className="text-lg md:text-3xl font-bold text-white mb-2 md:mb-3 tracking-tight leading-tight">{t("home.whyus.multilingual.title", lang)}</h3>
                   <p className="text-white/70 text-sm leading-relaxed max-w-sm">{t("home.whyus.multilingual.desc", lang)}</p>
                 </div>
               </div>
@@ -251,39 +251,39 @@ export default function HomePage() {
 
             {/* Tarjeta 2 */}
             <FadeIn delay={100}>
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] group">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-[4/3] group">
                 <img src="/fotos/excelencia.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">02</span>
-                  <h3 className="text-base font-bold text-white mb-1 tracking-tight">{t("home.whyus.excellence.title", lang)}</h3>
-                  <p className="text-white/65 text-xs leading-relaxed line-clamp-2">{t("home.whyus.excellence.desc", lang)}</p>
+                  <h3 className="text-lg font-bold text-white mb-1 tracking-tight">{t("home.whyus.excellence.title", lang)}</h3>
+                  <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.excellence.desc", lang)}</p>
                 </div>
               </div>
             </FadeIn>
 
             {/* Tarjeta 3 */}
             <FadeIn delay={200}>
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] group">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-[4/3] group">
                 <img src="/fotos/bachillerato.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">03</span>
-                  <h3 className="text-base font-bold text-white mb-1 tracking-tight">{t("home.whyus.personalized.title", lang)}</h3>
-                  <p className="text-white/65 text-xs leading-relaxed line-clamp-2">{t("home.whyus.personalized.desc", lang)}</p>
+                  <h3 className="text-lg font-bold text-white mb-1 tracking-tight">{t("home.whyus.personalized.title", lang)}</h3>
+                  <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.personalized.desc", lang)}</p>
                 </div>
               </div>
             </FadeIn>
 
             {/* Tarjeta 4: franja ancha */}
             <FadeIn delay={300} className="md:col-span-3">
-              <div className="relative rounded-2xl overflow-hidden h-36 md:h-48 group">
+              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-48 group">
                 <img src="/fotos/edu.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover object-[center_33%] transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
-                <div className="absolute inset-0 flex items-center px-7 md:px-9">
+                <div className="absolute inset-0 flex items-center p-5 md:px-9">
                   <div>
-                    <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-3 block">04</span>
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2 tracking-tight">{t("home.whyus.values.title", lang)}</h3>
+                    <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.25em] mb-2 block">04</span>
+                    <h3 className="text-lg md:text-2xl font-bold text-white mb-2 tracking-tight">{t("home.whyus.values.title", lang)}</h3>
                     <p className="text-white/70 text-sm leading-relaxed max-w-xl">{t("home.whyus.values.desc", lang)}</p>
                   </div>
                 </div>
