@@ -51,6 +51,7 @@ const d: Dict = {
   "footer.hours":      { es: "L a V de 8:00 a 14:30h", ca: "Dl a Dv de 8:00 a 14:30h", en: "Mon–Fri 8:00–14:30", de: "Mo–Fr 8:00–14:30 Uhr" },
   "footer.complaints": { es: "Canal de denuncias",               ca: "Canal de denúncies",           en: "Complaints channel",    de: "Beschwerdekanal" },
   "footer.jobs":       { es: "Trabaja con nosotros",             ca: "Treballa amb nosaltres",        en: "Work with us",          de: "Arbeite mit uns" },
+  "footer.follow":     { es: "Síguenos en redes sociales",       ca: "Segueix-nos a les xarxes",      en: "Follow us",              de: "Folge uns" },
   "footer.legal":      { es: "Aviso legal",                      ca: "Avís legal",                    en: "Legal notice",           de: "Impressum" },
   "footer.privacy":    { es: "Política de privacidad",           ca: "Política de privacitat",        en: "Privacy policy",         de: "Datenschutz" },
   "footer.cookies":    { es: "Política de cookies",              ca: "Política de galetes",           en: "Cookie policy",          de: "Cookie-Richtlinie" },
