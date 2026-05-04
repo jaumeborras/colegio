@@ -273,20 +273,23 @@ function LangDropdown() {
 
   return (
     <div className="relative ml-1" onMouseEnter={enter} onMouseLeave={leave}>
-      <button className="flex items-center gap-1 px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md uppercase tracking-widest">
-        {currentLang}
-        <svg className={`w-3 h-3 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <button className="flex items-center gap-1.5 px-3 py-2 text-base font-medium text-white/90 hover:text-white hover:bg-white/15 transition-colors rounded-md">
+        <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+        </svg>
+        Idioma
+        <svg className={`w-3.5 h-3.5 opacity-50 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
-        <ul className="absolute top-full right-0 mt-1 rounded-xl overflow-hidden shadow-2xl z-50 min-w-[120px]"
-          style={{ background: "#001a4d", border: "1px solid rgba(255,255,255,0.1)" }}>
+        <ul className="absolute top-full right-0 mt-1 rounded-xl overflow-hidden shadow-2xl z-50 min-w-[160px]"
+          style={{ background: "#001a4d", border: "1px solid rgba(255,255,255,0.12)" }}>
           {langs.map((lang) => (
             <li key={lang.code}>
               <button
                 onClick={() => switchLang(lang.code)}
-                className="w-full flex items-center justify-between px-5 py-3 text-sm transition-colors whitespace-nowrap"
+                className="w-full flex items-center gap-3 px-4 py-3 text-sm whitespace-nowrap transition-colors"
                 style={{
                   color: currentLang === lang.code ? "#ffffff" : "rgba(255,255,255,0.55)",
                   fontWeight: currentLang === lang.code ? 600 : 400,
@@ -295,9 +298,10 @@ function LangDropdown() {
                 onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
                 onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
               >
-                <span>{lang.label}</span>
+                <span className="w-5 h-4 flex items-center shrink-0">{langFlags[lang.code]}</span>
+                <span className="flex-1 text-left">{lang.label}</span>
                 {currentLang === lang.code && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-white ml-3 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
                 )}
               </button>
             </li>
