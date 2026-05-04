@@ -30,11 +30,6 @@ export function getMainNav(lang: Lang): NavItem[] {
       ],
     },
     {
-      label: t("nav.pastoral", lang),
-      href: "https://sites.google.com/csc.edu.es/cs22esp-pastoral",
-      external: true,
-    },
-    {
       label: t("nav.virtual", lang),
       href: "/oficina-virtual",
       children: [
@@ -88,6 +83,7 @@ export function getSecondaryNav(lang: Lang): NavItem[] {
         { label: t("nav.contact", lang), href: "/contacto" },
       ],
     },
+    { label: t("nav.pastoral", lang), href: "https://sites.google.com/csc.edu.es/cs22esp-pastoral", external: true },
     { label: t("nav.admissions", lang), href: "/admisiones" },
   ]
 }
