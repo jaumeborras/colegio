@@ -432,12 +432,12 @@ export default function HomePage() {
           </FadeIn>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {[
-              { key: "stage.escoleta",    agesKey: "stage.ages.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta" },
-              { key: "stage.infantil",    agesKey: "stage.ages.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil" },
-              { key: "stage.primaria",    agesKey: "stage.ages.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria" },
-              { key: "stage.secundaria",  agesKey: "stage.ages.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria" },
-              { key: "stage.bachillerato",agesKey: "stage.ages.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato" },
-              { key: "stage.ib",          agesKey: "stage.ages.ib",          img: "/fotos/IB.jpg",          href: "/etapas/ib" },
+              { key: "stage.escoleta",    agesKey: "stage.ages.escoleta",    img: "/fotos/escoleta.jpg",    href: "/etapas/escoleta",    pos: "center" },
+              { key: "stage.infantil",    agesKey: "stage.ages.infantil",    img: "/fotos/infantil.jpg",    href: "/etapas/infantil",    pos: "center" },
+              { key: "stage.primaria",    agesKey: "stage.ages.primaria",    img: "/fotos/primaria.png",    href: "/etapas/primaria",    pos: "center" },
+              { key: "stage.secundaria",  agesKey: "stage.ages.secundaria",  img: "/fotos/secundaria.jpg",  href: "/etapas/secundaria",  pos: "center" },
+              { key: "stage.bachillerato",agesKey: "stage.ages.bachillerato",img: "/fotos/bachillerato.jpg",href: "/etapas/bachillerato", pos: "13% center" },
+              { key: "stage.ib",          agesKey: "stage.ages.ib",          img: "/fotos/IB.jpg",          href: "/etapas/ib",          pos: "65% center" },
             ].map((s, i) => (
               <FadeIn key={s.key} delay={i * 80}>
                 <Link href={s.href} className="group relative block overflow-hidden rounded-2xl aspect-[3/4]">
@@ -445,6 +445,7 @@ export default function HomePage() {
                     src={s.img}
                     alt={t(s.key, lang)}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ objectPosition: s.pos }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute inset-0 bg-[var(--accent)]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
