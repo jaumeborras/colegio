@@ -146,7 +146,7 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
   const cards = [
     { img: "/fotos/multi.jpg",        titleKey: "home.whyus.multilingual.title", descKey: "home.whyus.multilingual.desc",  objectPos: "center" },
     { img: "/fotos/excelencia.jpg",   titleKey: "home.whyus.excellence.title",   descKey: "home.whyus.excellence.desc",    objectPos: "center" },
-    { img: "/fotos/bachillerato.jpg", titleKey: "home.whyus.personalized.title", descKey: "home.whyus.personalized.desc",  objectPos: "center" },
+    { img: "/fotos/debate.png",       titleKey: "home.whyus.personalized.title", descKey: "home.whyus.personalized.desc",  objectPos: "center" },
     { img: "/fotos/edu.jpeg",         titleKey: "home.whyus.values.title",       descKey: "home.whyus.values.desc",        objectPos: "center 33%" },
   ]
 

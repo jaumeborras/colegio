@@ -106,12 +106,12 @@ const d: Dict = {
     en: "Quality education with strong results.",
     de: "Hochwertige Bildung mit guten Ergebnissen.",
   },
-  "home.whyus.personalized.title": { es: "Atención personalizada", ca: "Atenció personalitzada", en: "Personalized attention",       de: "Persönliche Betreuung" },
+  "home.whyus.personalized.title": { es: "Debate y oratoria", ca: "Debat i oratòria", en: "Debate & public speaking", de: "Debatte und Rhetorik" },
   "home.whyus.personalized.desc":  {
-    es: "Profesores y orientadores acompañan a los estudiantes durante el proceso.",
-    ca: "Professors i orientadors acompanyen els estudiants durant el procés.",
-    en: "Teachers and counsellors support students throughout the process.",
-    de: "Lehrkräfte und Berater begleiten die Schüler während des gesamten Prozesses.",
+    es: "Los estudiantes aprenden a argumentar con claridad y comunicar sus ideas en distintos idiomas.",
+    ca: "Els estudiants aprenen a argumentar amb claredat i comunicar les seves idees en diversos idiomes.",
+    en: "Students learn to argue clearly and communicate their ideas in different languages.",
+    de: "Die Schüler lernen, klar zu argumentieren und ihre Ideen in verschiedenen Sprachen zu vermitteln.",
   },
   "home.whyus.values.title": { es: "Educación en valores",    ca: "Educació en valors",          en: "Values education",             de: "Werteerziehung" },
   "home.whyus.values.desc":  {
