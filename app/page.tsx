@@ -520,10 +520,7 @@ export default function HomePage() {
         <div className="max-w-screen-xl mx-auto px-6">
           <FadeIn className="mb-6 md:mb-8">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--accent)] leading-tight mb-4" style={{ fontFamily: "var(--font-serif)" }}>{t("home.stages.title", lang)}</h2>
-            <div className="flex items-center gap-4">
-              <div className="h-px bg-[var(--border)] hidden sm:block" style={{ width: "2rem", flexShrink: 0 }} />
-              <p className="text-[var(--text-secondary)] text-sm sm:text-base">{t("home.stages.subtitle", lang)}</p>
-            </div>
+            <p className="text-[var(--text-secondary)] text-sm sm:text-base">{t("home.stages.subtitle", lang)}</p>
           </FadeIn>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
             {[
@@ -549,8 +546,8 @@ export default function HomePage() {
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <p className="text-white/60 text-[10px] font-medium uppercase tracking-widest mb-1">{t(s.agesKey, lang)}</p>
-                    <p className="text-white font-semibold text-sm sm:text-base leading-tight">{t(s.key, lang)}</p>
+                    <p className="text-white/60 text-xs sm:text-sm font-medium uppercase tracking-widest mb-1">{t(s.agesKey, lang)}</p>
+                    <p className="text-white font-semibold text-base sm:text-xl leading-tight">{t(s.key, lang)}</p>
                   </div>
                 </Link>
               </FadeIn>
