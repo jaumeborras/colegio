@@ -207,32 +207,37 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
         ))}
       </div>
 
-      {/* ── Desktop: imagen al borde, texto en grande ── */}
-      <div className="hidden md:flex md:flex-col gap-8 pb-8">
+      {/* ── Desktop: imagen al borde, texto con padding asimétrico ── */}
+      <div className="hidden md:flex md:flex-col gap-10 pb-10">
         {cards.map((card, i) => {
           const imageRight = i % 2 === 0
           return (
-            <div key={i} className="flex items-stretch" style={{ minHeight: 340 }}>
+            <div key={i} className="flex items-stretch" style={{ minHeight: 380 }}>
               {/* Texto */}
-              <div className="flex-1 flex flex-col justify-center py-12">
-                <div className="px-14 lg:px-20">
+              <div
+                className={`flex-1 flex flex-col justify-center py-14 ${imageRight ? "pl-20 lg:pl-28" : "pr-20 lg:pr-28"}`}
+              >
+                {/* Título con padding interior hacia la imagen */}
+                <div className={imageRight ? "pr-8" : "pl-8"}>
                   <h3
-                    className="text-3xl lg:text-4xl font-semibold text-[var(--accent)] leading-tight"
+                    className="text-3xl lg:text-4xl font-semibold text-[var(--accent)] leading-tight mb-5"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {t(card.titleKey, lang)}
                   </h3>
                 </div>
-                <div className="h-px bg-[var(--border)] my-5" />
-                <div className="px-14 lg:px-20">
-                  <p className="text-[var(--text-secondary)] leading-relaxed max-w-xs">
+                {/* Línea: sin padding hacia la imagen → llega hasta la foto */}
+                <div className="h-px bg-[var(--border)] mb-5" />
+                {/* Descripción con padding interior hacia la imagen */}
+                <div className={imageRight ? "pr-8" : "pl-8"}>
+                  <p className="text-[var(--text-secondary)] leading-relaxed">
                     {t(card.descKey, lang)}
                   </p>
                 </div>
               </div>
-              {/* Imagen flush al borde */}
+              {/* Imagen flush al borde del viewport */}
               <div
-                className={`w-[42%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-3xl" : "order-first rounded-r-3xl"}`}
+                className={`w-[55%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-3xl" : "order-first rounded-r-3xl"}`}
               >
                 <img
                   src={card.img}
