@@ -113,9 +113,9 @@ export default function Footer() {
               </a>
               <a href="http://www.sanca.tv" target="_blank" rel="noopener noreferrer" aria-label="Sanca TV">
                 <img
-                  src="/fotos/sancatv.jpg"
+                  src="/fotos/sancatv.png"
                   alt="Sanca TV"
-                  style={{ height: 28, width: "auto", display: "block", filter: "invert(1) grayscale(1) brightness(2)", mixBlendMode: "screen", transition: "opacity 0.2s ease" }}
+                  style={{ height: 28, width: "auto", display: "block", transition: "opacity 0.2s ease" }}
                   onMouseEnter={e => (e.currentTarget.style.opacity = "0.6")}
                   onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                 />
