@@ -575,7 +575,7 @@ export default function HomePage() {
                 {t("home.ib.tag", lang)}
               </p>
               <h2
-                className="text-4xl sm:text-5xl md:text-6xl font-light leading-tight mb-6"
+                className="text-6xl sm:text-7xl md:text-8xl font-light leading-tight mb-6"
                 style={{ fontFamily: "var(--font-serif)", color: "#ffffff" }}
               >
                 {t("home.ib.title", lang)}<br />
