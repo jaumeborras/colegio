@@ -208,29 +208,31 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
       </div>
 
       {/* ── Desktop: imagen al borde, texto en grande ── */}
-      <div className="hidden md:block">
+      <div className="hidden md:flex md:flex-col gap-8 pb-8">
         {cards.map((card, i) => {
           const imageRight = i % 2 === 0
           return (
-            <div key={i} className="flex items-stretch border-t border-[var(--border)]" style={{ minHeight: 360 }}>
+            <div key={i} className="flex items-stretch" style={{ minHeight: 340 }}>
               {/* Texto */}
-              <div className={`flex-1 flex items-center py-14 ${imageRight ? "justify-end pr-16 pl-8" : "justify-start pl-16 pr-8"}`}>
-                <div className="max-w-sm">
+              <div className="flex-1 flex flex-col justify-center py-12">
+                <div className="px-14 lg:px-20">
                   <h3
-                    className="text-3xl lg:text-4xl font-semibold text-[var(--accent)] leading-tight mb-5"
+                    className="text-3xl lg:text-4xl font-semibold text-[var(--accent)] leading-tight"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {t(card.titleKey, lang)}
                   </h3>
-                  <div className="h-px bg-[var(--border)] mb-5" />
-                  <p className="text-[var(--text-secondary)] leading-relaxed">
+                </div>
+                <div className="h-px bg-[var(--border)] my-5" />
+                <div className="px-14 lg:px-20">
+                  <p className="text-[var(--text-secondary)] leading-relaxed max-w-xs">
                     {t(card.descKey, lang)}
                   </p>
                 </div>
               </div>
               {/* Imagen flush al borde */}
               <div
-                className={`w-[52%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-3xl" : "order-first rounded-r-3xl"}`}
+                className={`w-[42%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-3xl" : "order-first rounded-r-3xl"}`}
               >
                 <img
                   src={card.img}
@@ -242,7 +244,6 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
             </div>
           )
         })}
-        <div className="border-t border-[var(--border)]" />
       </div>
     </>
   )
