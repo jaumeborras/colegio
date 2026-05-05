@@ -194,7 +194,7 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
               >
                 {t(card.titleKey, lang)}
               </h3>
-              <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
+              <p className="text-white/75 text-sm sm:text-base leading-relaxed">
                 {t(card.descKey, lang)}
               </p>
             </div>
