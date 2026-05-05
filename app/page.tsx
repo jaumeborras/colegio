@@ -207,80 +207,31 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
         ))}
       </div>
 
-      {/* ── Desktop: carrusel con flechas ── */}
-      <div className="hidden md:block">
-        <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
-          {cards.map((card, i) => (
-            <div
-              key={i}
-              className="absolute inset-0"
-              style={{
-                opacity:    i === current ? (animating ? 0 : 1) : 0,
-                transform:  i === current ? (animating ? slideIn : "translateX(0)") : slideOut,
-                transition: "opacity 0.35s ease, transform 0.35s ease",
-                pointerEvents: i === current ? "auto" : "none",
-              }}
-            >
+      {/* ── Desktop: grid de 4 tarjetas ── */}
+      <div className="hidden md:grid md:grid-cols-4 gap-5">
+        {cards.map((card, i) => (
+          <div key={i} className="group rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div className="aspect-[4/3] overflow-hidden">
               <img
                 src={card.img}
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 style={{ objectPosition: card.objectPos }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-12">
-                <h3
-                  className="text-4xl font-semibold text-white mb-3 leading-tight"
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  {t(card.titleKey, lang)}
-                </h3>
-                <p className="text-white/75 text-base leading-relaxed">
-                  {t(card.descKey, lang)}
-                </p>
-              </div>
             </div>
-          ))}
-
-          <button
-            onClick={prev}
-            aria-label="Anterior"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={next}
-            aria-label="Siguiente"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="flex justify-center gap-2 mt-5">
-          {cards.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => go(i, i > current ? "next" : "prev")}
-              aria-label={`Ir a tarjeta ${i + 1}`}
-              style={{
-                background: i === current ? "var(--accent)" : "var(--border)",
-                width: i === current ? "24px" : "8px",
-                height: "8px",
-                borderRadius: "9999px",
-                border: "none",
-                cursor: "pointer",
-                transition: "width 0.3s ease, background 0.3s ease",
-                padding: 0,
-              }}
-            />
-          ))}
-        </div>
+            <div className="p-5" style={{ background: "var(--accent)" }}>
+              <h3
+                className="text-lg font-semibold text-white leading-snug mb-2"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {t(card.titleKey, lang)}
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+                {t(card.descKey, lang)}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   )
