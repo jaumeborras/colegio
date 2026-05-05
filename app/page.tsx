@@ -140,11 +140,32 @@ function FadeIn({ children, delay = 0, className = "" }: {
 
 function HeroVideo() {
   const [visible, setVisible] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)")
+    setIsDesktop(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
+
+  useEffect(() => {
+    if (!isDesktop) return
     const t = setTimeout(() => setVisible(true), 3500)
     return () => clearTimeout(t)
-  }, [])
+  }, [isDesktop])
+
+  if (!isDesktop) {
+    return (
+      <img
+        src="/fotos/dron.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    )
+  }
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -163,7 +184,6 @@ function HeroVideo() {
           pointerEvents: "none",
         }}
       />
-      {/* Overlay oscuro que se desvanece para ocultar los controles de YouTube al arrancar */}
       <div
         className="absolute inset-0"
         style={{
