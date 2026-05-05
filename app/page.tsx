@@ -571,11 +571,11 @@ export default function HomePage() {
         <div className="relative max-w-screen-xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <FadeIn>
-              <p className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: "var(--gold)" }}>
+              <p className="text-base font-semibold uppercase tracking-widest mb-5" style={{ color: "var(--gold)" }}>
                 {t("home.ib.tag", lang)}
               </p>
               <h2
-                className="text-6xl sm:text-7xl md:text-8xl font-light leading-tight mb-6"
+                className="text-3xl sm:text-4xl md:text-5xl font-light leading-tight mb-6"
                 style={{ fontFamily: "var(--font-serif)", color: "#ffffff" }}
               >
                 {t("home.ib.title", lang)}<br />
