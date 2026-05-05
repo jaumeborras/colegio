@@ -653,43 +653,8 @@ export default function HomePage() {
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.news.tag", lang)}</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[var(--accent)] leading-tight" style={{ fontFamily: "var(--font-serif)" }}>{t("home.news.title", lang)}</h2>
           </FadeIn>
-          {/* Noticia destacada */}
-          <FadeIn className="mb-6">
-            <a
-              href={news[0].href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
-            >
-              <div className="sm:w-1/2 aspect-[16/9] sm:aspect-auto overflow-hidden">
-                <img
-                  src={news[0].img}
-                  alt={news[0].title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-col flex-1 p-6 sm:p-8 justify-center">
-                <div className="flex items-center gap-2 mb-2">
-                  <img src={news[0].logo} alt={news[0].source} className="w-4 h-4 object-contain rounded-sm" />
-                  <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{news[0].source}</p>
-                </div>
-                <p className="text-xs text-[var(--text-secondary)] mb-4">{news[0].date}</p>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--accent)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
-                  {news[0].title}
-                </h3>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--accent)]">
-                  {t("home.news.read", lang)}
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </span>
-              </div>
-            </a>
-          </FadeIn>
-
-          {/* Noticias secundarias */}
-          <div className="grid sm:grid-cols-2 gap-6">
-            {news.slice(1).map((item, i) => (
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {news.map((item, i) => (
               <FadeIn key={item.title} delay={i * 80} className="h-full">
                 <a
                   href={item.href}
