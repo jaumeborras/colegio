@@ -590,7 +590,7 @@ export default function HomePage() {
                   className="flex items-center gap-3 group"
                 >
                   <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
-                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("home.ib.link", lang)}</span>
+                  <span className="text-base font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("home.ib.link", lang)}</span>
                 </Link>
                 <a
                   href="https://colegiosancayetano.managebac.com/"
@@ -599,7 +599,7 @@ export default function HomePage() {
                   className="flex items-center gap-3 group"
                 >
                   <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
-                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>IB-ManageBac ↗</span>
+                  <span className="text-base font-medium group-hover:underline" style={{ color: "var(--gold)" }}>IB-ManageBac ↗</span>
                 </a>
                 <a
                   href="https://biblioteca.colegiosancayetano.com/"
@@ -608,7 +608,7 @@ export default function HomePage() {
                   className="flex items-center gap-3 group"
                 >
                   <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
-                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("stage.library", lang)} ↗</span>
+                  <span className="text-base font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("stage.library", lang)} ↗</span>
                 </a>
               </div>
             </FadeIn>
