@@ -167,82 +167,108 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
   const slideOut = dir === "next" ? "translateX(-40px)" : "translateX(40px)"
 
   return (
-    <div>
-      <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+    <>
+      {/* ── Móvil: scroll horizontal con tarjetas estilo noticias ── */}
+      <div
+        className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-4"
+        style={{ scrollbarWidth: "none" }}
+      >
         {cards.map((card, i) => (
-          <div
-            key={i}
-            className="absolute inset-0"
-            style={{
-              opacity:    i === current ? (animating ? 0 : 1) : 0,
-              transform:  i === current ? (animating ? slideIn : "translateX(0)") : slideOut,
-              transition: "opacity 0.35s ease, transform 0.35s ease",
-              pointerEvents: i === current ? "auto" : "none",
-            }}
-          >
-            <img
-              src={card.img}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ objectPosition: card.objectPos }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-12">
-              <h3
-                className="text-xl sm:text-2xl md:text-4xl font-semibold text-white mb-2 md:mb-3 leading-tight"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
+          <div key={i} className="snap-start shrink-0 w-[78vw] sm:w-[55vw] bg-white rounded-2xl overflow-hidden border border-[var(--border)]">
+            <div className="aspect-[16/9] overflow-hidden">
+              <img
+                src={card.img}
+                alt=""
+                className="w-full h-full object-cover"
+                style={{ objectPosition: card.objectPos }}
+              />
+            </div>
+            <div className="p-4">
+              <h3 className="font-semibold text-[var(--accent)] text-base leading-snug mb-1" style={{ fontFamily: "var(--font-serif)" }}>
                 {t(card.titleKey, lang)}
               </h3>
-              <p className="text-white/75 text-sm sm:text-base leading-relaxed">
-                {t(card.descKey, lang)}
-              </p>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t(card.descKey, lang)}</p>
             </div>
           </div>
         ))}
-
-        {/* Arrows */}
-        <button
-          onClick={prev}
-          aria-label="Anterior"
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button
-          onClick={next}
-          aria-label="Siguiente"
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
-        >
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
       </div>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-5">
-        {cards.map((_, i) => (
+      {/* ── Desktop: carrusel con flechas ── */}
+      <div className="hidden md:block">
+        <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              className="absolute inset-0"
+              style={{
+                opacity:    i === current ? (animating ? 0 : 1) : 0,
+                transform:  i === current ? (animating ? slideIn : "translateX(0)") : slideOut,
+                transition: "opacity 0.35s ease, transform 0.35s ease",
+                pointerEvents: i === current ? "auto" : "none",
+              }}
+            >
+              <img
+                src={card.img}
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: card.objectPos }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-12">
+                <h3
+                  className="text-4xl font-semibold text-white mb-3 leading-tight"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  {t(card.titleKey, lang)}
+                </h3>
+                <p className="text-white/75 text-base leading-relaxed">
+                  {t(card.descKey, lang)}
+                </p>
+              </div>
+            </div>
+          ))}
+
           <button
-            key={i}
-            onClick={() => go(i, i > current ? "next" : "prev")}
-            aria-label={`Ir a tarjeta ${i + 1}`}
-            style={{
-              background: i === current ? "var(--accent)" : "var(--border)",
-              width: i === current ? "24px" : "8px",
-              height: "8px",
-              borderRadius: "9999px",
-              border: "none",
-              cursor: "pointer",
-              transition: "width 0.3s ease, background 0.3s ease",
-              padding: 0,
-            }}
-          />
-        ))}
+            onClick={prev}
+            aria-label="Anterior"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            onClick={next}
+            aria-label="Siguiente"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="flex justify-center gap-2 mt-5">
+          {cards.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => go(i, i > current ? "next" : "prev")}
+              aria-label={`Ir a tarjeta ${i + 1}`}
+              style={{
+                background: i === current ? "var(--accent)" : "var(--border)",
+                width: i === current ? "24px" : "8px",
+                height: "8px",
+                borderRadius: "9999px",
+                border: "none",
+                cursor: "pointer",
+                transition: "width 0.3s ease, background 0.3s ease",
+                padding: 0,
+              }}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
