@@ -33,7 +33,8 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 ## Home (`/`)
 
 ### Hero
-- Imagen de fondo: `/fotos/dron.jpg` con efecto parallax (scroll 0.25×)
+- **Desktop**: vídeo YouTube de fondo (`B7tV4O1MLXw`, autoplay muted loop sin controles). Overlay negro que se desvanece a los 3.5s para ocultar los controles de YouTube al arrancar.
+- **Móvil**: imagen estática `/fotos/dron.jpg` (el vídeo se omite para no penalizar la carga)
 - Overlay oscuro al 55% para legibilidad
 - Tag superior: "COLEGIO SAN CAYETANO" / "PALMA DE MALLORCA" (dos líneas)
 - Titular serif centrado (Cormorant Garamond, font-light): "Educamos personas con valores / para un futuro global"
@@ -42,7 +43,6 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 - Subtítulo inferior: "Desde 1962"
 - Flecha de scroll visible abajo al centro
 - Hero height: 88svh (deja asomar la sección siguiente)
-- Botón "Admisiones" en top-right eliminado (Admisiones está en el nav principal)
 
 ### Sección intro — Misión
 > Somos un colegio privado con más de 60 años de historia en Palma de Mallorca de la Orden Teatina.
@@ -52,14 +52,15 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 ### Por qué elegirnos
 **Tag:** ¿Por qué elegirnos?  
 **Título:** Un proyecto educativo diferente (Cormorant Garamond, font-light, azul corporativo)  
-4 tarjetas en bento grid (tarjeta 1: 2 cols × 2 filas; tarjetas 2–3: 1 col × 1 fila; tarjeta 4: 3 cols ancho completo). Foto + título serif + descripción sobre overlay oscuro:
+**Layout desktop:** 4 tarjetas iguales en grid de 4 columnas (estilo noticias: imagen arriba, texto abajo, fondo blanco con borde)  
+**Layout móvil:** scroll horizontal tipo carrusel con snap, tarjetas al 78vw con peek efecto
 
 | Título | Descripción | Imagen |
 |---|---|---|
 | Multilingüismo | Castellano, catalán e inglés en todas las etapas. Alemán a partir de quinto de primaria. | `/fotos/multi.jpg` |
-| Excelencia académica | Educación de calidad con buenos resultados. | `/fotos/excelencia.jpg` |
-| Atención personalizada | Profesores y orientadores acompañan a los estudiantes durante el proceso. | `/fotos/bachillerato.jpg` |
-| Educación en valores | Nuestro proyecto educativo va más allá de los resultados académicos. | `/fotos/edu.jpeg` |
+| Excelencia académica | Orientada a construir un futuro prometedor. | `/fotos/excelencia.jpg` |
+| Debate y oratoria | Los estudiantes aprenden a argumentar con claridad, defender sus ideas y comunicarse con confianza en público. | `/fotos/debate.png` |
+| Bachillerato nacional e internacional | El camino hacia las universidades españolas y extranjeras más prestigiosas, con titulación dual. | `/fotos/edu.jpeg` |
 
 ### Stats
 Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y abajo.
@@ -92,14 +93,15 @@ Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y ab
 | Extraescolares | `/extraescolares` |
 
 ### Bachillerato Internacional (sección)
-- Imagen: `/fotos/IB.jpg`
-- Título: "Programa Diploma IB"
+- Imagen de fondo: `/fotos/IB.jpg` (opacity 0.12, parallax)
+- Tag sobre la imagen: "Bachillerato Internacional" (text-base, dorado)
+- Badge dentro de la imagen: "+140 países · +5.000 colegios" (text-sm)
+- Título: "Programa IB" (Cormorant Garamond, font-light, blanco)
 - Texto: "El Programa Diploma del IB es un currículo internacional de dos años reconocido por las mejores universidades del mundo. Rigor académico, pensamiento crítico y perspectiva global."
-- Enlaces:
-  - Ver programa IB → `/etapas/ib`
-  - Programa Diploma IB → https://sites.google.com/csc.edu.es/csc22esp-ibprograma (externo)
-  - IB-ManageBac → https://colegiosancayetano.managebac.com/ (externo)
-  - Biblioteca → https://biblioteca.colegiosancayetano.com/ (externo)
+- Enlaces (text-base):
+  - Ver Programa IB → `/etapas/ib`
+  - IB-ManageBac ↗ → https://colegiosancayetano.managebac.com/ (externo)
+  - Biblioteca ↗ → https://biblioteca.colegiosancayetano.com/ (externo)
 
 ### Últimas noticias
 | # | Título | Fuente | Fecha | Imagen | Enlace |
@@ -108,9 +110,8 @@ Sección azul con imagen de fondo al 8% de opacidad, líneas doradas arriba y ab
 | 2 | San Cayetano: una ventana al mundo a través del Bachillerato Internacional | Ultima Hora | 22 abril 2026 | `/fotos/noticias2.jpg` | https://www.ultimahora.es/monograficos/centros-privados-concertados/2026/04/22/14773/san-cayetano-ventana-mundo-traves-del-bachillerato-internacional.html |
 | 3 | Un colegio de Palma, líder mundial en lectura en inglés entre más de 9.000 escuelas | Diario de Mallorca | 25 febrero 2026 | `/fotos/noticias3.png` | https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html |
 
-### Noticias — layout editorial
-- Primera noticia: tarjeta destacada a ancho completo (imagen izquierda + texto derecha)
-- Noticias 2 y 3: dos columnas iguales debajo
+### Noticias — layout
+- 3 tarjetas iguales en grid de 3 columnas (desktop) / 2 columnas (tablet) / 1 columna (móvil)
 - Títulos de noticias en azul corporativo (`var(--accent)`)
 
 ### CTA Admisiones
