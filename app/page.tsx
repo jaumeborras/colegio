@@ -138,6 +138,52 @@ function FadeIn({ children, delay = 0, className = "" }: {
   )
 }
 
+function HeroVideo() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 3500)
+    return () => clearTimeout(t)
+  }, [])
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* iframe siempre cargando en background */}
+      <iframe
+        src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
+        allow="autoplay; fullscreen"
+        frameBorder="0"
+        style={{
+          position: "absolute",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          minWidth: "177.78vh",
+          minHeight: "56.25vw",
+          width: "100%", height: "100%",
+          border: "none",
+          pointerEvents: "none",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.8s ease",
+        }}
+      />
+      {/* Imagen de portada que se desvanece una vez el vídeo está corriendo */}
+      <Image
+        src="/fotos/dron.jpg"
+        alt=""
+        fill
+        className="object-cover object-center"
+        priority
+        style={{
+          opacity: visible ? 0 : 1,
+          transition: "opacity 0.8s ease",
+        }}
+      />
+      {/* Bloquea clics */}
+      <div className="absolute inset-0" />
+    </div>
+  )
+}
+
 function WhyUsCarousel({ lang }: { lang: Lang }) {
   const [current, setCurrent] = useState(0)
   const [dir, setDir] = useState<"next" | "prev">("next")
@@ -349,26 +395,7 @@ export default function HomePage() {
         <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 100%)" }} />
 
         {/* Vídeo YouTube de fondo */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <iframe
-            src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
-            allow="autoplay; fullscreen"
-            frameBorder="0"
-            className="absolute border-none"
-            style={{
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              minWidth: "177.78vh",
-              minHeight: "56.25vw",
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none",
-            }}
-          />
-          {/* Capa transparente para bloquear cualquier interacción con el iframe */}
-          <div className="absolute inset-0" />
-        </div>
+        <HeroVideo />
 
 
         {/* Titular central */}
