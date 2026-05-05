@@ -148,7 +148,6 @@ function HeroVideo() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* iframe siempre cargando en background */}
       <iframe
         src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
         allow="autoplay; fullscreen"
@@ -162,24 +161,18 @@ function HeroVideo() {
           width: "100%", height: "100%",
           border: "none",
           pointerEvents: "none",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.8s ease",
         }}
       />
-      {/* Imagen de portada que se desvanece una vez el vídeo está corriendo */}
-      <Image
-        src="/fotos/dron.jpg"
-        alt=""
-        fill
-        className="object-cover object-center"
-        priority
+      {/* Overlay oscuro que se desvanece para ocultar los controles de YouTube al arrancar */}
+      <div
+        className="absolute inset-0"
         style={{
+          background: "#000",
           opacity: visible ? 0 : 1,
           transition: "opacity 0.8s ease",
+          pointerEvents: "none",
         }}
       />
-      {/* Bloquea clics */}
-      <div className="absolute inset-0" />
     </div>
   )
 }
