@@ -317,17 +317,17 @@ export default function HomePage() {
               </h2>
             </FadeIn>
             <FadeIn delay={240}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4 text-justify" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.p1", lang)}
               </p>
             </FadeIn>
             <FadeIn delay={320}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-4 text-justify" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.p2", lang)}
               </p>
             </FadeIn>
             <FadeIn delay={400}>
-              <p className="text-[var(--text-secondary)] leading-relaxed mb-7" style={{ fontFamily: "var(--font-serif)" }}>
+              <p className="text-[var(--text-secondary)] leading-relaxed mb-7 text-justify" style={{ fontFamily: "var(--font-serif)" }}>
                 {t("home.mission.p3", lang)}
               </p>
             </FadeIn>
