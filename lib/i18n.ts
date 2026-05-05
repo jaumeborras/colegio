@@ -113,12 +113,12 @@ const d: Dict = {
     en: "Students learn to argue clearly and communicate their ideas in different languages.",
     de: "Die Schüler lernen, klar zu argumentieren und ihre Ideen in verschiedenen Sprachen zu vermitteln.",
   },
-  "home.whyus.values.title": { es: "Educación en valores",    ca: "Educació en valors",          en: "Values education",             de: "Werteerziehung" },
+  "home.whyus.values.title": { es: "Bachillerato nacional e internacional", ca: "Batxillerat nacional i internacional", en: "National & international baccalaureate", de: "Nationales und internationales Abitur" },
   "home.whyus.values.desc":  {
-    es: "Nuestro proyecto educativo va más allá de los resultados académicos.",
-    ca: "El nostre projecte educatiu va més enllà dels resultats acadèmics.",
-    en: "Our educational project goes beyond academic results.",
-    de: "Unser Bildungsprojekt geht über akademische Ergebnisse hinaus.",
+    es: "El camino hacia las universidades españolas y extranjeras con los mejores profesores.",
+    ca: "El camí cap a les universitats espanyoles i estrangeres amb els millors professors.",
+    en: "The path to Spanish and international universities with the best teachers.",
+    de: "Der Weg zu spanischen und ausländischen Universitäten mit den besten Lehrern.",
   },
 
   "home.stages.title":    { es: "Etapas educativas",          ca: "Etapes educatives",            en: "Educational stages",           de: "Bildungsstufen" },
