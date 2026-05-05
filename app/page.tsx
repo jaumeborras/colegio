@@ -222,7 +222,7 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
             <div className="flex-1 p-5">
               <h3
                 className="text-base font-semibold text-[var(--accent)] leading-snug mb-2"
-                style={{ fontFamily: "var(--font-serif)" }}
+                style={{ fontFamily: "var(--font-serif)", minHeight: "2.75rem" }}
               >
                 {t(card.titleKey, lang)}
               </h3>
