@@ -568,11 +568,9 @@ export default function HomePage() {
             ].map((s, i) => (
               <FadeIn key={s.key} delay={i * 80}>
                 <Link href={s.href} className="group relative block overflow-hidden rounded-2xl aspect-[3/4]">
-                  <img
-                    src={s.img}
-                    alt={t(s.key, lang)}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    style={{ objectPosition: s.pos }}
+                  <div
+                    className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${s.img})`, backgroundSize: "cover", backgroundPosition: s.pos }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   <div className="absolute inset-0 bg-[var(--accent)]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
