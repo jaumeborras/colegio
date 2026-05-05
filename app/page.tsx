@@ -170,11 +170,19 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
     <>
       {/* ── Móvil: scroll horizontal con tarjetas estilo noticias ── */}
       <div
-        className="md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-4"
-        style={{ scrollbarWidth: "none" }}
+        className="md:hidden flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-6 pb-5"
+        style={{ scrollbarWidth: "none", scrollPaddingInline: "10vw" }}
       >
         {cards.map((card, i) => (
-          <div key={i} className="snap-start shrink-0 w-[78vw] sm:w-[55vw] bg-white rounded-2xl overflow-hidden border border-[var(--border)]">
+          <div
+            key={i}
+            className="snap-center shrink-0 bg-white rounded-2xl overflow-hidden border border-[var(--border)]"
+            style={{
+              width: "78vw",
+              marginLeft:  i === 0 ? "10vw" : 0,
+              marginRight: i === cards.length - 1 ? "10vw" : 0,
+            }}
+          >
             <div className="aspect-[16/9] overflow-hidden">
               <img
                 src={card.img}
@@ -190,6 +198,12 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{t(card.descKey, lang)}</p>
             </div>
           </div>
+        ))}
+      </div>
+      {/* Dots móvil */}
+      <div className="md:hidden flex justify-center gap-2 mt-1">
+        {cards.map((_, i) => (
+          <div key={i} className="w-2 h-2 rounded-full" style={{ background: i === 0 ? "var(--accent)" : "var(--border)" }} />
         ))}
       </div>
 
