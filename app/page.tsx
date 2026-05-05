@@ -546,8 +546,8 @@ export default function HomePage() {
                     </span>
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
-                    <p className="text-white/60 text-xs sm:text-sm font-medium uppercase tracking-widest mb-1">{t(s.agesKey, lang)}</p>
-                    <p className="text-white font-semibold text-base sm:text-xl leading-tight">{t(s.key, lang)}</p>
+                    <p className="text-white/60 text-xs sm:text-base font-medium uppercase tracking-widest mb-1">{t(s.agesKey, lang)}</p>
+                    <p className="text-white font-semibold text-lg sm:text-2xl leading-tight">{t(s.key, lang)}</p>
                   </div>
                 </Link>
               </FadeIn>
