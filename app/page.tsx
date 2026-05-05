@@ -210,7 +210,7 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
       {/* ── Desktop: grid de 4 tarjetas ── */}
       <div className="hidden md:grid md:grid-cols-4 gap-5 items-stretch">
         {cards.map((card, i) => (
-          <div key={i} className="group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+          <div key={i} className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300">
             <div className="aspect-[4/3] overflow-hidden shrink-0">
               <img
                 src={card.img}
@@ -219,14 +219,14 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
                 style={{ objectPosition: card.objectPos }}
               />
             </div>
-            <div className="flex-1 p-5" style={{ background: "var(--accent)" }}>
+            <div className="flex-1 p-5">
               <h3
-                className="text-lg font-semibold text-white leading-snug mb-2"
+                className="text-base font-semibold text-[var(--accent)] leading-snug mb-2"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
                 {t(card.titleKey, lang)}
               </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+              <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
                 {t(card.descKey, lang)}
               </p>
             </div>
