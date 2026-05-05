@@ -351,7 +351,7 @@ export default function HomePage() {
         {/* Vídeo YouTube de fondo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <iframe
-            src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1"
+            src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
             allow="autoplay; fullscreen"
             frameBorder="0"
             className="absolute border-none"
@@ -363,8 +363,11 @@ export default function HomePage() {
               minHeight: "56.25vw",
               width: "100%",
               height: "100%",
+              pointerEvents: "none",
             }}
           />
+          {/* Capa transparente para bloquear cualquier interacción con el iframe */}
+          <div className="absolute inset-0" />
         </div>
 
 
