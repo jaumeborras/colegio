@@ -207,38 +207,42 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
         ))}
       </div>
 
-      {/* ── Desktop: grid de 4 tarjetas ── */}
-      <div className="hidden md:flex md:flex-col gap-4">
+      {/* ── Desktop: imagen al borde, texto en grande ── */}
+      <div className="hidden md:block">
         {cards.map((card, i) => {
-          const leftMargin = i % 2 === 0
+          const imageRight = i % 2 === 0
           return (
-            <div
-              key={i}
-              className="group flex rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
-              style={{ width: "78%", marginLeft: leftMargin ? "22%" : "0" }}
-            >
-              <div className="w-[42%] shrink-0 overflow-hidden">
+            <div key={i} className="flex items-stretch border-t border-[var(--border)]" style={{ minHeight: 360 }}>
+              {/* Texto */}
+              <div className={`flex-1 flex items-center py-14 ${imageRight ? "justify-end pr-16 pl-8" : "justify-start pl-16 pr-8"}`}>
+                <div className="max-w-sm">
+                  <h3
+                    className="text-3xl lg:text-4xl font-semibold text-[var(--accent)] leading-tight mb-5"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    {t(card.titleKey, lang)}
+                  </h3>
+                  <div className="h-px bg-[var(--border)] mb-5" />
+                  <p className="text-[var(--text-secondary)] leading-relaxed">
+                    {t(card.descKey, lang)}
+                  </p>
+                </div>
+              </div>
+              {/* Imagen flush al borde */}
+              <div
+                className={`w-[52%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-3xl" : "order-first rounded-r-3xl"}`}
+              >
                 <img
                   src={card.img}
                   alt=""
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                   style={{ objectPosition: card.objectPos }}
                 />
-              </div>
-              <div className="flex-1 flex flex-col justify-center p-7" style={{ background: "var(--accent)" }}>
-                <h3
-                  className="text-xl font-semibold text-white leading-snug mb-3"
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  {t(card.titleKey, lang)}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
-                  {t(card.descKey, lang)}
-                </p>
               </div>
             </div>
           )
         })}
+        <div className="border-t border-[var(--border)]" />
       </div>
     </>
   )
@@ -450,9 +454,9 @@ export default function HomePage() {
       </section>
 
       {/* ── POR QUÉ ELEGIRNOS ── */}
-      <section className="bg-[var(--bg-secondary)] py-16 md:py-24">
-        <div className="max-w-screen-xl mx-auto px-6">
-          <FadeIn className="text-center mb-12 md:mb-16">
+      <section className="bg-white overflow-hidden">
+        <div className="max-w-screen-xl mx-auto px-6 pt-16 md:pt-24 pb-10 md:pb-12">
+          <FadeIn className="text-center">
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">
               {t("home.whyus.tag", lang)}
             </p>
@@ -460,10 +464,10 @@ export default function HomePage() {
               {t("home.whyus.title", lang)}
             </h2>
           </FadeIn>
-          <FadeIn>
-            <WhyUsCarousel lang={lang} />
-          </FadeIn>
         </div>
+        <FadeIn>
+          <WhyUsCarousel lang={lang} />
+        </FadeIn>
       </section>
 
       {/* ── STATS ── */}
