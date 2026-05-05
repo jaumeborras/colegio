@@ -203,8 +203,8 @@ const d: Dict = {
     en: "The IB Diploma Programme is a two-year international curriculum recognised by the world's leading universities. Academic rigour, critical thinking and global perspective.",
     de: "Das IB-Diploma-Programm ist ein zweijähriger internationaler Lehrplan, der von den besten Universitäten der Welt anerkannt wird. Akademische Strenge, kritisches Denken und globale Perspektive.",
   },
-  "home.ib.link":  { es: "Ver programa IB",   ca: "Veure programa IB",  en: "View IB programme",  de: "IB-Programm ansehen" },
-  "home.ib.badge": { es: "+75 países · +2.000 universidades", ca: "+75 països · +2.000 universitats", en: "+75 countries · +2,000 universities", de: "+75 Länder · +2.000 Universitäten" },
+  "home.ib.link":  { es: "Ver Programa IB",   ca: "Veure Programa IB",  en: "View IB Programme",  de: "IB-Programm ansehen" },
+  "home.ib.badge": { es: "+140 países · +5.000 colegios", ca: "+140 països · +5.000 col·legis", en: "+140 countries · +5,000 schools", de: "+140 Länder · +5.000 Schulen" },
 
   // ── News section (home) ──────────────────────────────────────────────────────
   "home.news.tag":   { es: "Actualidad",       ca: "Actualitat",       en: "News",              de: "Neuigkeiten" },

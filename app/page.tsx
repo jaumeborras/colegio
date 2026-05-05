@@ -602,15 +602,6 @@ export default function HomePage() {
                   <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("home.ib.link", lang)}</span>
                 </Link>
                 <a
-                  href="https://sites.google.com/csc.edu.es/csc22esp-ibprograma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 group"
-                >
-                  <span className="w-8 h-px transition-all duration-300 group-hover:w-12" style={{ background: "var(--gold)" }} />
-                  <span className="text-sm font-medium group-hover:underline" style={{ color: "var(--gold)" }}>{t("nav.ib.diploma", lang)} ↗</span>
-                </a>
-                <a
                   href="https://colegiosancayetano.managebac.com/"
                   target="_blank"
                   rel="noopener noreferrer"
