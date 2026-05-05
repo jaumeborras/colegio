@@ -242,14 +242,10 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
               marginRight: i === cards.length - 1 ? "10vw" : 0,
             }}
           >
-            <div className="aspect-[16/9] overflow-hidden">
-              <img
-                src={card.img}
-                alt=""
-                className="w-full h-full object-cover"
-                style={{ objectPosition: card.objectPos }}
-              />
-            </div>
+            <div
+              className="aspect-[16/9]"
+              style={{ backgroundImage: `url(${card.img})`, backgroundSize: "cover", backgroundPosition: card.objectPos }}
+            />
             <div className="p-4">
               <h3 className="font-semibold text-[var(--accent)] text-base leading-snug mb-1" style={{ fontFamily: "var(--font-serif)" }}>
                 {t(card.titleKey, lang)}
@@ -270,14 +266,10 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
       <div className="hidden md:grid md:grid-cols-4 gap-5 items-stretch">
         {cards.map((card, i) => (
           <div key={i} className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300">
-            <div className="aspect-[4/3] overflow-hidden shrink-0">
-              <img
-                src={card.img}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ objectPosition: card.objectPos }}
-              />
-            </div>
+            <div
+              className="aspect-[4/3] shrink-0 overflow-hidden transition-transform duration-500 group-hover:scale-105"
+              style={{ backgroundImage: `url(${card.img})`, backgroundSize: "cover", backgroundPosition: card.objectPos }}
+            />
             <div className="flex-1 p-5">
               <h3
                 className="text-base font-semibold text-[var(--accent)] leading-snug mb-2"
