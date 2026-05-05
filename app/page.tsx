@@ -208,30 +208,37 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
       </div>
 
       {/* ── Desktop: grid de 4 tarjetas ── */}
-      <div className="hidden md:grid md:grid-cols-4 gap-5 items-stretch">
-        {cards.map((card, i) => (
-          <div key={i} className="group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-            <div className="aspect-[4/3] overflow-hidden shrink-0">
-              <img
-                src={card.img}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style={{ objectPosition: card.objectPos }}
-              />
+      <div className="hidden md:flex md:flex-col gap-4">
+        {cards.map((card, i) => {
+          const leftMargin = i % 2 === 0
+          return (
+            <div
+              key={i}
+              className="group flex rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300"
+              style={{ width: "78%", marginLeft: leftMargin ? "22%" : "0" }}
+            >
+              <div className="w-[42%] shrink-0 overflow-hidden">
+                <img
+                  src={card.img}
+                  alt=""
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: card.objectPos }}
+                />
+              </div>
+              <div className="flex-1 flex flex-col justify-center p-7" style={{ background: "var(--accent)" }}>
+                <h3
+                  className="text-xl font-semibold text-white leading-snug mb-3"
+                  style={{ fontFamily: "var(--font-serif)" }}
+                >
+                  {t(card.titleKey, lang)}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.7)" }}>
+                  {t(card.descKey, lang)}
+                </p>
+              </div>
             </div>
-            <div className="flex-1 p-5" style={{ background: "var(--accent)" }}>
-              <h3
-                className="text-lg font-semibold text-white leading-snug mb-2"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                {t(card.titleKey, lang)}
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-                {t(card.descKey, lang)}
-              </p>
-            </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </>
   )
