@@ -348,21 +348,22 @@ export default function HomePage() {
         <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.55)" }} />
         <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 100%)" }} />
 
-        <div
-          className="absolute inset-x-0 pointer-events-none"
-          style={{
-            top: "-25%",
-            height: "150%",
-            transform: `translateY(${heroParallax}px)`,
-            willChange: "transform",
-          }}
-        >
-          <Image
-            src="/fotos/dron.jpg"
-            alt="Colegio San Cayetano"
-            fill
-            className="object-cover object-center"
-            priority
+        {/* Vídeo YouTube de fondo */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <iframe
+            src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1"
+            allow="autoplay; fullscreen"
+            frameBorder="0"
+            className="absolute border-none"
+            style={{
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              minWidth: "177.78vh",
+              minHeight: "56.25vw",
+              width: "100%",
+              height: "100%",
+            }}
           />
         </div>
 
