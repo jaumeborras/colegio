@@ -144,8 +144,13 @@ export default function FloatingContact() {
       {/* Botón flotante */}
       <button
         onClick={() => setOpen(v => !v)}
-        className="absolute bottom-5 right-5 z-40 flex items-center justify-center w-14 h-14 rounded-full text-white shadow-xl transition-all hover:scale-105 active:scale-95"
-        style={{ background: "var(--accent)" }}
+        className="absolute bottom-5 right-5 z-40 flex items-center gap-2 text-white shadow-xl transition-all hover:scale-105 active:scale-95"
+        style={{
+          background: "var(--accent)",
+          borderRadius: open ? "50%" : "9999px",
+          padding: open ? "14px" : "12px 20px",
+          transition: "border-radius 0.25s ease, padding 0.25s ease, background 0.2s",
+        }}
         aria-label="Contáctanos"
       >
         {open ? (
@@ -153,9 +158,12 @@ export default function FloatingContact() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-          </svg>
+          <>
+            <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            <span className="text-sm font-medium">Contáctanos</span>
+          </>
         )}
       </button>
     </>
