@@ -207,45 +207,31 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
         ))}
       </div>
 
-      {/* ── Desktop: imagen al borde, texto con padding asimétrico ── */}
-      <div className="hidden md:flex md:flex-col gap-1 pb-4">
-        {cards.map((card, i) => {
-          const imageRight = i % 2 === 0
-          return (
-            <div key={i} className="flex items-stretch" style={{ minHeight: 180 }}>
-              {/* Texto */}
-              <div
-                className={`flex-1 flex flex-col justify-center py-5 ${imageRight ? "pl-12 lg:pl-16" : "pr-12 lg:pr-16"}`}
-              >
-                <div className={imageRight ? "pr-6" : "pl-6"}>
-                  <h3
-                    className="text-xl lg:text-2xl font-semibold text-[var(--accent)] leading-tight mb-3"
-                    style={{ fontFamily: "var(--font-serif)" }}
-                  >
-                    {t(card.titleKey, lang)}
-                  </h3>
-                </div>
-                <div className="h-px bg-[var(--border)] mb-3" />
-                <div className={imageRight ? "pr-6" : "pl-6"}>
-                  <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                    {t(card.descKey, lang)}
-                  </p>
-                </div>
-              </div>
-              {/* Imagen flush al borde */}
-              <div
-                className={`w-[35%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-2xl" : "order-first rounded-r-2xl"}`}
-              >
-                <img
-                  src={card.img}
-                  alt=""
-                  className="w-full h-full object-cover"
-                  style={{ objectPosition: card.objectPos }}
-                />
-              </div>
+      {/* ── Desktop: grid de 4 tarjetas ── */}
+      <div className="hidden md:grid md:grid-cols-4 gap-5 items-stretch">
+        {cards.map((card, i) => (
+          <div key={i} className="group flex flex-col rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+            <div className="aspect-[4/3] overflow-hidden shrink-0">
+              <img
+                src={card.img}
+                alt=""
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ objectPosition: card.objectPos }}
+              />
             </div>
-          )
-        })}
+            <div className="flex-1 p-5" style={{ background: "var(--accent)" }}>
+              <h3
+                className="text-lg font-semibold text-white leading-snug mb-2"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {t(card.titleKey, lang)}
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
+                {t(card.descKey, lang)}
+              </p>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   )
@@ -457,9 +443,9 @@ export default function HomePage() {
       </section>
 
       {/* ── POR QUÉ ELEGIRNOS ── */}
-      <section className="bg-white overflow-hidden">
-        <div className="max-w-screen-xl mx-auto px-6 pt-16 md:pt-24 pb-10 md:pb-12">
-          <FadeIn className="text-center">
+      <section className="bg-[var(--bg-secondary)] py-16 md:py-24">
+        <div className="max-w-screen-xl mx-auto px-6">
+          <FadeIn className="text-center mb-12 md:mb-16">
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">
               {t("home.whyus.tag", lang)}
             </p>
@@ -467,10 +453,10 @@ export default function HomePage() {
               {t("home.whyus.title", lang)}
             </h2>
           </FadeIn>
+          <FadeIn>
+            <WhyUsCarousel lang={lang} />
+          </FadeIn>
         </div>
-        <FadeIn>
-          <WhyUsCarousel lang={lang} />
-        </FadeIn>
       </section>
 
       {/* ── STATS ── */}
