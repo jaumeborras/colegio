@@ -115,7 +115,7 @@ export default function Footer() {
                 <img
                   src="/fotos/sancatv.png"
                   alt="Sanca TV"
-                  style={{ height: 28, width: "auto", display: "block", transition: "opacity 0.2s ease" }}
+                  style={{ height: 28, width: "auto", display: "block", transition: "opacity 0.2s ease", marginTop: -4 }}
                   onMouseEnter={e => (e.currentTarget.style.opacity = "0.6")}
                   onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                 />
