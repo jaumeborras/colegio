@@ -2,7 +2,7 @@
 import { useRef, useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { t } from "@/lib/i18n"
+import { t, type Lang } from "@/lib/i18n"
 import { useLanguage } from "@/lib/i18n-context"
 import FloatingContact from "@/components/FloatingContact"
 
@@ -134,6 +134,114 @@ function FadeIn({ children, delay = 0, className = "" }: {
       transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
     }}>
       {children}
+    </div>
+  )
+}
+
+function WhyUsCarousel({ lang }: { lang: Lang }) {
+  const [current, setCurrent] = useState(0)
+  const [dir, setDir] = useState<"next" | "prev">("next")
+  const [animating, setAnimating] = useState(false)
+
+  const cards = [
+    { img: "/fotos/multi.jpg",        titleKey: "home.whyus.multilingual.title", descKey: "home.whyus.multilingual.desc",  objectPos: "center" },
+    { img: "/fotos/excelencia.jpg",   titleKey: "home.whyus.excellence.title",   descKey: "home.whyus.excellence.desc",    objectPos: "center" },
+    { img: "/fotos/bachillerato.jpg", titleKey: "home.whyus.personalized.title", descKey: "home.whyus.personalized.desc",  objectPos: "center" },
+    { img: "/fotos/edu.jpeg",         titleKey: "home.whyus.values.title",       descKey: "home.whyus.values.desc",        objectPos: "center 33%" },
+  ]
+
+  function go(idx: number, direction: "next" | "prev") {
+    if (animating) return
+    setDir(direction)
+    setAnimating(true)
+    setTimeout(() => {
+      setCurrent(idx)
+      setAnimating(false)
+    }, 350)
+  }
+
+  const prev = () => go((current - 1 + cards.length) % cards.length, "prev")
+  const next = () => go((current + 1) % cards.length, "next")
+
+  const slideIn  = dir === "next" ? "translateX(40px)"  : "translateX(-40px)"
+  const slideOut = dir === "next" ? "translateX(-40px)" : "translateX(40px)"
+
+  return (
+    <div>
+      <div className="relative rounded-2xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+        {cards.map((card, i) => (
+          <div
+            key={i}
+            className="absolute inset-0"
+            style={{
+              opacity:    i === current ? (animating ? 0 : 1) : 0,
+              transform:  i === current ? (animating ? slideIn : "translateX(0)") : slideOut,
+              transition: "opacity 0.35s ease, transform 0.35s ease",
+              pointerEvents: i === current ? "auto" : "none",
+            }}
+          >
+            <img
+              src={card.img}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ objectPosition: card.objectPos }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-12">
+              <h3
+                className="text-xl sm:text-2xl md:text-4xl font-semibold text-white mb-2 md:mb-3 leading-tight"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {t(card.titleKey, lang)}
+              </h3>
+              <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
+                {t(card.descKey, lang)}
+              </p>
+            </div>
+          </div>
+        ))}
+
+        {/* Arrows */}
+        <button
+          onClick={prev}
+          aria-label="Anterior"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={next}
+          aria-label="Siguiente"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/15 hover:bg-white/30 backdrop-blur-sm flex items-center justify-center text-white transition-colors"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-2 mt-5">
+        {cards.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => go(i, i > current ? "next" : "prev")}
+            aria-label={`Ir a tarjeta ${i + 1}`}
+            style={{
+              background: i === current ? "var(--accent)" : "var(--border)",
+              width: i === current ? "24px" : "8px",
+              height: "8px",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              transition: "width 0.3s ease, background 0.3s ease",
+              padding: 0,
+            }}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -354,58 +462,9 @@ export default function HomePage() {
               {t("home.whyus.title", lang)}
             </h2>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-
-            {/* Tarjeta grande: 2 cols × 2 filas */}
-            <FadeIn delay={0} className="md:col-span-2 md:row-span-2 aspect-[16/9] md:aspect-auto md:h-full">
-              <div className="relative rounded-2xl overflow-hidden h-full group">
-                <img src="/fotos/multi.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
-                  <h3 className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3 leading-tight" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.multilingual.title", lang)}</h3>
-                  <p className="text-white/70 text-sm leading-relaxed max-w-sm">{t("home.whyus.multilingual.desc", lang)}</p>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Tarjeta 2 */}
-            <FadeIn delay={100}>
-              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-[4/3] group">
-                <img src="/fotos/excelencia.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.excellence.title", lang)}</h3>
-                  <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.excellence.desc", lang)}</p>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Tarjeta 3 */}
-            <FadeIn delay={200}>
-              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-[4/3] group">
-                <img src="/fotos/bachillerato.jpg" alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="text-lg font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.personalized.title", lang)}</h3>
-                  <p className="text-white/65 text-sm leading-relaxed">{t("home.whyus.personalized.desc", lang)}</p>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Tarjeta 4: franja ancha */}
-            <FadeIn delay={300} className="md:col-span-3">
-              <div className="relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-48 group">
-                <img src="/fotos/edu.jpeg" alt="" className="absolute inset-0 w-full h-full object-cover object-[center_33%] transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-black/10" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-9">
-                  <h3 className="text-lg md:text-2xl font-semibold text-white mb-1" style={{ fontFamily: "var(--font-serif)" }}>{t("home.whyus.values.title", lang)}</h3>
-                  <p className="text-white/70 text-sm leading-relaxed max-w-xl">{t("home.whyus.values.desc", lang)}</p>
-                </div>
-              </div>
-            </FadeIn>
-
-          </div>
+          <FadeIn>
+            <WhyUsCarousel lang={lang} />
+          </FadeIn>
         </div>
       </section>
 
