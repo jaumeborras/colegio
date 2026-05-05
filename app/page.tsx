@@ -624,7 +624,7 @@ export default function HomePage() {
                 {/* Badge dorado */}
                 <div className="absolute bottom-5 left-5 flex items-center gap-3">
                   <div className="w-8 h-[2px]" style={{ background: "var(--gold)" }} />
-                  <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--gold)" }}>
+                  <span className="text-sm font-semibold uppercase tracking-widest" style={{ color: "var(--gold)" }}>
                     {t("home.ib.badge", lang)}
                   </span>
                 </div>
