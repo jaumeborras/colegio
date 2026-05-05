@@ -101,10 +101,10 @@ const d: Dict = {
   },
   "home.whyus.excellence.title": { es: "Excelencia académica", ca: "Excel·lència acadèmica",    en: "Academic excellence",          de: "Akademische Exzellenz" },
   "home.whyus.excellence.desc":  {
-    es: "Educación de calidad con buenos resultados.",
-    ca: "Educació de qualitat amb bons resultats.",
-    en: "Quality education with strong results.",
-    de: "Hochwertige Bildung mit guten Ergebnissen.",
+    es: "Orientada a construir un futuro prometedor.",
+    ca: "Orientada a construir un futur prometedor.",
+    en: "Focused on building a promising future.",
+    de: "Ausgerichtet auf eine vielversprechende Zukunft.",
   },
   "home.whyus.personalized.title": { es: "Debate y oratoria", ca: "Debat i oratòria", en: "Debate & public speaking", de: "Debatte und Rhetorik" },
   "home.whyus.personalized.desc":  {
