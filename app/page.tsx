@@ -208,24 +208,24 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
       </div>
 
       {/* ── Desktop: imagen al borde, texto con padding asimétrico ── */}
-      <div className="hidden md:flex md:flex-col gap-4 pb-6">
+      <div className="hidden md:flex md:flex-col gap-1 pb-4">
         {cards.map((card, i) => {
           const imageRight = i % 2 === 0
           return (
-            <div key={i} className="flex items-stretch" style={{ minHeight: 260 }}>
+            <div key={i} className="flex items-stretch" style={{ minHeight: 180 }}>
               {/* Texto */}
               <div
-                className={`flex-1 flex flex-col justify-center py-8 ${imageRight ? "pl-16 lg:pl-20" : "pr-16 lg:pr-20"}`}
+                className={`flex-1 flex flex-col justify-center py-5 ${imageRight ? "pl-12 lg:pl-16" : "pr-12 lg:pr-16"}`}
               >
                 <div className={imageRight ? "pr-6" : "pl-6"}>
                   <h3
-                    className="text-2xl lg:text-3xl font-semibold text-[var(--accent)] leading-tight mb-4"
+                    className="text-xl lg:text-2xl font-semibold text-[var(--accent)] leading-tight mb-3"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {t(card.titleKey, lang)}
                   </h3>
                 </div>
-                <div className="h-px bg-[var(--border)] mb-4" />
+                <div className="h-px bg-[var(--border)] mb-3" />
                 <div className={imageRight ? "pr-6" : "pl-6"}>
                   <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                     {t(card.descKey, lang)}
@@ -234,7 +234,7 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
               </div>
               {/* Imagen flush al borde */}
               <div
-                className={`w-[45%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-2xl" : "order-first rounded-r-2xl"}`}
+                className={`w-[35%] shrink-0 overflow-hidden ${imageRight ? "rounded-l-2xl" : "order-first rounded-r-2xl"}`}
               >
                 <img
                   src={card.img}
