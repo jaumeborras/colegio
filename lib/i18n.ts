@@ -48,7 +48,7 @@ const d: Dict = {
   "nav.ib.diploma": { es: "Programa Diploma IB", ca: "Programa Diploma IB", en: "IB Diploma Programme", de: "IB-Diplomprogramm" },
 
   // ── Footer ───────────────────────────────────────────────────────────────────
-  "footer.hours":      { es: "L a V de 8:00 a 14:30h", ca: "Dl a Dv de 8:00 a 14:30h", en: "Mon–Fri 8:00–14:30", de: "Mo–Fr 8:00–14:30 Uhr" },
+  "footer.hours":      { es: "L a V de 8:00 a 17:00h", ca: "Dl a Dv de 8:00 a 17:00h", en: "Mon–Fri 8:00–17:00", de: "Mo–Fr 8:00–17:00 Uhr" },
   "footer.complaints": { es: "Canal de denuncias",               ca: "Canal de denúncies",           en: "Complaints channel",    de: "Beschwerdekanal" },
   "footer.jobs":       { es: "Trabaja con nosotros",             ca: "Treballa amb nosaltres",        en: "Work with us",          de: "Arbeite mit uns" },
   "footer.follow":     { es: "Síguenos en redes sociales",       ca: "Segueix-nos a les xarxes",      en: "Follow us",              de: "Folge uns" },
@@ -115,10 +115,10 @@ const d: Dict = {
   },
   "home.whyus.values.title": { es: "Bachillerato nacional e internacional", ca: "Batxillerat nacional i internacional", en: "National & international baccalaureate", de: "Nationales und internationales Abitur" },
   "home.whyus.values.desc":  {
-    es: "El camino hacia las universidades españolas y extranjeras con los mejores profesores.",
-    ca: "El camí cap a les universitats espanyoles i estrangeres amb els millors professors.",
-    en: "The path to Spanish and international universities with the best teachers.",
-    de: "Der Weg zu spanischen und ausländischen Universitäten mit den besten Lehrern.",
+    es: "El camino hacia las universidades españolas y extranjeras con los mejores resultados.",
+    ca: "El camí cap a les universitats espanyoles i estrangeres amb els millors resultats.",
+    en: "The path to Spanish and international universities with the best results.",
+    de: "Der Weg zu spanischen und ausländischen Universitäten mit den besten Ergebnissen.",
   },
 
   "home.stages.title":    { es: "Etapas educativas",          ca: "Etapes educatives",            en: "Educational stages",           de: "Bildungsstufen" },
@@ -661,7 +661,7 @@ const d: Dict = {
   "contact.phone.label":    { es: "Teléfono",   ca: "Telèfon",  en: "Phone",    de: "Telefon" },
   "contact.email.label":    { es: "Email",      ca: "Email",    en: "Email",    de: "E-Mail" },
   "contact.map.label":      { es: "Ver en Google Maps", ca: "Veure a Google Maps", en: "View on Google Maps", de: "Auf Google Maps ansehen" },
-  "contact.hours":          { es: "L a V de 8:00 a 14:30h", ca: "Dl a Dv de 8:00 a 14:30h", en: "Mon–Fri 8:00–14:30", de: "Mo–Fr 8:00–14:30 Uhr" },
+  "contact.hours":          { es: "L a V de 8:00 a 17:00h", ca: "Dl a Dv de 8:00 a 17:00h", en: "Mon–Fri 8:00–17:00", de: "Mo–Fr 8:00–17:00 Uhr" },
   "contact.form.title":     { es: "Formulario de contacto", ca: "Formulari de contacte", en: "Contact form",        de: "Kontaktformular" },
   "contact.form.name":      { es: "Nombre completo",        ca: "Nom complet",           en: "Full name",           de: "Vollständiger Name" },
   "contact.form.email":     { es: "Correo electrónico",     ca: "Correu electrònic",     en: "Email address",       de: "E-Mail-Adresse" },

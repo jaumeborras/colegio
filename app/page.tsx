@@ -204,9 +204,9 @@ function WhyUsCarousel({ lang }: { lang: Lang }) {
 
   const cards = [
     { img: "/fotos/multi.jpg",        titleKey: "home.whyus.multilingual.title", descKey: "home.whyus.multilingual.desc",  objectPos: "center" },
-    { img: "/fotos/excelencia.jpg",   titleKey: "home.whyus.excellence.title",   descKey: "home.whyus.excellence.desc",    objectPos: "center" },
+    { img: "/fotos/edu.jpeg",          titleKey: "home.whyus.excellence.title",   descKey: "home.whyus.excellence.desc",    objectPos: "center 33%" },
     { img: "/fotos/debate.png",       titleKey: "home.whyus.personalized.title", descKey: "home.whyus.personalized.desc",  objectPos: "center" },
-    { img: "/fotos/edu.jpeg",         titleKey: "home.whyus.values.title",       descKey: "home.whyus.values.desc",        objectPos: "center 33%" },
+    { img: "/fotos/bachillerato.jpg",   titleKey: "home.whyus.values.title",       descKey: "home.whyus.values.desc",        objectPos: "center" },
   ]
 
   function go(idx: number, direction: "next" | "prev") {
@@ -396,8 +396,7 @@ export default function HomePage() {
       {/* ── HERO ── */}
       <section className="relative w-full h-[88svh] min-h-[520px] overflow-hidden -mt-[72px]">
         {/* Overlay para legibilidad */}
-        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.55)" }} />
-        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.15) 100%)" }} />
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.15)" }} />
 
         {/* Vídeo YouTube de fondo */}
         <HeroVideo />
