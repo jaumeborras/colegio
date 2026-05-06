@@ -395,8 +395,10 @@ export default function HomePage() {
     <>
       {/* ── HERO ── */}
       <section className="relative w-full h-[88svh] min-h-[520px] overflow-hidden -mt-[72px]">
-        {/* Overlay para legibilidad */}
-        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.15)" }} />
+        {/* Overlay móvil (imagen estática) */}
+        <div className="md:hidden absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.55)" }} />
+        {/* Overlay desktop (vídeo) */}
+        <div className="hidden md:block absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.15)" }} />
 
         {/* Vídeo YouTube de fondo */}
         <HeroVideo />
