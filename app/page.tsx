@@ -138,62 +138,22 @@ function FadeIn({ children, delay = 0, className = "" }: {
   )
 }
 
-function HeroVideo() {
-  const [visible, setVisible] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)")
-    setIsDesktop(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches)
-    mq.addEventListener("change", handler)
-    return () => mq.removeEventListener("change", handler)
-  }, [])
-
-  useEffect(() => {
-    if (!isDesktop) return
-    const t = setTimeout(() => setVisible(true), 3500)
-    return () => clearTimeout(t)
-  }, [isDesktop])
-
-  if (!isDesktop) {
-    return (
-      <img
-        src="/fotos/dron.jpg"
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-    )
-  }
-
+function HeroImage({ parallax }: { parallax: number }) {
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <iframe
-        src="https://www.youtube.com/embed/B7tV4O1MLXw?autoplay=1&mute=1&loop=1&playlist=B7tV4O1MLXw&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
-        allow="autoplay; fullscreen"
-        frameBorder="0"
-        style={{
-          position: "absolute",
-          top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)",
-          minWidth: "177.78vh",
-          minHeight: "56.25vw",
-          width: "100%", height: "100%",
-          border: "none",
-          pointerEvents: "none",
-        }}
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "#000",
-          opacity: visible ? 0 : 1,
-          transition: "opacity 0.8s ease",
-          pointerEvents: "none",
-        }}
-      />
-    </div>
+    <img
+      src="/fotos/dron.jpg"
+      alt=""
+      aria-hidden="true"
+      className="absolute inset-x-0 w-full pointer-events-none"
+      style={{
+        top: "-20%",
+        height: "140%",
+        objectFit: "cover",
+        objectPosition: "center",
+        transform: `translateY(${parallax}px)`,
+        willChange: "transform",
+      }}
+    />
   )
 }
 
@@ -395,18 +355,16 @@ export default function HomePage() {
     <>
       {/* ── HERO ── */}
       <section className="relative w-full h-[88svh] min-h-[520px] overflow-hidden -mt-[72px]">
-        {/* Overlay móvil (imagen estática) */}
-        <div className="md:hidden absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.55)" }} />
-        {/* Overlay desktop (vídeo) */}
-        <div className="hidden md:block absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.15)" }} />
+        {/* Overlay */}
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: "rgba(0,0,0,0.45)" }} />
 
-        {/* Vídeo YouTube de fondo */}
-        <HeroVideo />
+        {/* Imagen de fondo */}
+        <HeroImage parallax={heroParallax} />
 
 
         {/* Titular central */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6 pointer-events-none">
-          <p className="hero-tag text-xs sm:text-sm font-semibold text-white/70 uppercase tracking-[0.35em] mb-4">
+          <p className="hero-tag text-xs sm:text-sm font-black text-white uppercase tracking-[0.35em] mb-4">
             Colegio San Cayetano
           </p>
           <TypewriterHero
@@ -414,7 +372,7 @@ export default function HomePage() {
             line1b={t("home.hero.line1b", lang)}
             line2={t("home.hero.line2", lang)}
           />
-          <p className="hero-cta mt-5 sm:mt-7 text-[10px] sm:text-xs text-white/50 uppercase tracking-[0.3em] flex items-center gap-3">
+          <p className="hero-cta mt-5 sm:mt-7 text-[10px] sm:text-xs font-black text-white/90 uppercase tracking-[0.3em] flex items-center gap-3">
             <span>Palma de Mallorca</span>
             <span className="text-white/30 text-base leading-none">·</span>
             <span>{t("home.hero.since", lang)}</span>
@@ -429,6 +387,15 @@ export default function HomePage() {
           </svg>
         </div>
 
+        <a
+          href="/propuesta.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute bottom-5 z-40 flex items-center gap-2 text-white shadow-xl transition-all hover:scale-105 active:scale-95 text-sm font-medium"
+          style={{ background: "var(--accent)", borderRadius: "9999px", padding: "12px 20px", right: "188px" }}
+        >
+          Propuesta
+        </a>
         <FloatingContact />
       </section>
 
@@ -733,9 +700,10 @@ export default function HomePage() {
         </div>
         {/* Texto + CTA */}
         <FadeIn className="max-w-screen-xl mx-auto px-6 py-12 md:py-14 text-center">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-light text-[var(--accent)] mb-3" style={{ fontFamily: "var(--font-serif)" }}>{t("home.cta.title", lang)}</h2>
-          <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-sm sm:text-base" style={{ fontFamily: "var(--font-serif)" }}>
-            {t("home.cta.desc", lang)}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--accent)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>{t("home.cta.title", lang)}</h2>
+          <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-base sm:text-lg" style={{ fontFamily: "var(--font-serif)" }}>
+            {t("home.cta.desc", lang)}<br />
+            {t("home.cta.desc2", lang)}
           </p>
           <Link
             href="/admisiones"

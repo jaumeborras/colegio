@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Web · Colegio San Cayetano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#2e5072;--navy-dark:#1a2f42;--navy-mid:#3a658f;
+  --gold:#c49a3c;--gold-light:#f0e6c4;--gold-faint:#faf6ec;
+  --white:#fff;--off:#f5f4f0;--slate:#eaedf6;
+  --text:#1a1a2e;--muted:#5c5c7a;--border:#dde3f0;
+  --green:#1e6847;--green-bg:#edf7f2;
+  --red:#991b1b;--red-bg:#fef2f2;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--off);line-height:1.6;overflow-x:hidden}
+
+/* ── progress bar ── */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0%;z-index:900;transition:width .08s linear}
+
+/* ── sidebar nav ── */
+#nav{display:none}
+
+/* ── sections ── */
+section{min-height:100vh;padding:80px;display:flex;flex-direction:column;justify-content:center}
+
+/* ── cover ── */
+#cover{background:var(--navy-dark);color:#fff;position:relative;overflow:hidden;padding:56px 80px;display:block;min-height:100vh}
+#cover .bg{position:absolute;inset:0;background:url('/fotos/dron.jpg') center/cover no-repeat;opacity:.14;mix-blend-mode:luminosity}
+.cover-inner{position:relative;z-index:1;min-height:calc(100vh - 112px)}
+.clogo{display:flex;align-items:center;gap:14px}
+.clogo img{height:44px;object-fit:contain;border-radius:4px}
+.clogo-txt{font-family:'Cormorant Garant',serif;font-size:14px;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.65);line-height:1.35}
+.ccenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:100%}
+.eyebrow-cover{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;font-weight:500}
+.cover-h1{font-family:'Cormorant Garant',serif;font-size:clamp(56px,9vw,104px);font-weight:300;line-height:1;color:#fff;margin-bottom:6px}
+.cover-h1 em{font-style:italic;color:var(--gold)}
+.cover-sub{font-size:16px;color:rgba(255,255,255,.5);margin-top:18px}
+.cteam{position:absolute;bottom:0;left:0;font-size:18px;color:rgba(255,255,255,.75);line-height:1.8}
+.cteam strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);margin-bottom:8px}
+.cdate{position:absolute;bottom:0;right:0;text-align:right;display:flex;flex-direction:column;gap:4px}
+.cdate-for{font-size:16px;color:rgba(255,255,255,.5)}
+.cdate-date{font-family:'Cormorant Garant',serif;font-size:52px;font-weight:300;color:rgba(255,255,255,.85);line-height:1}
+.scroll-q{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);display:flex;flex-direction:column;align-items:center;gap:8px;animation:bob 2.2s ease-in-out infinite}
+.scroll-q::after{content:'';width:1px;height:36px;background:rgba(255,255,255,.15)}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+/* ── shared section typography ── */
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:10px}
+h2.sh{font-family:'Cormorant Garant',serif;font-size:clamp(34px,4.5vw,60px);font-weight:400;line-height:1.1;color:var(--navy);margin-bottom:40px}
+h2.sh.light{color:#fff}
+h2.sh em{font-style:italic}
+
+/* ── intro ── */
+#intro{background:var(--white)}
+.intro-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.intro-body p{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.checks{display:flex;flex-direction:column;gap:10px;margin:28px 0}
+.chk{display:flex;align-items:center;gap:14px;padding:13px 18px;background:var(--slate);border-radius:8px;font-size:14px;font-weight:500;color:var(--navy);border-left:3px solid var(--navy);transition:all .2s}
+.chk:hover{background:var(--navy);color:#fff;border-color:var(--gold);transform:translateX(4px)}
+.chk-icon{color:var(--gold);font-size:16px;flex-shrink:0}
+.intro-img{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:4/5}
+.intro-img img{width:100%;height:100%;object-fit:cover}
+.intro-badge{position:absolute;bottom:20px;left:20px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;font-size:12px}
+.intro-badge strong{display:block;font-family:'Cormorant Garant',serif;font-size:24px;font-weight:600}
+
+/* ── problems ── */
+#problems{background:var(--navy-dark);color:#fff}
+.prob-intro{font-size:15px;color:rgba(255,255,255,.55);max-width:620px;margin-bottom:44px;line-height:1.75}
+.prob-intro strong{color:var(--gold)}
+.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.pcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:36px;transition:all .3s;position:relative;overflow:hidden;cursor:default}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.pcard:hover{background:rgba(255,255,255,.09);border-color:rgba(196,154,60,.25);transform:translateY(-3px)}
+.pcard:hover::before{transform:scaleX(1)}
+.pcode{font-size:12px;letter-spacing:.2em;color:var(--gold);margin-bottom:12px;font-weight:600}
+.ptitle{font-family:'Cormorant Garant',serif;font-size:32px;font-weight:600;color:#fff;margin-bottom:14px;line-height:1.15}
+.pdesc{font-size:17px;color:rgba(255,255,255,.55);line-height:1.65}
+.pdesc em{color:rgba(255,255,255,.75);font-style:italic}
+
+/* ── objectives ── */
+#objectives{background:var(--off)}
+blockquote.obj{font-family:'Cormorant Garant',serif;font-size:clamp(18px,2.2vw,24px);line-height:1.55;color:var(--text);max-width:780px;margin-bottom:52px;border-left:4px solid var(--gold);padding-left:28px}
+blockquote.obj em{font-style:italic;color:var(--navy)}
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gcard{background:var(--navy);color:#fff;border-radius:12px;padding:36px 28px;text-align:center;transition:transform .2s,box-shadow .2s}
+.gcard:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,35,102,.25)}
+.gicon{font-size:40px;margin-bottom:14px;display:block}
+.gcard .glabel{font-family:'Cormorant Garant',serif;font-size:28px;font-weight:600;margin-bottom:8px;color:#fff;white-space:normal;overflow:visible;text-overflow:unset}
+.gsub{font-size:16px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* ── proposal / ux wheel ── */
+#proposal{background:var(--white)}
+.prop-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.ux-wheel{position:relative;width:520px;height:520px;margin:0 auto}
+.ux-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:160px;height:160px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;font-family:'Cormorant Garant',serif;font-size:17px;font-weight:600;line-height:1.3;z-index:2;box-shadow:0 0 0 3px var(--gold),0 0 0 12px rgba(196,154,60,.12)}
+.ux-attr{position:absolute;width:110px;height:110px;background:var(--slate);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:500;color:var(--navy);line-height:1.3;padding:10px;transition:all .25s;cursor:default;border:2px solid transparent}
+.ux-attr:hover{background:var(--navy);color:#fff;border-color:var(--gold);transform:scale(1.1);z-index:3}
+.prop-text p{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:18px}
+.proto-btn{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s;margin:8px 0}
+.proto-btn:hover{background:var(--navy-mid)}
+
+/* ── scope ── */
+#scope{background:var(--off)}
+.scope-g{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.scol{background:var(--white);border-radius:16px;padding:32px}
+.shead{font-family:'Cormorant Garant',serif;font-size:20px;font-weight:600;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.scol.inc .shead{color:var(--green)}
+.scol.exc .shead{color:var(--red)}
+.sbadge{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.inc .sbadge{background:var(--green-bg);color:var(--green)}
+.exc .sbadge{background:var(--red-bg);color:var(--red)}
+.slist{list-style:none;display:flex;flex-direction:column;gap:8px}
+.slist li{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;padding:9px 12px;border-radius:7px}
+.inc .slist li{color:var(--text);background:var(--green-bg)}
+.exc .slist li{color:var(--muted);background:var(--red-bg)}
+.inc .slist li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.exc .slist li::before{content:'×';color:var(--red);font-weight:700;flex-shrink:0;margin-top:-1px;font-size:16px}
+
+/* ── gantt ── */
+#gantt-sec{background:var(--white);min-height:auto;padding:72px 80px}
+.gantt-wrap{overflow-x:auto;margin-top:8px}
+.gantt-box{min-width:860px}
+.gh-row{display:grid;grid-template-columns:200px repeat(14,1fr);margin-bottom:6px;border-bottom:2px solid var(--border)}
+.gh-cell{text-align:center;font-size:10px;font-weight:600;letter-spacing:.05em;padding:6px 2px;color:var(--muted)}
+.gh-cell.cur{color:var(--gold);border-bottom:2px solid var(--gold);margin-bottom:-2px}
+.gh-cell.yr{border-left:2px dashed var(--border)}
+.gr{display:grid;grid-template-columns:200px 1fr;align-items:center;min-height:44px;border-radius:6px;transition:background .15s}
+.gr:hover{background:rgba(0,35,102,.04)}
+.gr.phase{min-height:32px;margin-top:14px}
+.glabel{font-size:13px;color:var(--text);padding:4px 8px 4px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gr.phase .glabel{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--navy)}
+.garea{position:relative;display:grid;grid-template-columns:repeat(14,1fr);min-height:44px;align-items:stretch}
+.gr.phase .garea{min-height:32px}
+.gbg{border-right:1px solid var(--border);min-height:100%}
+.gbg.yr{border-right:2px dashed #c5cfe0}
+.gbg.cur{background:rgba(196,154,60,.07)}
+.gbar{position:absolute;top:50%;transform:translateY(-50%);border-radius:6px;z-index:2;transition:opacity .2s}
+
+/* ── team ── */
+#team{background:var(--navy-dark);color:#fff}
+.team-g{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.tcards{display:flex;flex-direction:column;gap:18px}
+.tcard{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:26px}
+.trole{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-weight:600}
+.tname{font-family:'Cormorant Garant',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:14px}
+.ttasks{display:flex;flex-direction:column;gap:5px}
+.ttask{font-size:13px;color:rgba(255,255,255,.5);display:flex;gap:8px;line-height:1.45}
+.ttask::before{content:'—';color:var(--gold);opacity:.6;flex-shrink:0}
+.pricing{display:flex;flex-direction:column;gap:18px}
+.pric{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:26px}
+.pric-ph{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:5px}
+.pric-title{font-family:'Cormorant Garant',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:8px}
+.pric-det{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:14px}
+.pric-amt{font-family:'Cormorant Garant',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1}
+.pric-amt sup{font-size:18px}
+.pric-amt small{font-size:16px;color:rgba(255,255,255,.4)}
+.pric-note{font-size:12px;color:rgba(255,255,255,.35);margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);line-height:1.65}
+
+/* ── next steps ── */
+#nextsteps{background:var(--off)}
+.ns-g{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.ns-h3{font-family:'Cormorant Garant',serif;font-size:20px;color:var(--navy);margin-bottom:26px;font-weight:600}
+.org{display:flex;flex-direction:column;align-items:center}
+.org-top{background:var(--navy);color:#fff;padding:14px 28px;border-radius:10px;text-align:center}
+.org-top .org-role{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:4px}
+.org-top .org-name{font-family:'Cormorant Garant',serif;font-size:18px;font-weight:600}
+.org-line{width:2px;height:22px;background:var(--border)}
+.org-row{display:flex;gap:10px;position:relative;justify-content:center}
+.org-row::before{content:'';position:absolute;top:0;left:12%;right:12%;height:2px;background:var(--border);transform:translateY(-1px)}
+.org-child{display:flex;flex-direction:column;align-items:center}
+.org-vline{width:2px;height:22px;background:var(--border)}
+.org-node{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:10px 12px;text-align:center;min-width:96px}
+.org-node .nr{font-size:10px;color:var(--muted);margin-bottom:3px}
+.org-node .nn{font-size:11px;font-weight:600;color:var(--navy);line-height:1.3}
+.mechs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.mcard{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;transition:border-color .2s,transform .2s}
+.mcard:hover{border-color:var(--navy);transform:translateY(-2px)}
+.mcard-icon{font-size:22px;margin-bottom:8px}
+.mcard-title{font-weight:600;font-size:13px;color:var(--navy);margin-bottom:5px}
+.mcard-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* ── closing ── */
+#closing{background:var(--navy-dark);color:#fff;text-align:center;justify-content:center;align-items:center;position:relative;overflow:hidden}
+#closing .bg{position:absolute;inset:0;background:url('/fotos/estatua.jpg') center/cover no-repeat;opacity:.1;mix-blend-mode:luminosity}
+.close-inner{position:relative;z-index:1}
+.close-h{font-family:'Cormorant Garant',serif;font-size:clamp(52px,8vw,96px);font-weight:300;color:#fff;margin-bottom:24px}
+.close-line{width:56px;height:2px;background:var(--gold);margin:0 auto 28px}
+.close-meta{font-size:14px;color:rgba(255,255,255,.45);line-height:2}
+.close-meta a{color:var(--gold);text-decoration:none}
+.close-meta a:hover{text-decoration:underline}
+
+/* ── fade-up ── */
+.fu{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+
+/* ── mobile nav ── */
+#mob-btn{display:none;position:fixed;top:16px;right:16px;z-index:950;background:var(--navy);border:none;width:44px;height:44px;border-radius:10px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.hbl{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s}
+#mob-btn.open .hbl:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#mob-btn.open .hbl:nth-child(2){opacity:0;transform:scaleX(0)}
+#mob-btn.open .hbl:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mob-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:960;opacity:0;transition:opacity .3s}
+#mob-overlay.open{opacity:1}
+#mob-drawer{position:fixed;top:0;right:0;bottom:0;width:min(300px,82vw);background:var(--navy-dark);z-index:970;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;padding:0}
+#mob-drawer.open{transform:translateX(0)}
+.mob-head{padding:24px 24px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between}
+.mob-title{font-family:'Cormorant Garant',serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+#mob-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:26px;cursor:pointer;line-height:1;padding:2px 6px;transition:color .2s}
+#mob-close:hover{color:#fff}
+.mob-links{display:flex;flex-direction:column;padding:16px 0;overflow-y:auto;flex:1}
+.mob-link{display:flex;align-items:center;gap:16px;padding:14px 24px;text-decoration:none;color:rgba(255,255,255,.6);font-size:16px;font-weight:400;transition:all .2s;border-left:2px solid transparent}
+.mob-link:hover,.mob-link.on{color:#fff;background:rgba(255,255,255,.05);border-left-color:var(--gold)}
+.mob-link .mn{font-size:10px;font-weight:700;letter-spacing:.15em;color:var(--gold);width:24px;flex-shrink:0}
+
+/* ── responsive ── */
+@media(max-width:1100px){
+  .intro-g,.prop-g,.team-g,.ns-g{grid-template-columns:1fr;gap:40px}
+  .goals{grid-template-columns:repeat(2,1fr)}
+  .prob-grid{grid-template-columns:repeat(2,1fr)}
+  .ux-wheel{width:420px;height:420px}
+}
+@media(max-width:768px){
+  #mob-btn{display:flex}
+  section{padding:56px 24px}
+  #gantt-sec{padding:56px 24px}
+  .goals{grid-template-columns:repeat(2,1fr)}
+  .prob-grid{grid-template-columns:1fr}
+  .scope-g{grid-template-columns:1fr}
+  .mechs{grid-template-columns:1fr}
+  .cover-h1{font-size:clamp(40px,12vw,72px)}
+  .cdate-date{font-size:36px}
+  .cteam{font-size:15px}
+  #cover{padding:40px 24px}
+  .cover-inner{min-height:calc(100vh - 80px)}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- Mobile nav -->
+<button id="mob-btn" aria-label="Menú">
+  <div class="hbl"></div><div class="hbl"></div><div class="hbl"></div>
+</button>
+<div id="mob-overlay"></div>
+<div id="mob-drawer">
+  <div class="mob-head">
+    <span class="mob-title">San Cayetano</span>
+    <button id="mob-close" aria-label="Cerrar">×</button>
+  </div>
+  <nav class="mob-links">
+    <a href="#cover"     class="mob-link"><span class="mn">01</span>Portada</a>
+    <a href="#intro"     class="mob-link"><span class="mn">02</span>Introducción</a>
+    <a href="#problems"  class="mob-link"><span class="mn">03</span>Diagnóstico</a>
+    <a href="#objectives" class="mob-link"><span class="mn">04</span>Objetivos</a>
+    <a href="#proposal"  class="mob-link"><span class="mn">05</span>Propuesta</a>
+    <a href="#scope"     class="mob-link"><span class="mn">06</span>Alcance</a>
+    <a href="#gantt-sec" class="mob-link"><span class="mn">07</span>Cronograma</a>
+    <a href="#team"      class="mob-link"><span class="mn">08</span>Equipo</a>
+    <a href="#nextsteps" class="mob-link"><span class="mn">09</span>Próximos pasos</a>
+    <a href="#closing"   class="mob-link"><span class="mn">10</span>Cierre</a>
+  </nav>
+</div>
+
+<nav id="nav">
+  <a href="#cover"    class="ni on"><div class="dot"></div><span class="nlabel">Portada</span></a>
+  <a href="#intro"    class="ni"><div class="dot"></div><span class="nlabel">Introducción</span></a>
+  <a href="#problems" class="ni"><div class="dot"></div><span class="nlabel">Diagnóstico</span></a>
+  <a href="#objectives" class="ni"><div class="dot"></div><span class="nlabel">Objetivos</span></a>
+  <a href="#proposal" class="ni"><div class="dot"></div><span class="nlabel">Propuesta</span></a>
+  <a href="#scope"    class="ni"><div class="dot"></div><span class="nlabel">Alcance</span></a>
+  <a href="#gantt-sec" class="ni"><div class="dot"></div><span class="nlabel">Cronograma</span></a>
+  <a href="#team"     class="ni"><div class="dot"></div><span class="nlabel">Equipo</span></a>
+  <a href="#nextsteps" class="ni"><div class="dot"></div><span class="nlabel">Próximos pasos</span></a>
+  <a href="#closing"  class="ni"><div class="dot"></div><span class="nlabel">Cierre</span></a>
+</nav>
+
+<!-- 1 · PORTADA -->
+<section id="cover">
+  <div class="bg"></div>
+  <div class="cover-inner">
+    <div class="clogo">
+      <img src="/fotos/logo.jpg" alt="Logo">
+      <div class="clogo-txt">Colegio San Cayetano<br>Palma de Mallorca</div>
+    </div>
+    <div class="ccenter">
+      <div class="eyebrow-cover">Diseño y Desarrollo Web</div>
+      <h1 class="cover-h1">Propuesta<br><em>Digital</em></h1>
+      <p class="cover-sub">Una nueva experiencia web para el Colegio San Cayetano</p>
+    </div>
+    <div class="cteam">
+      <strong>Preparado por</strong>
+      Xisca Guerrero Busquets<br>
+      Jaime Borrás Sbert<br>
+      Jaime Borrás Guerrero
+    </div>
+    <div class="cdate">
+      <span class="cdate-for">Para la Dirección del Colegio</span>
+      <span class="cdate-date">12 mayo 2026</span>
+    </div>
+  </div>
+  <div class="scroll-q">desplaza</div>
+</section>
+
+<!-- 2 · INTRODUCCIÓN -->
+<section id="intro">
+  <div class="intro-g">
+    <div class="intro-body">
+      <div class="eyebrow">01 — Introducción</div>
+      <h2 class="sh">El punto de partida</h2>
+      <p>El <strong>Colegio San Cayetano</strong> dispone actualmente de una web que cumple funciones informativas, pero presenta limitaciones que frenan su potencial digital.</p>
+      <div class="checks">
+        <div class="chk fu"><span class="chk-icon">↗</span> Experiencia de usuario</div>
+        <div class="chk fu"><span class="chk-icon">↗</span> Acceso a la información</div>
+        <div class="chk fu"><span class="chk-icon">↗</span> Adaptación a dispositivos móviles</div>
+        <div class="chk fu"><span class="chk-icon">↗</span> Imagen digital actualizada</div>
+      </div>
+      <p>Las familias utilizan cada vez más los canales digitales para informarse. Es el momento de evolucionar esta herramienta y ponerla en simetría con la excelencia del resto del Colegio.</p>
+    </div>
+    <div class="intro-img">
+      <img src="/fotos/dron.jpg" alt="Colegio San Cayetano" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 3 · DIAGNÓSTICO -->
+<section id="problems">
+  <div class="eyebrow">02 — Diagnóstico</div>
+  <h2 class="sh light">¿Dónde estamos?</h2>
+  <p class="prob-intro">Muchos sites dirigen al usuario a <strong>Google Sites</strong> — un problema grave de UX y de marca que afecta a la consistencia, el reconocimiento y la visibilidad del Colegio.</p>
+  <div class="prob-grid">
+    <div class="pcard fu">
+      <div class="pcode">P.1</div>
+      <div class="ptitle">Ruptura de Experiencia</div>
+      <div class="pdesc">No hay uniformidad de diseño con la página principal. Sensación: <em>"he salido de la web del colegio"</em>, <em>"¿dónde estoy?"</em></div>
+    </div>
+    <div class="pcard fu">
+      <div class="pcode">P.2</div>
+      <div class="ptitle">Pérdida de Confianza</div>
+      <div class="pdesc">Especialmente para padres nuevos y familias interesadas. Sensación de web poco cuidada e información <em>"menos oficial"</em>.</div>
+    </div>
+    <div class="pcard fu">
+      <div class="pcode">P.3</div>
+      <div class="ptitle">Inconsistencia</div>
+      <div class="pdesc">Diferentes estilos, menús y formas de navegar. Un problema de alta gravedad para la identidad de marca.</div>
+    </div>
+    <div class="pcard fu">
+      <div class="pcode">P.4</div>
+      <div class="ptitle">Usabilidad</div>
+      <div class="pdesc">El usuario tiene que <em>"reaprender"</em> a navegar en cada sección. Se puede perder y no saber cómo volver.</div>
+    </div>
+    <div class="pcard fu">
+      <div class="pcode">P.5</div>
+      <div class="ptitle">Visibilidad</div>
+      <div class="pdesc">El contenido de Google Site está fuera del dominio principal. Pérdida directa de visibilidad y posicionamiento SEO.</div>
+    </div>
+    <div class="pcard fu">
+      <div class="pcode">P.6</div>
+      <div class="ptitle">Marca y Reputación</div>
+      <div class="pdesc">Las <em>"mini webs"</em> transmiten desorganización cuando queremos transmitir profesionalidad, organización y confianza.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · OBJETIVOS -->
+<section id="objectives">
+  <div class="eyebrow">03 — Objetivos</div>
+  <h2 class="sh">¿Qué queremos?</h2>
+  <blockquote class="obj">
+    Impulsar el canal digital web como un <em>"punto de encuentro"</em> con los alumnos, las familias y el profesorado, y ponerla en simetría reputacional con la actual excelencia del Colegio.
+  </blockquote>
+  <div class="goals">
+    <div class="gcard fu"><span class="gicon">⭐</span><div class="glabel">Excelencia</div><div class="gsub">En el servicio y la reputación digital</div></div>
+    <div class="gcard fu"><span class="gicon">⚡</span><div class="glabel">Eficiencia informativa</div><div class="gsub">Acceso rápido y claro a toda la información</div></div>
+    <div class="gcard fu"><span class="gicon">🤝</span><div class="glabel">Coordinación</div><div class="gsub">La web es de todos los equipos internos</div></div>
+    <div class="gcard fu"><span class="gicon">📱</span><div class="glabel">Responsive</div><div class="gsub">Perfecta en todos los dispositivos</div></div>
+    <div class="gcard fu"><span class="gicon">🎯</span><div class="glabel">Captación</div><div class="gsub">Canal activo para nuevas familias</div></div>
+  </div>
+</section>
+
+<!-- 5 · PROPUESTA -->
+<section id="proposal">
+  <div class="prop-g">
+    <div>
+      <div class="eyebrow">04 — Propuesta</div>
+      <h2 class="sh">¿Qué proponemos?</h2>
+      <div class="ux-wheel" id="ux-wheel">
+        <div class="ux-center">Nueva Web<br>Colegio</div>
+      </div>
+    </div>
+    <div class="prop-text">
+      <p>La nueva web tiene que ser una <strong>experiencia de usuario completa</strong> — no solo un repositorio de información, sino un canal activo de comunicación y captación de familias.</p>
+      <p>Hemos construido un prototipo funcional que muestra la dirección de diseño, la arquitectura de información y la experiencia de navegación propuesta para todo tipo de dispositivos.</p>
+      <a href="https://colegio-gold.vercel.app/" target="_blank" class="proto-btn">Ver prototipo en vivo →</a>
+      <p style="font-size:13px;color:var(--muted)">Accede al prototipo funcional con la propuesta visual completa, navegación real y diseño responsive adaptado a móvil, tablet y escritorio.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · ALCANCE -->
+<section id="scope">
+  <div class="eyebrow">05 — Alcance</div>
+  <h2 class="sh">¿Qué abarca el proyecto?</h2>
+  <div class="scope-g">
+    <div class="scol inc">
+      <div class="shead"><span class="sbadge">✓</span> Incluido en el proyecto</div>
+      <ul class="slist">
+        <li>Guiones de rediseño y prototipado gráfico para escritorio, tablet y móvil</li>
+        <li>Menús de navegación desplegables y dinámicos</li>
+        <li>Revisión y actualización de textos en la fase de descubrimiento</li>
+        <li>Volcado del contenido multimedia actual: fotografías y vídeos</li>
+        <li>Formularios configurables</li>
+        <li>Desarrollo y volcado de código sobre el CMS</li>
+        <li>QA — Aseguramiento de la calidad y optimización básica de navegabilidad</li>
+      </ul>
+    </div>
+    <div class="scol exc">
+      <div class="shead"><span class="sbadge">×</span> Fuera de alcance</div>
+      <ul class="slist">
+        <li>Producción multimedia nueva: fotografía y vídeos</li>
+        <li>Área privada, intranet o blog</li>
+        <li>Formación de equipos</li>
+        <li>Redacción de nuevos textos en fase de mantenimiento</li>
+        <li>Textos legales (aviso legal, política de privacidad y cookies)</li>
+        <li>Aprovisionamiento de datos / formularios / analytics</li>
+        <li>Copias de seguridad · Formación CMS · SEO</li>
+        <li>Adherencias a normas o convenciones (ISO)</li>
+        <li>Monitorización de herramientas externas actuales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · CRONOGRAMA -->
+<section id="gantt-sec">
+  <div class="eyebrow">06 — Cronograma</div>
+  <h2 class="sh">Planificación del proyecto</h2>
+  <div class="gantt-wrap">
+    <div class="gantt-box" id="gantt"></div>
+  </div>
+</section>
+
+<!-- 8 · EQUIPO -->
+<section id="team">
+  <div class="eyebrow">07 — Equipo y Economía</div>
+  <h2 class="sh light">Quiénes somos<br><em>y qué cuesta</em></h2>
+  <div class="team-g">
+    <div class="tcards">
+      <div class="tcard">
+        <div class="trole">Project Manager</div>
+        <div class="tname">Jaime Borrás Sbert</div>
+        <div class="ttasks">
+          <div class="ttask">Objetivos y alcance del proyecto</div>
+          <div class="ttask">Asignación y revisión de tareas</div>
+          <div class="ttask">Gestión de riesgos y desviaciones</div>
+          <div class="ttask">Comunicación con la Directora Interna (Xisca)</div>
+          <div class="ttask">Supervisión del progreso y calidades</div>
+        </div>
+      </div>
+      <div class="tcard">
+        <div class="trole">Diseñador Web</div>
+        <div class="tname">Jaime Borrás Guerrero</div>
+        <div class="ttasks">
+          <div class="ttask">Diseño visual, estructura y coherencia de la web</div>
+          <div class="ttask">Diseño de navegación y UX</div>
+          <div class="ttask">Diseño responsive (móvil, tablet, escritorio)</div>
+          <div class="ttask">Colaboración con interlocutores internos</div>
+          <div class="ttask">Optimización continua en fase de mantenimiento</div>
+        </div>
+      </div>
+    </div>
+    <div class="pricing">
+      <div class="pric">
+        <div class="pric-ph">Fase 01</div>
+        <div class="pric-title">Descubrimiento y Desarrollo</div>
+        <div class="pric-det">5 h/semana · 2 meses</div>
+        <div class="pric-amt"><sup>€</sup>5.000 <small>netos</small></div>
+      </div>
+      <div class="pric">
+        <div class="pric-ph">Fase 02</div>
+        <div class="pric-title">Mantenimiento</div>
+        <div class="pric-det">1,5 h/semana · 10 meses</div>
+        <div class="pric-amt"><sup>€</sup>250–350 <small>/mes netos</small></div>
+      </div>
+      <div class="pric-note">
+        Modo de pago flexible y a tratar.<br>
+        El pago de la fase de mantenimiento dependerá de la cantidad de trabajo invertido.<br>
+        No se incluyen costes de funcionalidades detalladas en las exclusiones.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · PRÓXIMOS PASOS -->
+<section id="nextsteps">
+  <div class="eyebrow">08 — Próximos Pasos</div>
+  <h2 class="sh">Cómo empezamos</h2>
+  <div class="ns-g">
+    <div>
+      <div class="ns-h3">Equipo interno propuesto</div>
+      <div class="org">
+        <div class="org-top">
+          <div class="org-role">Directora de Proyecto</div>
+          <div class="org-name">Xisca Guerrero Busquets</div>
+        </div>
+        <div class="org-line"></div>
+        <div class="org-row">
+          <div class="org-child"><div class="org-vline"></div><div class="org-node"><div class="nr">Contenidos</div><div class="nn">Xisca · Silvia · Lolo</div></div></div>
+          <div class="org-child"><div class="org-vline"></div><div class="org-node"><div class="nr">Multimedia</div><div class="nn">Joan Miquel</div></div></div>
+          <div class="org-child"><div class="org-vline"></div><div class="org-node"><div class="nr">Seguridad</div><div class="nn">Pep Román</div></div></div>
+          <div class="org-child"><div class="org-vline"></div><div class="org-node"><div class="nr">Aprobación</div><div class="nn">Dirección</div></div></div>
+          <div class="org-child"><div class="org-vline"></div><div class="org-node"><div class="nr">Jurídico</div><div class="nn">Bufete</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ns-h3">Mecanismos de seguimiento</div>
+      <div class="mechs">
+        <div class="mcard fu"><div class="mcard-icon">📅</div><div class="mcard-title">Reuniones de seguimiento</div><div class="mcard-desc">Avances semanales, puntos de mejora e hitos conseguidos. Día/hora y canal pendientes de acordar.</div></div>
+        <div class="mcard fu"><div class="mcard-icon">📊</div><div class="mcard-title">Gestión de Proyecto</div><div class="mcard-desc">Xisca y Jaime mantienen actualizado el estado en Google Site y comunican avances a la Dirección.</div></div>
+        <div class="mcard fu"><div class="mcard-icon">🗓️</div><div class="mcard-title">Calendario de hitos</div><div class="mcard-desc">Backlog con metodología de sprints. Hitos y entregables acordados previamente.</div></div>
+        <div class="mcard fu"><div class="mcard-icon">📝</div><div class="mcard-title">Documentación</div><div class="mcard-desc">Todos los intervinientes generan documentación gestionada por Xisca y Jaime.</div></div>
+        <div class="mcard fu"><div class="mcard-icon">🔗</div><div class="mcard-title">Trabajo en red</div><div class="mcard-desc">Herramientas de comunicación bidireccionales y asíncronas acordadas con el equipo.</div></div>
+        <div class="mcard fu"><div class="mcard-icon">✅</div><div class="mcard-title">Calendario QA</div><div class="mcard-desc">Informe rutinario de calidades y aseguramiento de navegabilidad del sitio.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · CIERRE -->
+<section id="closing">
+  <div class="bg"></div>
+  <div class="close-inner">
+    <div class="close-h">Muchas gracias</div>
+    <div class="close-line"></div>
+    <div class="close-meta">
+      Xisca Guerrero Busquets · Jaime Borrás Sbert · Jaime Borrás Guerrero<br>
+      <a href="https://colegio-gold.vercel.app/" target="_blank">colegio-gold.vercel.app</a>
+    </div>
+  </div>
+</section>
+
+<script>
+// Progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const t = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (scrollY / t * 100) + '%';
+}, {passive: true});
+
+// Active nav
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.ni');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, {threshold: 0.4});
+sections.forEach(s => io.observe(s));
+
+// Fade-up
+const fuEls = document.querySelectorAll('.fu');
+const fuObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = [...e.target.parentElement.children].indexOf(e.target);
+      e.target.style.transitionDelay = (idx * 0.07) + 's';
+      e.target.classList.add('vis');
+      fuObs.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+fuEls.forEach(el => fuObs.observe(el));
+
+// UX Wheel
+const attrs = [
+  'Facilidad de entendimiento','Facilidad de uso','Facilidad de aprendizaje',
+  'Facilidad de ayuda','Accesibilidad','Atractiva','Efectiva','Eficiente','Satisfacción en uso'
+];
+const wheel = document.getElementById('ux-wheel');
+const R = 190, S = 520, H = S / 2, A = 55; // A = half attr width
+
+attrs.forEach((txt, i) => {
+  const ang = (i / attrs.length) * Math.PI * 2 - Math.PI / 2;
+  const el = document.createElement('div');
+  el.className = 'ux-attr';
+  el.textContent = txt;
+  el.style.left = (H + R * Math.cos(ang) - A) + 'px';
+  el.style.top  = (H + R * Math.sin(ang) - A) + 'px';
+  wheel.appendChild(el);
+});
+
+// Gantt
+const months = ['MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC','ENE','FEB','MAR','ABR','MAY','JUN'];
+const ganttYears = [26,26,26,26,26,26,26,26,27,27,27,27,27,27];
+
+const tasks = [
+  {label:'Fase Descubrimiento', isPhase:true,  col:'a', s:0, e:3},
+  {label:'Autorización',        isPhase:false, col:'a', s:0, e:0},
+  {label:'Iniciación de tareas',isPhase:false, col:'a', s:1, e:1},
+  {label:'Entrega 1ª versión',  isPhase:false, col:'a', s:3, e:3, isMile:true},
+  {label:'Estreno WEB',         isPhase:false, col:'a', s:4, e:4, isMile:true, isKey:true},
+  {label:'Fase Mantenimiento',  isPhase:true,  col:'b', s:5, e:13},
+  {label:'Equipos internos',    isPhase:false, col:'b', s:5, e:5},
+  {label:'Nuevos requerimientos',isPhase:false,col:'b', s:6, e:10},
+  {label:'Actualizaciones',     isPhase:false, col:'b', s:5, e:12},
+  {label:'QA — controles calidad',isPhase:false,col:'b',s:5, e:12},
+  {label:'Fin de Proyecto',     isPhase:false, col:'b', s:13,e:13,isMile:true, isKey:true},
+];
+
+const gantt = document.getElementById('gantt');
+
+// Header
+const hrow = document.createElement('div');
+hrow.className = 'gh-row';
+const hlabel = document.createElement('div');
+hlabel.className = 'gh-cell';
+hrow.appendChild(hlabel);
+months.forEach((m,i) => {
+  const c = document.createElement('div');
+  c.className = 'gh-cell' + (i===0?' cur':'') + (i===8?' yr':'');
+  c.innerHTML = m + '<br><span style="font-size:9px;opacity:.45">\''+ganttYears[i]+'</span>';
+  hrow.appendChild(c);
+});
+gantt.appendChild(hrow);
+
+// Rows
+tasks.forEach(t => {
+  const row = document.createElement('div');
+  row.className = 'gr' + (t.isPhase ? ' phase' : '');
+
+  const lbl = document.createElement('div');
+  lbl.className = 'glabel';
+  lbl.textContent = t.label;
+  row.appendChild(lbl);
+
+  const area = document.createElement('div');
+  area.className = 'garea';
+
+  // bg cells
+  for (let i = 0; i < 14; i++) {
+    const bg = document.createElement('div');
+    bg.className = 'gbg' + (i===8?' yr':'') + (i===0?' cur':'');
+    area.appendChild(bg);
+  }
+
+  // bar
+  const bar = document.createElement('div');
+  bar.className = 'gbar';
+  const W = 100 / 14;
+  const span = t.e - t.s + 1;
+
+  if (t.isMile) {
+    const cx = (t.s + 0.5) * W;
+    Object.assign(bar.style, {
+      left: `calc(${cx}% - 10px)`,
+      width: '20px', height: '20px',
+      background: t.isKey ? 'var(--gold)' : 'var(--navy)',
+      borderRadius: t.isKey ? '4px' : '50%',
+      transform: `translateY(-50%)${t.isKey ? ' rotate(45deg)' : ''}`,
+      boxShadow: t.isKey ? '0 0 0 4px rgba(196,154,60,.25)' : 'none',
+    });
+  } else if (t.isPhase) {
+    Object.assign(bar.style, {
+      left: `calc(${t.s * W}% + 2px)`,
+      width: `calc(${span * W}% - 4px)`,
+      height: '6px',
+      background: t.col === 'a' ? 'var(--navy)' : 'var(--gold)',
+      borderRadius: '3px',
+      opacity: '.35',
+      transform: 'translateY(-50%)',
+    });
+  } else {
+    Object.assign(bar.style, {
+      left: `calc(${t.s * W}% + 2px)`,
+      width: `calc(${span * W}% - 4px)`,
+      height: '22px',
+      background: t.col === 'a' ? 'var(--navy)' : 'var(--gold)',
+      borderRadius: '6px',
+      transform: 'translateY(-50%)',
+      opacity: t.col === 'b' ? '.85' : '1',
+    });
+  }
+  area.appendChild(bar);
+  row.appendChild(area);
+  gantt.appendChild(row);
+
+  // Hover highlight
+  row.addEventListener('mouseenter', () => {
+    if (!t.isMile && !t.isPhase) bar.style.filter = 'brightness(1.15)';
+  });
+  row.addEventListener('mouseleave', () => { bar.style.filter = ''; });
+});
+
+// Mobile nav
+const mobBtn = document.getElementById('mob-btn');
+const mobDrawer = document.getElementById('mob-drawer');
+const mobOverlay = document.getElementById('mob-overlay');
+const mobClose = document.getElementById('mob-close');
+const mobLinks = document.querySelectorAll('.mob-link');
+
+function openMob() {
+  mobBtn.classList.add('open');
+  mobDrawer.classList.add('open');
+  mobOverlay.style.display = 'block';
+  requestAnimationFrame(() => mobOverlay.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+}
+function closeMob() {
+  mobBtn.classList.remove('open');
+  mobDrawer.classList.remove('open');
+  mobOverlay.classList.remove('open');
+  setTimeout(() => { mobOverlay.style.display = 'none'; }, 300);
+  document.body.style.overflow = '';
+}
+
+mobBtn.addEventListener('click', openMob);
+mobClose.addEventListener('click', closeMob);
+mobOverlay.addEventListener('click', closeMob);
+mobLinks.forEach(a => a.addEventListener('click', closeMob));
+
+// Active link in mobile nav
+const mobIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      mobLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + id));
+    }
+  });
+}, {threshold: 0.4});
+sections.forEach(s => mobIo.observe(s));
+</script>
+</body>
+</html>
