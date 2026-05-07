@@ -233,10 +233,13 @@ blockquote.obj em{font-style:italic;color:var(--navy)}
   .scope-g{grid-template-columns:1fr}
   .mechs{grid-template-columns:1fr}
   .cover-h1{font-size:clamp(40px,12vw,72px)}
-  .cdate-date{font-size:36px}
-  .cteam{font-size:15px}
   #cover{padding:40px 24px}
   .cover-inner{min-height:calc(100vh - 80px)}
+  /* Apilar nombres y fecha verticalmente para que no se solapen */
+  .cteam{font-size:13px;bottom:76px}
+  .cdate{right:auto;left:0;text-align:left}
+  .cdate-for{font-size:12px}
+  .cdate-date{font-size:26px}
   .gantt-wrap{padding-bottom:12px}
 }
 /* Escalar la rueda cuando no cabe (viewport < 568px = 520px wheel + 48px padding) */
