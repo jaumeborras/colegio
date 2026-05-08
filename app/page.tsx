@@ -700,7 +700,7 @@ export default function HomePage() {
                           <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
                         </div>
                       )}
-                      {item.date && <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>}
+                      <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date || " "}</p>
                       <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1" style={{ fontFamily: "var(--font-serif)" }}>
                         {item.title}
                       </h3>
