@@ -326,12 +326,12 @@ export default function HomePage() {
       date: "22 abril 2026",
     },
     {
-      title: "Un colegio de Palma, líder mundial en lectura en inglés entre más de 9.000 escuelas",
+      title: "Escuela de verano en el Colegio San Cayetano",
       img: "/fotos/nenes.jpg",
       href: "https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html",
-      source: "Diario de Mallorca",
-      logo: "https://www.google.com/s2/favicons?domain=diariodemallorca.es&sz=32",
-      date: "25 febrero 2026",
+      source: "",
+      logo: "",
+      date: "",
     },
   ]
 
@@ -694,11 +694,13 @@ export default function HomePage() {
                       />
                     </div>
                     <div className="flex flex-col flex-1 p-5">
-                      <div className="flex items-center gap-2 mb-1">
-                        <img src={item.logo} alt={item.source} className="w-4 h-4 object-contain rounded-sm" />
-                        <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
-                      </div>
-                      <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
+                      {item.source && (
+                        <div className="flex items-center gap-2 mb-1">
+                          <img src={item.logo} alt={item.source} className="w-4 h-4 object-contain rounded-sm" />
+                          <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
+                        </div>
+                      )}
+                      {item.date && <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>}
                       <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1" style={{ fontFamily: "var(--font-serif)" }}>
                         {item.title}
                       </h3>
