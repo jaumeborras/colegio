@@ -328,7 +328,7 @@ export default function HomePage() {
     {
       title: "Escuela de verano en el Colegio San Cayetano",
       img: "/fotos/nenes.jpg",
-      href: "https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html",
+      href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/escuelas-de-verano",
       source: "",
       logo: "",
       date: "",
