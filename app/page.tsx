@@ -327,7 +327,7 @@ export default function HomePage() {
     },
     {
       title: "Un colegio de Palma, líder mundial en lectura en inglés entre más de 9.000 escuelas",
-      img: "/fotos/noticias3.png",
+      img: "/fotos/nenes.jpg",
       href: "https://www.diariodemallorca.es/mallorca/2026/02/25/colegio-palma-lider-mundial-lectura-dvl-127248507.html",
       source: "Diario de Mallorca",
       logo: "https://www.google.com/s2/favicons?domain=diariodemallorca.es&sz=32",
