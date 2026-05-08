@@ -329,8 +329,8 @@ export default function HomePage() {
       title: "Escuela de verano en el Colegio San Cayetano",
       img: "/fotos/nenes.jpg",
       href: "https://sites.google.com/csc.edu.es/csc22esp-informacionyadmisione/escuelas-de-verano",
-      source: "",
-      logo: "",
+      source: "Noticias San Cayetano",
+      logo: "https://www.google.com/s2/favicons?domain=colegiosancayetano.com&sz=32",
       date: "",
     },
   ]
