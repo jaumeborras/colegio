@@ -387,6 +387,7 @@ export default function HomePage() {
           </svg>
         </div>
 
+        {/* BOTÓN PROPUESTA — oculto temporalmente; descomentar para activar
         <a
           href="/propuesta.html"
           target="_blank"
@@ -396,6 +397,7 @@ export default function HomePage() {
         >
           Propuesta
         </a>
+        */}
         <FloatingContact />
       </section>
 

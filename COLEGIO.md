@@ -32,6 +32,11 @@ Referencia completa de todos los textos, datos y enlaces publicados en la web. A
 
 ## Home (`/`)
 
+### Botón Propuesta (hero)
+- Botón flotante sobre el hero que enlaza a `/propuesta.html`
+- **Estado actual: OCULTO** — comentado en `app/page.tsx` (~línea 390)
+- Para reactivar: descomentar el bloque `{/* BOTÓN PROPUESTA … */}` en `app/page.tsx`
+
 ### Hero
 - **Desktop**: vídeo YouTube de fondo (`B7tV4O1MLXw`, autoplay muted loop sin controles). Overlay negro que se desvanece a los 3.5s para ocultar los controles de YouTube al arrancar.
 - **Móvil**: imagen estática `/fotos/dron.jpg` (el vídeo se omite para no penalizar la carga)
