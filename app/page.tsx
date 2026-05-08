@@ -648,35 +648,65 @@ export default function HomePage() {
             <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest mb-3">{t("home.news.tag", lang)}</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-[var(--accent)] leading-tight" style={{ fontFamily: "var(--font-serif)" }}>{t("home.news.title", lang)}</h2>
           </FadeIn>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {news.map((item, i) => (
-              <FadeIn key={item.title} delay={i * 80} className="h-full">
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+          <div className="flex flex-col gap-6">
+            {/* Noticia destacada arriba */}
+            <FadeIn>
+              <a
+                href={news[2].href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
+              >
+                <div className="md:w-1/2 aspect-[16/9] md:aspect-auto overflow-hidden">
+                  <img
+                    src={news[2].img}
+                    alt={news[2].title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-col justify-center flex-1 p-6 md:p-8">
+                  <div className="flex items-center gap-2 mb-1">
+                    <img src={news[2].logo} alt={news[2].source} className="w-4 h-4 object-contain rounded-sm" />
+                    <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{news[2].source}</p>
                   </div>
-                  <div className="flex flex-col flex-1 p-5">
-                    <div className="flex items-center gap-2 mb-1">
-                      <img src={item.logo} alt={item.source} className="w-4 h-4 object-contain rounded-sm" />
-                      <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
+                  <p className="text-xs text-[var(--text-secondary)] mb-3">{news[2].date}</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-[var(--accent)] leading-snug" style={{ fontFamily: "var(--font-serif)" }}>
+                    {news[2].title}
+                  </h3>
+                </div>
+              </a>
+            </FadeIn>
+            {/* Dos noticias abajo */}
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[news[0], news[1]].map((item, i) => (
+                <FadeIn key={item.title} delay={i * 80} className="h-full">
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col h-full bg-white rounded-2xl overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
-                    <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
-                    <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1" style={{ fontFamily: "var(--font-serif)" }}>
-                      {item.title}
-                    </h3>
-                  </div>
-                </a>
-              </FadeIn>
-            ))}
+                    <div className="flex flex-col flex-1 p-5">
+                      <div className="flex items-center gap-2 mb-1">
+                        <img src={item.logo} alt={item.source} className="w-4 h-4 object-contain rounded-sm" />
+                        <p className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">{item.source}</p>
+                      </div>
+                      <p className="text-xs text-[var(--text-secondary)] mb-3">{item.date}</p>
+                      <h3 className="text-sm sm:text-base font-semibold text-[var(--accent)] leading-snug flex-1" style={{ fontFamily: "var(--font-serif)" }}>
+                        {item.title}
+                      </h3>
+                    </div>
+                  </a>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
