@@ -704,7 +704,8 @@ export default function HomePage() {
         <FadeIn className="max-w-screen-xl mx-auto px-6 py-12 md:py-14 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[var(--accent)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>{t("home.cta.title", lang)}</h2>
           <p className="text-[var(--text-secondary)] mb-7 max-w-xl mx-auto text-base sm:text-lg" style={{ fontFamily: "var(--font-serif)" }}>
-            {t("home.cta.desc", lang)}
+            {t("home.cta.desc", lang)}<br />
+            {t("home.cta.desc2", lang)}
           </p>
           <Link
             href="/admisiones"

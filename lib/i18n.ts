@@ -167,10 +167,16 @@ const d: Dict = {
     de: "Möchten Sie Teil unserer Gemeinschaft werden?",
   },
   "home.cta.desc": {
-    es: "Descubre el proceso de admisión para el curso 2026–2027 y da el primer paso.",
-    ca: "Descobreix el procés d'admissió per al curs 2026–2027 i fes el primer pas.",
-    en: "Discover the admissions process for the 2026–2027 school year and take the first step.",
-    de: "Entdecken Sie den Anmeldeprozess für das Schuljahr 2026–2027 und machen Sie den ersten Schritt.",
+    es: "Descubre el proceso de admisión para el curso 2026–2027",
+    ca: "Descobreix el procés d'admissió per al curs 2026–2027",
+    en: "Discover the admissions process for the 2026–2027 school year",
+    de: "Entdecken Sie den Anmeldeprozess für das Schuljahr 2026–2027",
+  },
+  "home.cta.desc2": {
+    es: "y da el primer paso.",
+    ca: "i fes el primer pas.",
+    en: "and take the first step.",
+    de: "und machen Sie den ersten Schritt.",
   },
 
   "home.contact.name":    { es: "Colegio San Cayetano",    ca: "Col·legi Sant Gaietà",      en: "San Cayetano School",   de: "Schule San Cayetano" },
