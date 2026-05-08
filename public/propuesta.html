@@ -88,7 +88,7 @@ h2.sh em{font-style:italic}
 blockquote.obj{font-family:'Cormorant Garant',serif;font-size:clamp(18px,2.2vw,24px);line-height:1.55;color:var(--text);max-width:780px;margin-bottom:52px;border-left:4px solid var(--gold);padding-left:28px}
 blockquote.obj em{font-style:italic;color:var(--navy)}
 .goals{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.gcard{background:var(--navy);color:#fff;border-radius:12px;padding:36px 28px;text-align:center;transition:transform .2s,box-shadow .2s}
+.gcard{background:var(--navy);color:#fff;border-radius:12px;padding:36px 28px;text-align:center;transition:transform .2s,box-shadow .2s;min-width:0}
 .gcard:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,35,102,.25)}
 .gicon{font-size:40px;margin-bottom:14px;display:block}
 .gcard .glabel{font-family:'Cormorant Garant',serif;font-size:28px;font-weight:600;margin-bottom:8px;color:#fff;white-space:normal;overflow:visible;text-overflow:unset}
@@ -228,7 +228,10 @@ blockquote.obj em{font-style:italic;color:var(--navy)}
   #mob-btn{display:flex}
   section{padding:56px 24px}
   #gantt-sec{padding:56px 24px}
-  .goals{grid-template-columns:repeat(2,1fr)}
+  .goals{grid-template-columns:1fr}
+  .gcard{padding:24px 18px}
+  .gcard .glabel{font-size:20px}
+  .gsub{font-size:14px}
   .prob-grid{grid-template-columns:1fr}
   .scope-g{grid-template-columns:1fr}
   .mechs{grid-template-columns:1fr}
@@ -244,7 +247,7 @@ blockquote.obj em{font-style:italic;color:var(--navy)}
 }
 /* Escalar la rueda cuando no cabe (viewport < 568px = 520px wheel + 48px padding) */
 @media(max-width:568px){
-  .ux-wheel{transform:scale(0.58);transform-origin:top center;margin-bottom:-218px}
+  .ux-wheel{zoom:0.58;transform:none;margin-bottom:0}
 }
 </style>
 </head>
